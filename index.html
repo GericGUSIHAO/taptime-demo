@@ -1355,16 +1355,17 @@
   }
 
   .cat-card {
-    background: var(--bg-card);
-    border: 1px solid var(--line-soft);
-    border-radius: 16px;
-    padding: 18px 15px;
+    background: linear-gradient(145deg, var(--bg-card), rgba(255,255,255,0.6));
+    border: 1.5px solid var(--line-soft);
+    border-radius: 20px;
+    padding: 22px 18px;
     cursor: pointer;
-    transition: all 0.4s var(--ease-out);
+    transition: all 0.5s var(--ease-out);
     position: relative;
     overflow: hidden;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
+    backdrop-filter: blur(12px);
   }
 
   .cat-card::before {
@@ -1373,67 +1374,87 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
+    height: 3px;
     background: var(--cat-color, var(--accent));
     transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.55s var(--ease-out);
+    transform-origin: center;
+    transition: transform 0.6s var(--ease-out);
+  }
+
+  .cat-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, var(--cat-color, var(--accent)), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s var(--ease-out);
+    pointer-events: none;
   }
 
   .cat-card:hover {
     border-color: var(--line);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px -14px rgba(0,0,0,0.08);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 48px -20px rgba(0,0,0,0.12);
   }
 
   .cat-card:hover .cat-icon {
-    transform: scale(1.12);
-    transition: transform 0.35s var(--ease-spring);
+    transform: scale(1.15);
+    transition: transform 0.4s var(--ease-spring);
   }
 
   .cat-card:active {
-    transform: scale(0.96);
+    transform: scale(0.95);
   }
 
   .cat-card.tapped {
-    animation: cardTap 0.5s var(--ease-spring);
+    animation: cardTap 0.6s var(--ease-spring);
   }
 
   .cat-card.tapped::before {
     transform: scaleX(1);
   }
 
+  .cat-card.tapped::after {
+    opacity: 0.06;
+  }
+
   @keyframes cardTap {
     0% { transform: scale(1); }
-    35% { transform: scale(0.92); }
+    25% { transform: scale(0.88); }
+    60% { transform: scale(1.05); }
     100% { transform: scale(1); }
   }
 
   .cat-icon {
-    font-size: 22px;
-    margin-bottom: 10px;
-    filter: grayscale(0.08);
-    transition: filter 0.3s;
+    font-size: 28px;
+    margin-bottom: 12px;
+    filter: grayscale(0.15);
+    transition: all 0.4s var(--ease-out);
+    display: inline-block;
   }
 
   .cat-card.tapped .cat-icon {
     filter: grayscale(0);
+    transform: scale(1.2);
   }
 
   .cat-name {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
-    margin-bottom: 7px;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
   }
 
   .cat-time {
     font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 24px;
+    font-weight: 300;
     font-style: italic;
     color: var(--text-quaternary);
-    transition: color 0.4s, transform 0.4s var(--ease-spring);
+    transition: all 0.5s var(--ease-spring);
     line-height: 1;
+    letter-spacing: -0.02em;
   }
 
   .cat-card:has(.cat-time:not(:empty)) .cat-time {
@@ -1442,6 +1463,7 @@
 
   .cat-card.tapped .cat-time {
     color: var(--accent);
+    transform: scale(1.1);
   }
 
   .float-plus {
@@ -1450,19 +1472,73 @@
     top: 50%;
     transform: translate(-50%, -50%);
     font-family: var(--font-display);
-    font-size: 24px;
-    font-weight: 500;
+    font-size: 32px;
+    font-weight: 400;
     font-style: italic;
     color: var(--accent);
     opacity: 0;
     pointer-events: none;
-    animation: floatUp 1.1s var(--ease-out);
+    animation: floatUp 1.2s var(--ease-out);
+    text-shadow: 0 4px 20px rgba(184, 92, 46, 0.2);
   }
 
   @keyframes floatUp {
-    0% { opacity: 0; transform: translate(-50%, -50%) translateY(0) scale(0.8); }
-    20% { opacity: 1; transform: translate(-50%, -50%) translateY(-10px) scale(1.1); }
-    100% { opacity: 0; transform: translate(-50%, -50%) translateY(-44px) scale(1); }
+    0% { opacity: 0; transform: translate(-50%, -50%) translateY(0) scale(0.6); }
+    30% { opacity: 1; transform: translate(-50%, -50%) translateY(-15px) scale(1.2); }
+    100% { opacity: 0; transform: translate(-50%, -50%) translateY(-50px) scale(0.9); }
+  }
+
+  .cat-card.pulse {
+    animation: cardPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes cardPulse {
+    0%, 100% { 
+      transform: scale(1); 
+      box-shadow: 0 0 0 0 rgba(184, 92, 46, 0);
+    }
+    50% { 
+      transform: scale(1.03); 
+      box-shadow: 0 0 0 8px rgba(184, 92, 46, 0.15);
+    }
+  }
+
+  .guide-bubble {
+    position: absolute;
+    background: var(--text);
+    color: var(--bg);
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    z-index: 100;
+    animation: bubbleAppear 0.5s var(--ease-out);
+    box-shadow: 0 8px 32px rgba(10, 9, 7, 0.25);
+  }
+
+  .guide-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px 6px 0;
+    border-style: solid;
+    border-color: var(--text) transparent transparent;
+  }
+
+  @keyframes bubbleAppear {
+    from { opacity: 0; transform: translateY(-10px) scale(0.9); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .guide-bubble.fade-out {
+    animation: bubbleFade 0.4s var(--ease-out) forwards;
+  }
+
+  @keyframes bubbleFade {
+    to { opacity: 0; transform: translateY(-10px) scale(0.9); }
   }
 
   .records-title {
@@ -1984,46 +2060,291 @@
 
   /* ── Week Comparison: Section ── */
   .compare-section {
-    margin-top: 8px;
+    margin-top: 12px;
   }
 
   .compare-header {
     display: flex;
-    justify-content: flex-end;
-    gap: 18px;
-    margin-bottom: 14px;
-    padding-right: 4px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 0 4px;
   }
 
   .compare-label {
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 11px;
+    gap: 8px;
+    font-size: 12px;
     font-weight: 500;
     color: var(--text-tertiary);
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: var(--bg-elevated);
+    transition: all 0.3s var(--ease-out);
+    cursor: pointer;
+  }
+
+  .compare-label:hover {
+    background: var(--bg-deep);
+    color: var(--text-secondary);
   }
 
   .compare-dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+
+  .compare-dot.ideal-dot {
+    background: var(--accent);
+  }
+
+  .compare-dot.actual-dot {
+    background: var(--text);
+  }
+
+  .compare-view-toggle {
+    display: flex;
+    gap: 6px;
+    background: var(--bg-elevated);
+    padding: 4px;
+    border-radius: 12px;
+    border: 1px solid var(--line-soft);
+  }
+
+  .toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    transition: all 0.3s var(--ease-out);
+    white-space: nowrap;
+  }
+
+  .toggle-btn.active {
+    background: var(--bg-card);
+    color: var(--text);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .toggle-btn:hover:not(.active) {
+    background: var(--bg-deep);
+    color: var(--text-secondary);
+  }
+
+  .toggle-btn svg {
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+  }
+
+  .compare-legend {
+    display: flex;
+    gap: 12px;
+  }
+
+  .compare-analysis {
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .compare-analysis.active {
+    display: flex;
+  }
+
+  .analysis-insight {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background: linear-gradient(135deg, rgba(184, 92, 46, 0.06), rgba(237, 231, 218, 0.4));
+    border-radius: 16px;
+    border: 1px solid var(--line-soft);
+  }
+
+  .insight-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+
+  .insight-content {
+    flex: 1;
+  }
+
+  .insight-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  .insight-text {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    line-height: 1.5;
+  }
+
+  .analysis-chart {
+    padding: 16px;
+    background: var(--bg-card);
+    border-radius: 16px;
+    border: 1px solid var(--line-soft);
+  }
+
+  .chart-bar-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .chart-bar-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .chart-bar-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    width: 48px;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+  }
+
+  .chart-bar-track {
+    flex: 1;
+    height: 8px;
+    background: var(--bg-elevated);
+    border-radius: 4px;
+    position: relative;
+    overflow: visible;
+  }
+
+  .chart-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: width 0.8s var(--ease-out);
+  }
+
+  .chart-bar-fill.ideal-fill {
+    background: var(--accent);
+    opacity: 0.4;
+  }
+
+  .chart-bar-fill.actual-fill {
+    background: var(--text);
+    opacity: 0.8;
+  }
+
+  .chart-bar-values {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 40px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .chart-bar-values span {
+    font-size: 10px;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .ideal-val {
+    color: var(--accent);
+    opacity: 0.7;
+  }
+
+  .actual-val {
+    color: var(--text-secondary);
+  }
+
+  .analysis-suggestions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .suggestion-item {
+    display: flex;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--bg-card);
+    border-radius: 14px;
+    border: 1px solid var(--line-soft);
+    transition: all 0.35s var(--ease-out);
+  }
+
+  .suggestion-item:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 20px rgba(184, 92, 46, 0.08);
+    transform: translateX(4px);
+  }
+
+  .suggestion-num {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--accent);
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+
+  .suggestion-content {
+    flex: 1;
+  }
+
+  .suggestion-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  .suggestion-text {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    line-height: 1.5;
   }
 
   /* ── Week Comparison: Timeline ── */
   .compare-timeline {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    margin-bottom: 16px;
+    gap: 6px;
+    margin-bottom: 20px;
+    padding: 16px;
+    background: var(--bg-card);
+    border-radius: 16px;
+    border: 1px solid var(--line-soft);
   }
 
   .compare-time-row {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    padding: 6px 0;
-    border-bottom: 1px dashed var(--line-soft);
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--line-faint);
+    position: relative;
   }
 
   .compare-time-row:last-child {
@@ -2031,74 +2352,124 @@
   }
 
   .compare-time-label {
+    font-family: var(--font-mono);
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--text-quaternary);
-    width: 40px;
+    width: 44px;
     flex-shrink: 0;
-    padding-top: 4px;
+    padding-top: 6px;
+    letter-spacing: 0.04em;
   }
 
   .compare-blocks {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
   }
 
   .compare-block {
-    padding: 7px 10px;
-    border-radius: 7px;
+    padding: 9px 12px;
+    border-radius: 10px;
     font-size: 12px;
     font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: all 0.25s var(--ease-out);
+    transition: all 0.35s var(--ease-out);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .compare-block::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    border-radius: 0 3px 3px 0;
   }
 
   .compare-block.ideal {
-    background: rgba(184, 92, 46, 0.08);
-    border-left: 3px solid var(--accent);
+    background: linear-gradient(135deg, rgba(184, 92, 46, 0.08), rgba(184, 92, 46, 0.03));
     color: var(--text-secondary);
+  }
+
+  .compare-block.ideal::before {
+    background: var(--accent);
+    box-shadow: 0 0 8px rgba(184, 92, 46, 0.4);
   }
 
   .compare-block.actual {
-    background: rgba(10, 9, 7, 0.06);
-    border-left: 3px solid var(--text);
+    background: linear-gradient(135deg, rgba(10, 9, 7, 0.08), rgba(10, 9, 7, 0.03));
     color: var(--text);
   }
 
+  .compare-block.actual::before {
+    background: var(--text);
+    box-shadow: 0 0 8px rgba(10, 9, 7, 0.3);
+  }
+
   .compare-block.missing {
-    background: rgba(201, 196, 184, 0.15);
-    border-left: 3px dashed var(--line);
+    background: rgba(201, 196, 184, 0.12);
     color: var(--text-quaternary);
     font-style: italic;
+    opacity: 0.75;
+  }
+
+  .compare-block.missing::before {
+    background: repeating-linear-gradient(
+      45deg,
+      var(--line),
+      var(--line) 3px,
+      transparent 3px,
+      transparent 6px
+    );
   }
 
   .compare-block.extra {
-    background: rgba(122, 155, 118, 0.08);
-    border-left: 3px solid #7A9B76;
-    color: var(--text-secondary);
+    background: linear-gradient(135deg, rgba(122, 155, 118, 0.08), rgba(122, 155, 118, 0.03));
+    color: #5D7A59;
+  }
+
+  .compare-block.extra::before {
+    background: #7A9B76;
+    box-shadow: 0 0 8px rgba(122, 155, 118, 0.3);
+  }
+
+  .compare-block:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
   }
 
   .compare-block-content {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+  }
+
+  .compare-block-content span:first-child {
+    font-size: 14px;
+    opacity: 0.85;
   }
 
   .compare-block-duration {
     font-size: 10px;
-    opacity: 0.7;
+    opacity: 0.6;
     font-weight: 400;
+    font-family: var(--font-mono);
+    letter-spacing: 0.02em;
   }
 
   /* ── Week Comparison: Summary ── */
   .compare-summary {
-    background: var(--bg-warm);
-    border-radius: 12px;
-    padding: 12px 14px;
+    background: linear-gradient(145deg, var(--bg-warm), rgba(237, 231, 218, 0.6));
+    border-radius: 16px;
+    padding: 16px 18px;
+    border: 1px solid var(--line-soft);
+    backdrop-filter: blur(8px);
   }
 
   .compare-summary-title {
@@ -2178,35 +2549,60 @@
   /* ── Ideal Week: Timeline ── */
   .ideal-timeline {
     position: relative;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    padding: 16px;
+    background: var(--bg-card);
+    border-radius: 16px;
+    border: 1px solid var(--line-soft);
   }
 
   .ideal-block {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 9px 11px;
-    border-radius: 9px;
-    margin-bottom: 6px;
-    background: var(--cat-tint, rgba(184, 121, 74, 0.12));
-    border-left: 3px solid var(--cat-color, var(--accent));
-    transition: transform 0.3s var(--ease-out);
+    gap: 10px;
+    padding: 11px 13px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, var(--cat-tint, rgba(184, 121, 74, 0.12)), var(--cat-tint, rgba(184, 121, 74, 0.06)));
+    border-left: 4px solid var(--cat-color, var(--accent));
+    transition: all 0.35s var(--ease-out);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .ideal-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(184, 92, 46, 0.04), transparent);
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-out);
   }
 
   .ideal-block:hover {
-    transform: translateX(2px);
+    transform: translateX(4px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+
+  .ideal-block:hover::before {
+    opacity: 1;
   }
 
   .ideal-block-color {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: var(--cat-color, var(--accent));
     flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(184, 92, 46, 0.3);
   }
 
   .ideal-block-name {
-    font-size: 11.5px;
+    font-size: 12px;
     font-weight: 600;
     color: var(--text);
     flex: 1;
@@ -2214,50 +2610,127 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    letter-spacing: 0.02em;
   }
 
   .ideal-block-time {
-    font-size: 10.5px;
+    font-size: 11px;
     color: var(--text-tertiary);
     font-family: var(--font-mono, var(--font-ui));
     flex-shrink: 0;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.04em;
+    font-weight: 500;
   }
 
   .ideal-gap {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 8px 11px;
-    margin-bottom: 6px;
-    border-radius: 9px;
-    border: 1px dashed var(--line);
-    background: var(--bg-elevated);
-    font-size: 10px;
-    color: var(--text-quaternary);
+    gap: 8px;
+    padding: 12px 13px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    border: 2px dashed var(--line);
+    background: linear-gradient(135deg, rgba(184, 92, 46, 0.03), rgba(237, 231, 218, 0.3));
+    font-size: 11px;
+    color: var(--text-tertiary);
     font-style: italic;
     font-family: var(--font-display);
     font-weight: 300;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
+    transition: all 0.35s var(--ease-out);
+    cursor: pointer;
+    position: relative;
+  }
+
+  .ideal-gap-icon {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--accent);
+    opacity: 0.7;
+    transition: all 0.35s var(--ease-out);
+    font-family: var(--font-display);
+  }
+
+  .ideal-gap:hover .ideal-gap-icon {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  .ideal-gap-text {
+    flex: 1;
+    text-align: center;
+  }
+
+  .ideal-gap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    border: 2px dashed transparent;
+    background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+                linear-gradient(135deg, rgba(184, 92, 46, 0.3), rgba(122, 155, 118, 0.3)) border-box;
+    opacity: 0;
+    transition: opacity 0.35s var(--ease-out);
+  }
+
+  .ideal-gap:hover {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, rgba(184, 92, 46, 0.06), rgba(237, 231, 218, 0.5));
+    transform: scale(1.01);
+  }
+
+  .ideal-gap:hover::before {
+    opacity: 1;
   }
 
   .ideal-gap-time {
     font-size: 10px;
-    color: var(--text-faint);
+    color: var(--text-quaternary);
     font-family: var(--font-mono, var(--font-ui));
     font-style: normal;
-    margin-left: 8px;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+  }
+
+  .ideal-free-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    margin-top: 8px;
+    background: linear-gradient(135deg, rgba(122, 155, 118, 0.08), rgba(122, 155, 118, 0.03));
+    border-radius: 12px;
+    border: 1px solid rgba(122, 155, 118, 0.2);
+  }
+
+  .free-summary-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-tertiary);
     letter-spacing: 0.02em;
   }
 
+  .free-summary-value {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    color: #5D7A59;
+    letter-spacing: -0.02em;
+  }
+
   .ideal-note {
-    font-size: 10px;
+    font-size: 11px;
     color: var(--text-tertiary);
     text-align: center;
     font-style: italic;
     font-family: var(--font-display);
-    margin-top: 14px;
+    margin-top: 16px;
     font-weight: 300;
+    padding: 12px 16px;
+    background: var(--bg-elevated);
+    border-radius: 12px;
+    border: 1px solid var(--line-soft);
   }
 
   /* ─────────── Features ─────────── */
@@ -3120,17 +3593,38 @@
 
                   <div class="compare-section">
                     <div class="compare-header">
-                      <div class="compare-label ideal-label">
-                        <span class="compare-dot" style="background:var(--accent)"></span>
-                        <span>理想</span>
+                      <div class="compare-view-toggle">
+                        <button class="toggle-btn active" data-view="timeline">
+                          <svg viewBox="0 0 24 24" width="16" height="16">
+                            <rect x="3" y="4" width="6" height="16" rx="2"/>
+                            <rect x="11" y="8" width="6" height="12" rx="2"/>
+                            <rect x="19" y="12" width="6" height="8" rx="2"/>
+                          </svg>
+                          <span>时间线</span>
+                        </button>
+                        <button class="toggle-btn" data-view="analysis">
+                          <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path d="M12 2v20M2 12h20"/>
+                            <circle cx="12" cy="12" r="3"/>
+                          </svg>
+                          <span>分析报告</span>
+                        </button>
                       </div>
-                      <div class="compare-label actual-label">
-                        <span class="compare-dot" style="background:var(--text)"></span>
-                        <span>实际</span>
+                      <div class="compare-legend">
+                        <div class="compare-label ideal-label">
+                          <span class="compare-dot ideal-dot"></span>
+                          <span>理想</span>
+                        </div>
+                        <div class="compare-label actual-label">
+                          <span class="compare-dot actual-dot"></span>
+                          <span>实际</span>
+                        </div>
                       </div>
                     </div>
 
                     <div class="compare-timeline" id="compare-timeline-1"></div>
+
+                    <div class="compare-analysis" id="compare-analysis-1"></div>
 
                     <div class="compare-summary" id="compare-summary-1"></div>
                   </div>
@@ -3229,17 +3723,38 @@
 
                   <div class="compare-section">
                     <div class="compare-header">
-                      <div class="compare-label ideal-label">
-                        <span class="compare-dot" style="background:var(--accent)"></span>
-                        <span>理想</span>
+                      <div class="compare-view-toggle">
+                        <button class="toggle-btn" data-view="timeline">
+                          <svg viewBox="0 0 24 24" width="16" height="16">
+                            <rect x="3" y="4" width="6" height="16" rx="2"/>
+                            <rect x="11" y="8" width="6" height="12" rx="2"/>
+                            <rect x="19" y="12" width="6" height="8" rx="2"/>
+                          </svg>
+                          <span>时间线</span>
+                        </button>
+                        <button class="toggle-btn active" data-view="analysis">
+                          <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path d="M12 2v20M2 12h20"/>
+                            <circle cx="12" cy="12" r="3"/>
+                          </svg>
+                          <span>分析报告</span>
+                        </button>
                       </div>
-                      <div class="compare-label actual-label">
-                        <span class="compare-dot" style="background:var(--text)"></span>
-                        <span>实际</span>
+                      <div class="compare-legend">
+                        <div class="compare-label ideal-label">
+                          <span class="compare-dot ideal-dot"></span>
+                          <span>理想</span>
+                        </div>
+                        <div class="compare-label actual-label">
+                          <span class="compare-dot actual-dot"></span>
+                          <span>实际</span>
+                        </div>
                       </div>
                     </div>
 
                     <div class="compare-timeline" id="compare-timeline-2"></div>
+
+                    <div class="compare-analysis" id="compare-analysis-2"></div>
 
                     <div class="compare-summary" id="compare-summary-2"></div>
                   </div>
@@ -3931,14 +4446,11 @@
     if (!container) return;
     const dayIdx = phoneStates[phoneNum].idealDay;
     const blocks = (appData.idealWeek[dayIdx] || []).slice();
-    // Sort by start time
     blocks.sort((a, b) => (a.startHour * 60 + a.startMin) - (b.startHour * 60 + b.startMin));
 
-    // Timeline window: 6:00 to 24:00 (1080 minutes)
     const WIN_START = 6 * 60;
     const WIN_END = 24 * 60;
 
-    // Filter blocks that fall within or overlap the window
     const visible = blocks.filter(b => (b.startHour * 60 + b.startMin + b.duration) > WIN_START && (b.startHour * 60 + b.startMin) < WIN_END);
 
     if (visible.length === 0) {
@@ -3948,14 +4460,18 @@
 
     let html = '';
     let cursor = WIN_START;
+    let totalFreeMinutes = 0;
+
     visible.forEach(b => {
       const start = b.startHour * 60 + b.startMin;
-      // If there's a gap before this block, show "可安排"
       if (start > cursor) {
         const gapStart = Math.max(cursor, WIN_START);
+        const gapDuration = start - gapStart;
+        totalFreeMinutes += gapDuration;
         html += `
           <div class="ideal-gap">
-            <span>可安排</span>
+            <span class="ideal-gap-icon">+</span>
+            <span class="ideal-gap-text">可安排</span>
             <span class="ideal-gap-time">${formatHM(Math.floor(gapStart / 60), gapStart % 60)} — ${formatHM(Math.floor(start / 60), start % 60)}</span>
           </div>
         `;
@@ -3965,7 +4481,6 @@
       const color = cat ? cat.color : 'var(--accent)';
       const icon = cat ? cat.icon : '📌';
       const name = cat ? cat.name : b.category;
-      // semi-transparent tint from category color
       const tint = hexToRgba(color, 0.12);
       html += `
         <div class="ideal-block" style="--cat-color:${color};--cat-tint:${tint}">
@@ -3977,15 +4492,30 @@
       `;
       cursor = end;
     });
-    // Trailing gap until end of window
+
     if (cursor < WIN_END) {
+      const gapDuration = WIN_END - cursor;
+      totalFreeMinutes += gapDuration;
       html += `
         <div class="ideal-gap">
-          <span>可安排</span>
+          <span class="ideal-gap-icon">+</span>
+          <span class="ideal-gap-text">可安排</span>
           <span class="ideal-gap-time">${formatHM(Math.floor(cursor / 60), cursor % 60)} — 24:00</span>
         </div>
       `;
     }
+
+    const freeHours = Math.floor(totalFreeMinutes / 60);
+    const freeMins = totalFreeMinutes % 60;
+    const freeText = freeHours > 0 ? `${freeHours}h ${freeMins}m` : `${freeMins}m`;
+
+    html += `
+      <div class="ideal-free-summary">
+        <span class="free-summary-label">今日可安排时间</span>
+        <span class="free-summary-value">${freeText}</span>
+      </div>
+    `;
+
     container.innerHTML = html;
   }
 
@@ -4225,6 +4755,7 @@
         timeEl.classList.add('pulse');
         setTimeout(() => timeEl.classList.remove('pulse'), 550);
       }
+      animateTotalValue(phoneNum);
       return;
     }
 
@@ -4251,6 +4782,18 @@
       timeEl.textContent = formatDuration(TAP_MINUTES);
       timeEl.classList.add('pulse');
       setTimeout(() => timeEl.classList.remove('pulse'), 550);
+    }
+
+    animateTotalValue(phoneNum);
+  }
+
+  function animateTotalValue(phoneNum) {
+    const totalEl = document.getElementById('today-total-' + phoneNum);
+    if (totalEl) {
+      totalEl.classList.remove('pulse');
+      void totalEl.offsetWidth;
+      totalEl.classList.add('pulse');
+      setTimeout(() => totalEl.classList.remove('pulse'), 550);
     }
   }
 
@@ -4334,6 +4877,169 @@
       renderIdealDayTabs(phoneNum);
       renderIdealTimeline(phoneNum);
     }
+  }
+
+  function initCompareViewToggle() {
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const phoneNum = this.closest('.iphone-screen').id.replace('phone', '');
+        const view = this.dataset.view;
+        const compareSection = this.closest('.compare-section');
+        
+        compareSection.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        const timeline = compareSection.querySelector('.compare-timeline');
+        const analysis = compareSection.querySelector('.compare-analysis');
+        
+        if (view === 'timeline') {
+          timeline.style.display = 'flex';
+          analysis.classList.remove('active');
+        } else {
+          timeline.style.display = 'none';
+          renderAnalysisReport(phoneNum);
+          analysis.classList.add('active');
+        }
+      });
+    });
+  }
+
+  function renderAnalysisReport(phoneNum) {
+    const container = document.getElementById('compare-analysis-' + phoneNum);
+    if (!container) return;
+
+    const idealWeek = appData.idealWeek || [];
+    const records = appData.records || {};
+
+    const idealByCategory = {};
+    const actualByCategory = {};
+
+    idealWeek.forEach(dayBlocks => {
+      dayBlocks.forEach(block => {
+        idealByCategory[block.category] = (idealByCategory[block.category] || 0) + block.duration;
+      });
+    });
+
+    Object.values(records).forEach(dayRecords => {
+      dayRecords.forEach(record => {
+        actualByCategory[record.category] = (actualByCategory[record.category] || 0) + record.duration;
+      });
+    });
+
+    const idealTotal = Object.values(idealByCategory).reduce((a, b) => a + b, 0) || 1;
+    const actualTotal = Object.values(actualByCategory).reduce((a, b) => a + b, 0) || 1;
+
+    const chartItems = CATEGORIES.slice(0, 5).map(cat => ({
+      name: cat.name,
+      ideal: Math.round((idealByCategory[cat.id] || 0) / idealTotal * 100),
+      actual: Math.round((actualByCategory[cat.id] || 0) / actualTotal * 100)
+    }));
+
+    const suggestions = [];
+    chartItems.forEach(item => {
+      const diff = item.actual - item.ideal;
+      if (diff > 20 && item.name !== '休息') {
+        suggestions.push({
+          title: `${item.name}时间超出预期`,
+          text: `你实际的${item.name}时间比理想多了${Math.round(diff / item.ideal * 100)}%。这是你想要的吗？还是可以从中挤出一些时间给其他活动？`
+        });
+      } else if (diff < -20) {
+        suggestions.push({
+          title: `${item.name}时间未达目标`,
+          text: `你计划了${item.ideal}%的${item.name}时间，但只完成了${item.actual}%。也许需要调整计划或安排更合适的时间段？`
+        });
+      }
+    });
+
+    if (suggestions.length === 0) {
+      suggestions.push({
+        title: '保持平衡',
+        text: '你的时间分配与理想计划非常接近！继续保持，细微的调整就能让生活更美好。'
+      });
+    }
+
+    let chartHtml = '';
+    chartItems.forEach(item => {
+      chartHtml += `
+        <div class="chart-bar-item">
+          <div class="chart-bar-label">${item.name}</div>
+          <div class="chart-bar-track">
+            <div class="chart-bar-fill ideal-fill" style="width:${Math.min(item.ideal, 100)}%"></div>
+            <div class="chart-bar-fill actual-fill" style="width:${Math.min(item.actual, 100)}%"></div>
+          </div>
+          <div class="chart-bar-values">
+            <span class="ideal-val">${item.ideal}%</span>
+            <span class="actual-val">${item.actual}%</span>
+          </div>
+        </div>
+      `;
+    });
+
+    let suggestionsHtml = '';
+    suggestions.slice(0, 2).forEach((s, i) => {
+      suggestionsHtml += `
+        <div class="suggestion-item">
+          <span class="suggestion-num">0${i + 1}</span>
+          <div class="suggestion-content">
+            <div class="suggestion-title">${s.title}</div>
+            <div class="suggestion-text">${s.text}</div>
+          </div>
+        </div>
+      `;
+    });
+
+    container.innerHTML = `
+      <div class="analysis-insight">
+        <div class="insight-icon">💡</div>
+        <div class="insight-content">
+          <div class="insight-title">你的时间洞察</div>
+          <div class="insight-text">基于你的记录和理想计划，我们发现了一些有趣的模式...</div>
+        </div>
+      </div>
+      <div class="analysis-chart">${chartHtml}</div>
+      <div class="analysis-suggestions">${suggestionsHtml}</div>
+    `;
+  }
+
+  function setupGuideBubble() {
+    setTimeout(() => {
+      const firstCard = document.querySelector('#cat-grid-1 .cat-card');
+      if (!firstCard) return;
+
+      const phoneScreen = document.getElementById('phone1');
+      const cardRect = firstCard.getBoundingClientRect();
+      const screenRect = phoneScreen.getBoundingClientRect();
+
+      const bubble = document.createElement('div');
+      bubble.className = 'guide-bubble';
+      bubble.textContent = '点击这里开始记录';
+      bubble.style.left = `${cardRect.left - screenRect.left + cardRect.width / 2}px`;
+      bubble.style.top = `${cardRect.top - screenRect.top - 40}px`;
+      bubble.style.transform = 'translateX(-50%)';
+
+      phoneScreen.appendChild(bubble);
+      firstCard.classList.add('pulse');
+
+      let clickCount = 0;
+      const handleClick = () => {
+        clickCount++;
+        if (clickCount >= 3) {
+          bubble.classList.add('fade-out');
+          firstCard.classList.remove('pulse');
+          setTimeout(() => bubble.remove(), 400);
+          document.removeEventListener('click', handleClick);
+        }
+      };
+      document.addEventListener('click', handleClick);
+
+      setTimeout(() => {
+        if (clickCount < 3) {
+          bubble.classList.add('fade-out');
+          firstCard.classList.remove('pulse');
+          setTimeout(() => bubble.remove(), 400);
+        }
+      }, 8000);
+    }, 1500);
   }
 
   function setupScrollReveal() {
@@ -4484,6 +5190,9 @@
         switchTab(phone, tab);
       });
     });
+
+    initCompareViewToggle();
+    setupGuideBubble();
 
     setupNavScroll();
     setupScrollReveal();

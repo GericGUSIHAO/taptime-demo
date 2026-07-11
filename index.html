@@ -85,7 +85,6 @@
     opacity: 1;
     pointer-events: none;
     z-index: 9999;
-    mix-blend-mode: multiply;
   }
 
   body::after {
@@ -978,305 +977,1385 @@
     font-weight: 300;
   }
 
-  /* ─────────── Interactive Demo Showcase ─────────── */
-  .showcase {
-    background: var(--bg);
-    overflow: hidden;
+  /* ===== Cinematic Demo ===== */
+  .cinematic {
     position: relative;
   }
 
-  .showcase::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--line), transparent);
-  }
-
-  .showcase-header {
-    text-align: center;
-    margin-bottom: 120px;
-    position: relative;
-    z-index: 2;
-  }
-
-  .showcase-header .section-eyebrow {
-    justify-content: center;
-  }
-
-  .showcase-header .section-eyebrow::before {
-    display: none;
-  }
-
-  .showcase-header .section-eyebrow::after {
-    content: '';
-    width: 28px;
-    height: 1px;
-    background: var(--accent);
-  }
-
-  .showcase-header .section-title {
-    max-width: 780px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .showcase-header .section-desc {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
-
-  .demo-stage {
+  .scene {
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 80px;
-    flex-wrap: wrap;
-    padding: 80px 40px;
+    justify-content: center;
+    padding: 100px 60px;
     position: relative;
-    perspective: 2000px;
+    overflow: hidden;
+    gap: 80px;
   }
 
-  .demo-stage::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 1200px;
-    height: 700px;
-    background:
-      radial-gradient(ellipse 60% 50% at 50% 40%, rgba(168, 107, 61, 0.06), transparent 70%),
-      radial-gradient(ellipse 40% 30% at 30% 60%, rgba(168, 107, 61, 0.03), transparent 70%);
-    pointer-events: none;
+  .scene-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    gap: 80px;
   }
 
-  .demo-stage::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: 200px;
-    background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
-    pointer-events: none;
+  .scene-inner.scene-reverse {
+    flex-direction: row-reverse;
+  }
+
+  .scene-free .scene-text { order: 2; }
+  .scene-free .scene-visual { order: 1; }
+
+  .scene-dark {
+    background: #1A1816;
+    color: #F5F1EA;
+  }
+  .scene-dark .scene-num { color: rgba(245,241,234,0.06); }
+  .scene-dark .scene-desc { color: rgba(245,241,234,0.55); }
+
+  .scene-light {
+    background: #F5F1EA;
+    color: #141310;
+  }
+  .scene-light .scene-num { color: rgba(20,19,16,0.05); }
+  .scene-light .scene-desc { color: rgba(20,19,16,0.55); }
+
+  .scene-hook {
+    flex-direction: column;
+    text-align: center;
+  }
+  .scene-hook .scene-headline {
+    font-size: 64px;
+    letter-spacing: -0.032em;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+  .scene-hook .scene-eyebrow {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.4;
+    margin-bottom: 28px;
+  }
+  .scene-hook .scene-subline {
+    font-size: 19px;
+    font-weight: 300;
+    opacity: 0.5;
+    line-height: 1.6;
+    max-width: 500px;
+  }
+
+  .scene-center {
+    text-align: center;
+    max-width: 700px;
+  }
+  .scene-center .scene-headline {
+    font-size: 56px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    font-weight: 300;
+  }
+  .scene-center .scene-num {
+    font-size: 100px;
+    display: block;
+    margin-bottom: -32px;
+    position: relative;
+    z-index: 0;
+  }
+  .scene-center .scene-headline {
+    position: relative;
     z-index: 1;
   }
-
-  .phone-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 32px;
-    position: relative;
-    z-index: 2;
+  .scene-center .scene-highlight {
+    font-size: 17px;
+    font-weight: 400;
+    margin-bottom: 14px;
+    opacity: 0.7;
+    letter-spacing: 0.01em;
   }
-
-  .phone-col:nth-child(1) {
-    transform: perspective(1200px) rotateY(8deg) rotateX(2deg);
-    transition: all 1s var(--ease-out);
-  }
-
-  .phone-col:nth-child(2) {
-    margin-top: -60px;
-    transform: perspective(1200px) rotateY(-8deg) rotateX(2deg);
-    transition: all 1s var(--ease-out) 0.15s;
-    z-index: 3;
-  }
-
-  .phone-col:nth-child(1):hover {
-    transform: perspective(1200px) rotateY(4deg) rotateX(1deg) translateY(-8px);
-  }
-
-  .phone-col:nth-child(2):hover {
-    transform: perspective(1200px) rotateY(-4deg) rotateX(1deg) translateY(-8px);
-  }
-
-  .phone-label {
-    font-size: 12px;
-    color: var(--text-secondary);
-    font-style: italic;
-    font-family: var(--font-display);
+  .scene-center .scene-subline {
+    font-size: 18px;
     font-weight: 300;
-    letter-spacing: 0.03em;
-    opacity: 0;
-    transform: translateY(18px);
-    transition: all 1.1s var(--ease-out);
+    opacity: 0.5;
+    margin-bottom: 48px;
+    line-height: 1.6;
   }
 
-  .phone-col.visible .phone-label {
-    opacity: 1;
-    transform: translateY(0);
+  .scene-text {
+    flex: 0 1 360px;
+    max-width: 360px;
+    min-width: 0;
+  }
+  .scene-visual {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .iphone-wrapper {
-    opacity: 0;
-    transform: translateY(60px) scale(0.95);
-    transition: all 1.4s var(--ease-out);
+  .scene-num {
+    font-family: var(--font-display);
+    font-size: 72px;
+    font-weight: 200;
+    line-height: 1;
+    display: block;
+    margin-bottom: -12px;
+    opacity: 0.05;
+    letter-spacing: -0.02em;
+  }
+
+  .scene-dark .scene-num {
+    opacity: 0.04;
+  }
+
+  .scene-headline {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: -0.022em;
+    line-height: 1.12;
+    margin-bottom: 18px;
+  }
+
+  .scene-desc {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.7;
+    opacity: 0.6;
+    letter-spacing: -0.005em;
+  }
+
+  .scene-dark .scene-desc {
+    opacity: 0.5;
+  }
+
+  /* ===== Phone Frame for Cinematic - Premium Titanium ===== */
+  .demo-phone {
     position: relative;
+    flex-shrink: 0;
   }
 
-  .phone-col.visible .iphone-wrapper {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
-  .phone-col:nth-child(2) .iphone-wrapper {
-    transition-delay: 0.2s;
-  }
-
-  .phone-col:nth-child(2) .phone-label {
-    transition-delay: 0.2s;
-  }
-
-  .iphone-frame {
-    padding: 14px;
-    background: linear-gradient(145deg, #1f1f1f 0%, #0a0a0a 50%, #050505 100%);
-    border-radius: 62px;
-    box-shadow:
-      0 0 0 1px rgba(255,255,255,0.06),
-      0 2px 0 rgba(255,255,255,0.08) inset,
-      0 -2px 0 rgba(0,0,0,0.3) inset,
-      0 80px 160px -40px rgba(0,0,0,0.4),
-      0 40px 80px -40px rgba(0,0,0,0.5);
+  .demo-phone-frame {
+    width: 260px;
+    height: 563px;
+    border-radius: 46px;
+    background: 
+      linear-gradient(145deg, 
+        #7A756E 0%, 
+        #5C5852 15%, 
+        #45423D 30%, 
+        #3A3734 45%, 
+        #35322F 50%, 
+        #3D3A36 58%, 
+        #4A4641 72%, 
+        #5E5952 88%, 
+        #6B665E 100%);
+    padding: 4px;
     position: relative;
-    transition: box-shadow 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+    overflow: visible;
+    box-shadow: 
+      0 0.5px 0 rgba(255,255,255,0.18) inset,
+      0 -1px 0 rgba(0,0,0,0.15) inset,
+      0 0 0 0.5px rgba(0,0,0,0.3),
+      0 25px 60px -15px rgba(0,0,0,0.45),
+      0 10px 30px -20px rgba(0,0,0,0.35);
   }
 
-  .phone-col:hover .iphone-frame {
-    box-shadow:
-      0 0 0 1px rgba(255,255,255,0.08),
-      0 2px 0 rgba(255,255,255,0.1) inset,
-      0 -2px 0 rgba(0,0,0,0.3) inset,
-      0 120px 200px -50px rgba(0,0,0,0.45),
-      0 60px 100px -50px rgba(0,0,0,0.55);
+  .demo-phone-dark {
+    background: 
+      linear-gradient(145deg, 
+        #5C5852 0%, 
+        #433F3B 15%, 
+        #302E2B 30%, 
+        #272523 45%, 
+        #23211F 50%, 
+        #292725 58%, 
+        #35322F 72%, 
+        #403D39 88%, 
+        #4A4641 100%);
   }
 
-  .iphone-frame::before {
+  /* Side buttons - physical precision */
+  .demo-phone-frame::before {
     content: '';
     position: absolute;
-    inset: 2px;
-    border-radius: 58px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 25%);
-    pointer-events: none;
+    left: -2px;
+    top: 105px;
+    width: 2px;
+    height: 28px;
+    background: linear-gradient(90deg, #383532, #23211F);
+    border-radius: 1px 0 0 1px;
+    box-shadow: 
+      0 40px 0 -0.5px #23211F,
+      0 76px 0 -0.5px #23211F;
   }
 
-  .iphone-frame::after {
+  .demo-phone-frame::after {
     content: '';
     position: absolute;
-    top: 50%;
-    left: -3px;
-    width: 3px;
-    height: 120px;
-    transform: translateY(-50%);
-    background: linear-gradient(180deg, #1a1a1a, #0d0d0d, #1a1a1a);
-    border-radius: 2px 0 0 2px;
-    box-shadow: -1px 0 0 rgba(255,255,255,0.05) inset;
+    right: -2px;
+    top: 125px;
+    width: 2px;
+    height: 58px;
+    background: linear-gradient(90deg, #23211F, #383532);
+    border-radius: 0 1px 1px 0;
   }
 
-  .iphone-screen {
-    width: 310px;
-    height: 640px;
-    border-radius: 48px;
-    overflow: hidden;
-    position: relative;
-    background: var(--bg);
-  }
-
-  .dynamic-island {
+  .demo-phone-notch {
+    width: 96px;
+    height: 28px;
+    background: #000;
+    border-radius: 100px;
     position: absolute;
     top: 12px;
     left: 50%;
     transform: translateX(-50%);
-    width: 120px;
-    height: 35px;
-    background: #000;
-    border-radius: 999px;
-    z-index: 50;
+    z-index: 15;
   }
 
-  .status-bar {
+  .demo-phone-notch::before {
+    content: '';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 9px;
+    height: 9px;
+    background: radial-gradient(circle at 35% 35%, #1E293B 0%, #050508 65%);
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.04);
+  }
+
+  .demo-phone-notch::after {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 6px;
+    background: #0D0D0F;
+    border-radius: 3px;
+  }
+
+  .demo-phone-dark .demo-phone-notch {
+    background: #000;
+  }
+
+  .demo-phone-status {
+    position: absolute;
+    top: 14px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #141310;
+    z-index: 20;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  .demo-phone-status-dark {
+    color: #F5F1EA;
+  }
+
+  .demo-phone-time {
+    font-variant-numeric: tabular-nums;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .demo-phone-signal {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    opacity: 0.9;
+  }
+
+  .demo-phone-signal .signal-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.5px;
+    height: 8px;
+  }
+
+  .demo-phone-signal .signal-bar {
+    width: 2px;
+    border-radius: 1px;
+    background: currentColor;
+  }
+
+  .demo-phone-signal .signal-bar:nth-child(1) { height: 2px; }
+  .demo-phone-signal .signal-bar:nth-child(2) { height: 4px; }
+  .demo-phone-signal .signal-bar:nth-child(3) { height: 6px; }
+  .demo-phone-signal .signal-bar:nth-child(4) { height: 8px; }
+
+  .demo-phone-signal .wifi-icon {
+    width: 13px;
+    height: 9px;
+  }
+
+  .demo-phone-signal .battery {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .demo-phone-signal .battery-body {
+    width: 21px;
+    height: 10px;
+    border: 1.2px solid currentColor;
+    border-radius: 3px;
+    padding: 1px;
+    position: relative;
+    opacity: 0.95;
+  }
+
+  .demo-phone-signal .battery-body::before {
+    content: '';
+    position: absolute;
+    right: -2.5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 4px;
+    background: currentColor;
+    border-radius: 0 1px 1px 0;
+    opacity: 0.5;
+  }
+
+  .demo-phone-signal .battery-level {
+    height: 100%;
+    width: 78%;
+    background: currentColor;
+    border-radius: 1.5px;
+  }
+
+  .demo-phone-screen {
+    background: #F5F1EA;
+    border-radius: 42px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-top: 46px;
+    padding-bottom: 18px;
+    box-sizing: border-box;
+  }
+
+  .demo-phone-screen::-webkit-scrollbar {
+    display: none;
+  }
+
+  .demo-phone-screen-dark {
+    background: #1A1816;
+  }
+
+  .demo-phone-home-bar {
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110px;
+    height: 4px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 4px;
+    z-index: 20;
+  }
+
+  .demo-phone-screen-dark .demo-phone-home-bar {
+    background: rgba(255,255,255,0.22);
+  }
+
+  .demo-phone-home-bar-dark {
+    background: rgba(245,241,234,0.18);
+  }
+
+  .demo-app-header {
+    padding: 0 14px 10px;
+    background: #F5F1EA;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+
+  .demo-phone-screen-dark .demo-app-header {
+    background: #1A1816;
+  }
+
+  .demo-app-date {
+    margin-bottom: 10px;
+  }
+
+  .demo-app-date-main {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    color: #141310;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .demo-phone-screen-dark .demo-app-date-main {
+    color: #F5F1EA;
+  }
+
+  .demo-app-date-sub {
+    font-size: 11px;
+    color: rgba(20,19,16,0.4);
+    margin-top: 2px;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+  }
+
+  .demo-phone-screen-dark .demo-app-date-sub {
+    color: rgba(245,241,234,0.4);
+  }
+
+  .demo-app-stats {
+    display: flex;
+    gap: 5px;
+  }
+
+  .demo-app-stat {
+    flex: 1;
+    background: rgba(20,19,16,0.03);
+    border-radius: 11px;
+    padding: 7px 6px;
+    text-align: center;
+  }
+
+  .demo-phone-screen-dark .demo-app-stat {
+    background: rgba(255,255,255,0.04);
+  }
+
+  .demo-app-stat-value {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 300;
+    color: #141310;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .demo-phone-screen-dark .demo-app-stat-value {
+    color: #F5F1EA;
+  }
+
+  .demo-app-stat-label {
+    display: block;
+    font-size: 8px;
+    color: rgba(20,19,16,0.4);
+    margin-top: 3px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .demo-phone-screen-dark .demo-app-stat-label {
+    color: rgba(245,241,234,0.4);
+  }
+
+  .demo-app-categories {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+    padding: 4px 12px;
+  }
+
+  .demo-app-categories .cat-card {
+    background: rgba(255,255,255,0.65);
+    border: 0.5px solid rgba(20,19,16,0.04);
+    border-radius: 16px;
+    padding: 12px 10px;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 3px 8px rgba(0,0,0,0.02);
+  }
+
+  .demo-phone-screen-dark .demo-app-categories .cat-card {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.05);
+    box-shadow: none;
+  }
+
+  .demo-app-categories .cat-card::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 54px;
+    height: 2.5px;
+    background: var(--cat-color, var(--accent));
+    border-radius: 16px 16px 0 0;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0.8;
+  }
+
+  .demo-app-categories .cat-card.has-record::before {
+    transform: scaleX(1);
+  }
+
+  .demo-app-categories .cat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    background: rgba(255,255,255,0.85);
+  }
+
+  .demo-app-categories .cat-icon {
+    font-size: 20px;
+    margin-bottom: 6px;
+    display: block;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    line-height: 1;
+  }
+
+  .demo-app-categories .cat-name {
+    font-size: 10px;
+    font-weight: 600;
+    color: #141310;
+    display: block;
+    letter-spacing: -0.01em;
+  }
+
+  .demo-phone-screen-dark .demo-app-categories .cat-name {
+    color: #F5F1EA;
+  }
+
+  .demo-app-categories .cat-time {
+    font-size: 9px;
+    color: rgba(20,19,16,0.4);
+    margin-top: 2px;
+    display: block;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    min-height: 10px;
+  }
+
+  .demo-app-categories .cat-time:empty {
+    display: none;
+  }
+
+  .demo-phone-screen-dark .demo-app-categories .cat-time {
+    color: rgba(245,241,234,0.4);
+  }
+
+  .demo-app-categories .plus-indicator {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    font-size: 14px;
+    font-weight: 700;
+    color: #7A9B76;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .demo-phone-screen-dark .demo-app-categories .plus-indicator {
+    color: #9BC097;
+  }
+
+  .demo-app-records {
+    padding: 10px 12px 20px;
+    margin-top: 6px;
+  }
+
+  .demo-app-records-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 32px 0;
-    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .demo-app-records-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #141310;
+    letter-spacing: -0.01em;
+  }
+
+  .demo-phone-screen-dark .demo-app-records-title {
+    color: #F5F1EA;
+  }
+
+  .demo-app-records-hint {
+    font-size: 9px;
+    color: rgba(20,19,16,0.3);
+    font-weight: 500;
+  }
+
+  .demo-phone-screen-dark .demo-app-records-hint {
+    color: rgba(245,241,234,0.3);
+  }
+
+  .demo-app-records-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .demo-app-records-list .record-item {
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(20,19,16,0.06);
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s;
+  }
+
+  .demo-app-records-list .record-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(20,19,16,0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .demo-app-records-list .record-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .demo-app-records-list .record-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #141310;
+    display: block;
+  }
+
+  .demo-app-records-list .record-time {
+    font-size: 11px;
+    color: rgba(20,19,16,0.4);
+    display: block;
+  }
+
+  .demo-app-records-list .record-duration {
+    font-size: 12px;
     font-weight: 600;
-    z-index: 40;
-    font-family: -apple-system, var(--font-ui);
+    color: rgba(20,19,16,0.7);
+  }
+
+  .demo-app-records-list .record-delete-btn {
+    display: none;
+    font-size: 11px;
+    color: rgba(239,68,68,0.8);
+    background: rgba(239,68,68,0.1);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.2s;
+  }
+
+  .demo-app-records-list .record-item.delete-mode .record-delete-btn {
+    display: block;
+    opacity: 1;
+  }
+
+  .demo-week-view {
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .demo-week-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px 6px;
+    flex-shrink: 0;
+  }
+
+  .demo-week-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 400;
+    color: #141310;
+    letter-spacing: -0.02em;
+  }
+
+  .demo-phone-screen-dark .demo-week-title {
+    color: #F5F1EA;
+  }
+
+  .demo-week-sub {
+    font-size: 11px;
+    color: rgba(20,19,16,0.4);
+    font-weight: 400;
+  }
+
+  .demo-phone-screen-dark .demo-week-sub {
+    color: rgba(245,241,234,0.4);
+  }
+
+  .demo-week-legend {
+    display: flex;
+    gap: 10px;
+    font-size: 8px;
+    color: rgba(20,19,16,0.4);
+    font-weight: 500;
+  }
+
+  .demo-phone-screen-dark .demo-week-legend {
+    color: rgba(245,241,234,0.4);
+  }
+
+  .demo-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .demo-legend-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 2px;
+  }
+
+  /* Calendar-style continuous blocks */
+  .demo-week-calendar {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 8px 10px;
+    position: relative;
+  }
+
+  .demo-week-calendar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .week-cal-header {
+    display: flex;
+    padding-left: 26px;
+    margin-bottom: 3px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    padding-bottom: 5px;
+    padding-top: 2px;
+  }
+
+  .demo-phone-screen .week-cal-header {
+    background: #F5F1EA;
+  }
+
+  .demo-phone-screen-dark .week-cal-header {
+    background: #1A1816;
+  }
+
+  .week-cal-day {
+    flex: 1;
+    text-align: center;
+    font-size: 9px;
+    font-weight: 600;
+    color: rgba(20,19,16,0.35);
+    letter-spacing: 0.02em;
+  }
+
+  .demo-phone-screen-dark .week-cal-day {
+    color: rgba(245,241,234,0.35);
+  }
+
+  .week-cal-day.today {
+    color: #141310;
+    font-weight: 700;
+  }
+
+  .demo-phone-screen-dark .week-cal-day.today {
+    color: #F5F1EA;
+  }
+
+  .week-cal-body {
+    position: relative;
+  }
+
+  .week-cal-time-col {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 100%;
+  }
+
+  .week-cal-time-marker {
+    position: absolute;
+    left: 0;
+    font-size: 7px;
+    font-weight: 500;
+    color: rgba(20,19,16,0.22);
+    transform: translateY(-50%);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    width: 20px;
+    padding-right: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  .demo-phone-screen-dark .week-cal-time-marker {
+    color: rgba(245,241,234,0.22);
+  }
+
+  .week-cal-grid-lines {
+    position: absolute;
+    left: 26px;
+    right: 0;
+    top: 0;
+    bottom: 0;
     pointer-events: none;
   }
 
-  .status-bar-right {
+  .week-cal-grid-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(20,19,16,0.04);
+  }
+
+  .demo-phone-screen-dark .week-cal-grid-line {
+    background: rgba(255,255,255,0.04);
+  }
+
+  .week-cal-grid-line.half {
+    background: rgba(20,19,16,0.02);
+  }
+
+  .demo-phone-screen-dark .week-cal-grid-line.half {
+    background: rgba(255,255,255,0.02);
+  }
+
+  .week-cal-cols {
+    flex: 1;
+    display: flex;
+    position: relative;
+    margin-left: 26px;
+  }
+
+  .week-cal-col {
+    flex: 1;
+    position: relative;
+    border-right: 0.5px solid rgba(20,19,16,0.03);
+    min-height: 100%;
+  }
+
+  .demo-phone-screen-dark .week-cal-col {
+    border-right-color: rgba(255,255,255,0.03);
+  }
+
+  .week-cal-col:last-child {
+    border-right: none;
+  }
+
+  .week-cal-event {
+    position: absolute;
+    left: 1.5px;
+    right: 1.5px;
+    border-radius: 4px;
+    padding: 2px 3px;
+    font-size: 7px;
+    font-weight: 600;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .week-cal-event:hover {
+    transform: scale(1.03);
+    z-index: 3;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  }
+
+  .week-cal-event.fixed {
+    background: rgba(154,148,136,0.18);
+    color: rgba(20,19,16,0.6);
+    border-left: 1.5px solid rgba(154,148,136,0.35);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .demo-phone-screen-dark .week-cal-event.fixed {
+    background: rgba(154,148,136,0.12);
+    color: rgba(245,241,234,0.55);
+    border-left-color: rgba(154,148,136,0.25);
+  }
+
+  .week-cal-event.activity {
+    color: rgba(255,255,255,0.95);
+    padding: 2px 4px;
+    box-shadow: 
+      0 1px 2px rgba(0,0,0,0.12), 
+      inset 0 1px 0 rgba(255,255,255,0.18);
+  }
+
+  .week-cal-event .event-label {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 600;
+  }
+
+  .week-cal-event .event-time {
+    display: block;
+    font-size: 5.5px;
+    font-weight: 400;
+    opacity: 0.65;
+    margin-top: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .week-cal-event.short .event-time {
+    display: none;
+  }
+
+  /* Now indicator line */
+  .week-cal-now {
+    position: absolute;
+    left: 28px;
+    right: 0;
+    height: 1.5px;
+    background: #E85D3A;
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .week-cal-now::before {
+    content: '';
+    position: absolute;
+    left: -3px;
+    top: -2.5px;
+    width: 6px;
+    height: 6px;
+    background: #E85D3A;
+    border-radius: 50%;
+  }
+
+  .demo-free-view {
+    padding: 0 12px 16px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .demo-free-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 400;
+    color: #F5F1EA;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+
+  /* 旧 .scene-tab-item 和 .home-indicator-bar 样式已移除 */
+
+  /* 一周时间块视图 - iOS风格 */
+  .week-block-view {
+    padding: 2px 0;
+  }
+  .week-block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .week-block-title {
+    font-family: var(--font-display, Georgia, serif);
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .week-block-legend {
+    display: flex;
+    gap: 12px;
+    font-size: 10px;
+    opacity: 0.6;
+  }
+  .legend-item {
     display: flex;
     align-items: center;
     gap: 5px;
   }
-
-  .signal-bars {
-    display: flex;
-    align-items: flex-end;
-    gap: 2px;
+  .legend-dot {
+    width: 10px;
     height: 10px;
+    border-radius: 3px;
   }
 
-  .signal-bar {
-    width: 3px;
-    background: currentColor;
-    border-radius: 1px;
+  .week-block-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
 
-  .battery-icon {
-    width: 25px;
-    height: 11px;
-    border: 1.2px solid currentColor;
-    border-radius: 2px;
-    padding: 1px;
+  .week-block-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 52px;
+  }
+
+  .week-block-day-label {
+    width: 32px;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .week-block-timeline {
+    flex: 1;
+    display: flex;
+    height: 42px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
     position: relative;
-    opacity: 0.85;
   }
 
-  .battery-icon::after {
+  .week-block-cell {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .week-block-cell.fixed {
+    background: rgba(154,148,136,0.35);
+    color: rgba(245,241,234,0.7);
+  }
+  .week-block-cell.activity {
+    color: rgba(255,255,255,0.95);
+    border-radius: 8px;
+    margin: 4px 2px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .week-block-cell.free {
+    background: transparent;
+    border: none;
+    color: rgba(122,155,118,0.25);
+    font-size: 10px;
+    font-weight: 400;
+  }
+
+  .week-block-cell.activity:hover {
+    transform: scale(1.05);
+    z-index: 1;
+  }
+
+  .week-block-hours {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    font-size: 9px;
+    opacity: 0.25;
+    margin-top: 8px;
+  }
+
+  /* 空闲时间视图 */
+  .free-time-view {
+    padding: 4px 0;
+  }
+  .free-time-title {
+    font-family: var(--font-display, Georgia, serif);
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .free-time-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .free-time-item {
+    background: rgba(122,155,118,0.06);
+    border: 0.5px solid rgba(122,155,118,0.15);
+    border-radius: 14px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .free-time-item::before {
     content: '';
     position: absolute;
-    top: 2.5px;
-    right: -2.5px;
-    width: 2px;
-    height: 5px;
-    background: currentColor;
-    border-radius: 0 1px 1px 0;
-    opacity: 0.6;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #7A9B76;
+    border-radius: 14px 0 0 14px;
+    opacity: 0.8;
+  }
+  .free-time-item:hover {
+    background: rgba(122,155,118,0.1);
+    transform: translateX(3px);
+  }
+  .free-time-item:active {
+    transform: translateX(1px);
+  }
+  .free-time-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4px;
+  }
+  .free-time-day {
+    font-size: 13px;
+    font-weight: 600;
+    color: #F5F1EA;
+    letter-spacing: -0.01em;
+  }
+  .free-time-duration {
+    font-size: 10px;
+    font-weight: 500;
+    color: #9BC097;
+    background: rgba(122,155,118,0.15);
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .free-time-time {
+    font-size: 11px;
+    color: rgba(245,241,234,0.5);
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+  .free-time-suggestions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .free-time-suggest {
+    font-size: 9px;
+    color: rgba(245,241,234,0.5);
+    background: rgba(255,255,255,0.05);
+    padding: 3px 8px;
+    border-radius: 10px;
+    border: 0.5px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .free-time-suggest:hover {
+    background: rgba(184,92,46,0.08);
+    color: #B85C2E;
+    border-color: rgba(184,92,46,0.2);
+  }
+  .free-time-cta {
+    margin-top: 16px;
+    text-align: center;
+    padding: 14px;
+    background: linear-gradient(135deg, rgba(212,132,90,0.08), rgba(212,132,90,0.03));
+    border-radius: 14px;
+    border: 0.5px solid rgba(212,132,90,0.15);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .free-time-cta:hover {
+    background: linear-gradient(135deg, rgba(212,132,90,0.12), rgba(212,132,90,0.05));
+    transform: scale(1.02);
+  }
+  .free-time-cta span {
+    font-size: 12px;
+    font-weight: 500;
+    color: #D4845A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .free-time-cta span::after {
+    content: '→';
+    font-size: 13px;
   }
 
-  .battery-fill {
-    width: 82%;
-    height: 100%;
-    background: currentColor;
-    border-radius: 1px;
-    opacity: 0.9;
-    transition: width 0.6s var(--ease-out);
+  .scene-dark .free-time-item {
+    background: rgba(122,155,118,0.05);
+    border-color: rgba(122,155,118,0.1);
+  }
+  .scene-dark .free-time-item:hover {
+    background: rgba(122,155,118,0.1);
+  }
+  .scene-dark .free-time-day {
+    color: #F5F1EA;
+  }
+  .scene-dark .free-time-time {
+    color: rgba(245,241,234,0.6);
+  }
+  .scene-dark .free-time-suggest {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.08);
+    color: rgba(245,241,234,0.6);
+  }
+  .scene-dark .free-time-suggest:hover {
+    background: rgba(212,132,90,0.1);
+    color: #D4845A;
+    border-color: rgba(212,132,90,0.2);
+  }
+  .scene-dark .free-time-cta {
+    background: linear-gradient(135deg, rgba(212,132,90,0.08), rgba(212,132,90,0.04));
+    border-color: rgba(212,132,90,0.15);
+  }
+  .scene-dark .free-time-cta:hover {
+    background: linear-gradient(135deg, rgba(212,132,90,0.12), rgba(212,132,90,0.06));
+  }
+  .scene-dark .free-time-cta span {
+    color: #D4845A;
+  }
+  .scene-dark .free-time-duration {
+    color: #9BC097;
+    background: rgba(122,155,118,0.18);
   }
 
-  .home-indicator {
+  .scene-dark .week-block-cell.free {
+    color: rgba(122,155,118,0.35);
+  }
+  .scene-dark .week-block-timeline {
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(255,255,255,0.05);
+  }
+  .scene-dark .week-block-day-label {
+    color: rgba(245,241,234,0.4);
+  }
+
+  @keyframes celebrationFloat {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0);
+    }
+    20% {
+      opacity: 1;
+      transform: translate(calc(-50% + var(--x, 0)), calc(-50% + var(--y, 0))) scale(1.2);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(calc(-50% + var(--x, 0)), calc(-50% - 100px)) scale(0.8);
+    }
+  }
+
+  /* 空闲时间卡片 */
+  .free-cards {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .free-card {
+    background: rgba(122,155,118,0.08);
+    border: 1px solid rgba(122,155,118,0.2);
+    border-radius: 16px;
+    padding: 20px 24px;
+    text-align: left;
+    min-width: 180px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .free-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(122,155,118,0.15);
+  }
+  .free-card-time { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .free-card-duration { font-size: 12px; opacity: 0.5; margin-bottom: 8px; }
+  .free-card-suggest { font-size: 14px; }
+
+  /* 滚动提示 */
+  .scroll-hint {
     position: absolute;
-    bottom: 10px;
+    bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
-    width: 124px;
-    height: 4px;
-    background: rgba(0,0,0,0.25);
-    border-radius: 999px;
-    z-index: 45;
-    pointer-events: none;
+    opacity: 0.3;
+    animation: scrollBounce 2s ease-in-out infinite;
+  }
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* 滚动触发动画 */
+  .scene-text, .scene-visual, .scene-center {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  }
+  .scene-text.revealed, .scene-visual.revealed, .scene-center.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .scene-visual {
+    transition-delay: 0.15s;
+  }
+
+  /* 响应式 - Cinematic */
+  @media (max-width: 1000px) {
+    .scene { gap: 60px; padding: 100px 40px; }
+    .scene-inner { gap: 60px; }
+  }
+
+  @media (max-width: 800px) {
+    .scene { padding: 80px 32px; flex-direction: column !important; gap: 48px; }
+    .scene-inner { flex-direction: column !important; gap: 48px; }
+    .scene-text { width: 100%; max-width: 500px; text-align: center; flex: 0 0 auto; }
+    .scene-visual { width: 100%; justify-content: center; }
+    .scene-headline { font-size: 36px !important; }
+    .scene-hook .scene-headline { font-size: 42px !important; }
+    .scene-center .scene-headline { font-size: 38px !important; }
+    .scene-num { font-size: 56px !important; margin-bottom: -8px; }
+    .demo-phone-frame { width: 250px; height: 542px; }
+    .free-cards { flex-direction: column; align-items: center; }
+  }
+
+  @media (max-width: 480px) {
+    .scene { padding: 60px 20px; }
+    .scene-hook .scene-headline { font-size: 32px !important; }
+    .scene-headline { font-size: 28px !important; }
+    .demo-phone-frame { width: 240px; height: 520px; }
   }
 
   /* ─────────── App Screens ─────────── */
@@ -1285,10 +2364,13 @@
     top: 54px;
     left: 0;
     right: 0;
-    bottom: 30px;
+    bottom: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 14px 18px;
+    padding: 8px 16px 24px;
+  }
+  .story-phone-col .app-content {
+    top: 120px;
   }
 
   .app-content::-webkit-scrollbar {
@@ -1296,76 +2378,89 @@
   }
 
   .date-row {
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+    padding: 0 4px;
   }
 
   .date-main {
     font-family: var(--font-display);
-    font-size: 22px;
+    font-size: 26px;
     font-weight: 400;
-    letter-spacing: -0.018em;
+    letter-spacing: -0.022em;
+    line-height: 1.1;
   }
 
   .date-sub {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--text-tertiary);
-    margin-bottom: 24px;
-    font-weight: 300;
-  }
-
-  .today-total {
-    margin-bottom: 26px;
-  }
-
-  .total-label {
-    font-size: 10px;
-    color: var(--text-tertiary);
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     font-weight: 400;
+    padding: 0 4px;
+    letter-spacing: -0.01em;
   }
 
-  .total-value {
+  .today-stats {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding: 0 4px;
+  }
+
+  .stat-pill {
+    flex: 1;
+    background: rgba(20,19,16,0.03);
+    border-radius: 14px;
+    padding: 10px 12px;
+  }
+
+  .demo-phone-screen-dark .stat-pill {
+    background: rgba(255,255,255,0.04);
+  }
+
+  .stat-val {
     font-family: var(--font-display);
-    font-size: 42px;
-    font-weight: 200;
-    letter-spacing: -0.03em;
-    transition: all 0.5s var(--ease-spring);
-    line-height: 1;
-  }
-
-  .total-value.pulse {
-    transform: scale(1.06);
-    color: var(--accent);
-  }
-
-  .total-unit {
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .stat-label {
+    font-size: 9px;
     color: var(--text-tertiary);
-    margin-left: 5px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
   }
 
   .category-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 11px;
-    margin-bottom: 28px;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 0 4px;
   }
 
   .cat-card {
-    background: linear-gradient(145deg, var(--bg-card), rgba(255,255,255,0.6));
-    border: 1.5px solid var(--line-soft);
+    background: rgba(255,255,255,0.72);
+    border: 0.5px solid rgba(20,19,16,0.05);
     border-radius: 20px;
-    padding: 22px 18px;
+    padding: 18px 16px;
     cursor: pointer;
-    transition: all 0.5s var(--ease-out);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
     overflow: hidden;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-    backdrop-filter: blur(12px);
+    box-shadow: 
+      0 1px 2px rgba(0,0,0,0.02),
+      0 4px 12px rgba(0,0,0,0.03);
+  }
+
+  .demo-phone-screen-dark .cat-card {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.06);
+    box-shadow: none;
   }
 
   .cat-card::before {
@@ -1378,36 +2473,47 @@
     background: var(--cat-color, var(--accent));
     transform: scaleX(0);
     transform-origin: center;
-    transition: transform 0.6s var(--ease-out);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-radius: 20px 20px 0 0;
+    opacity: 0.8;
   }
 
   .cat-card::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 50%, var(--cat-color, var(--accent)), transparent 70%);
+    background: radial-gradient(circle at 50% 30%, var(--cat-color, var(--accent)), transparent 65%);
     opacity: 0;
-    transition: opacity 0.4s var(--ease-out);
+    transition: opacity 0.3s ease;
     pointer-events: none;
   }
 
   .cat-card:hover {
-    border-color: var(--line);
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 20px 48px -20px rgba(0,0,0,0.12);
+    border-color: rgba(20,19,16,0.08);
+    transform: translateY(-3px);
+    box-shadow: 
+      0 2px 4px rgba(0,0,0,0.03),
+      0 12px 28px rgba(0,0,0,0.06);
+  }
+
+  .demo-phone-screen-dark .cat-card:hover {
+    background: rgba(255,255,255,0.07);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
   }
 
   .cat-card:hover .cat-icon {
     transform: scale(1.15);
-    transition: transform 0.4s var(--ease-spring);
   }
 
   .cat-card:active {
-    transform: scale(0.95);
+    transform: scale(0.97);
+    transition-duration: 0.15s;
   }
 
   .cat-card.tapped {
-    animation: cardTap 0.6s var(--ease-spring);
+    animation: cardTap 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 0 0 2px rgba(122,155,118,0.35), 0 8px 24px rgba(122,155,118,0.1);
+    border-color: rgba(122,155,118,0.25);
   }
 
   .cat-card.tapped::before {
@@ -1415,14 +2521,226 @@
   }
 
   .cat-card.tapped::after {
-    opacity: 0.06;
+    animation: cardGlow 0.5s ease-out;
   }
 
   @keyframes cardTap {
     0% { transform: scale(1); }
-    25% { transform: scale(0.88); }
-    60% { transform: scale(1.05); }
+    35% { transform: scale(0.95); }
+    70% { transform: scale(1.03); }
     100% { transform: scale(1); }
+  }
+
+  @keyframes cardGlow {
+    0% { opacity: 0; }
+    35% { opacity: 0.12; }
+    100% { opacity: 0; }
+  }
+
+  .cat-card.tapped .cat-icon {
+    animation: iconBounce 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes iconBounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+  }
+
+  .cat-card.tapped .cat-time {
+    animation: timePulse 0.45s ease-out;
+  }
+
+  @keyframes timePulse {
+    0%, 100% { color: var(--text-secondary); transform: scale(1); }
+    50% { color: #7A9B76; transform: scale(1.12); font-weight: 600; }
+  }
+
+  .cat-card .plus-indicator {
+    position: absolute;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    font-size: 18px;
+    font-weight: 700;
+    color: #7A9B76;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .cat-card.tapped .plus-indicator {
+    animation: plusFloat 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  @keyframes plusFloat {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+    25% { opacity: 1; transform: translate(-50%, -65%) scale(1.2); }
+    100% { opacity: 0; transform: translate(-50%, -100%) scale(0.6); }
+  }
+
+  .cat-icon {
+    font-size: 26px;
+    margin-bottom: 10px;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    line-height: 1;
+  }
+
+  .cat-name {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+    color: var(--text, #141310);
+  }
+
+  .demo-phone-screen-dark .cat-name {
+    color: #F5F1EA;
+  }
+
+  .cat-time {
+    font-size: 11px;
+    color: var(--text-tertiary, #9A9488);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    transition: all 0.3s ease;
+  }
+
+  .today-header {
+    margin-bottom: 16px;
+  }
+
+  .today-stats {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+    padding: 12px 16px;
+    background: rgba(122,155,118,0.06);
+    border-radius: 16px;
+    border: 1px solid rgba(122,155,118,0.1);
+  }
+
+  .today-stat-item {
+    flex: 1;
+    text-align: center;
+  }
+
+  .today-stat-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #7A9B76;
+    display: block;
+  }
+
+  .today-stat-label {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    margin-top: 2px;
+    display: block;
+  }
+
+  .records-section {
+    margin-top: 4px;
+  }
+
+  .records-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .records-edit-hint {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    font-weight: 400;
+  }
+
+  .record-item {
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 16px;
+    border: 1px solid rgba(20,19,16,0.04);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .record-item:hover {
+    background: rgba(255,255,255,0.9);
+    border-color: rgba(20,19,16,0.08);
+    transform: translateX(4px);
+  }
+
+  .record-item.delete-mode {
+    background: rgba(234,67,53,0.06);
+    border-color: rgba(234,67,53,0.2);
+  }
+
+  .record-item.delete-mode .record-left {
+    opacity: 0.5;
+  }
+
+  .record-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .record-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    background: rgba(20,19,16,0.04);
+  }
+
+  .record-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .record-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .record-time {
+    font-size: 11px;
+    color: var(--text-tertiary);
+  }
+
+  .record-duration {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .record-delete-btn {
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    padding: 6px 12px;
+    background: rgba(234,67,53,0.1);
+    color: #EA4335;
+    border: none;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .record-item.delete-mode .record-delete-btn {
+    opacity: 1;
   }
 
   .cat-icon {
@@ -1565,7 +2883,6 @@
     border-radius: 11px;
     border: 1px solid var(--line-soft);
     border-left: 3px solid var(--cat-color, var(--accent));
-    animation: slideIn 0.5s var(--ease-out);
     cursor: pointer;
     transition: all 0.3s;
     position: relative;
@@ -2546,6 +3863,155 @@
     box-shadow: 0 2px 8px rgba(10, 9, 7, 0.05);
   }
 
+  .compare-block.fixed {
+    background: rgba(154, 148, 136, 0.15) !important;
+    border-color: rgba(154, 148, 136, 0.3) !important;
+    opacity: 0.6;
+  }
+  .compare-block.fixed .compare-block-time {
+    color: var(--text-quaternary);
+  }
+  .compare-block.fixed .compare-block-label {
+    color: var(--text-tertiary);
+    font-weight: 400;
+  }
+
+  .ideal-block.fixed {
+    background: rgba(154, 148, 136, 0.1) !important;
+    border-left-color: rgba(154, 148, 136, 0.5) !important;
+    opacity: 0.7;
+  }
+  .ideal-block-badge {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(154, 148, 136, 0.2);
+    color: var(--text-quaternary);
+    font-weight: 500;
+    margin-left: auto;
+  }
+
+  .free-time-section {
+    margin-top: 20px;
+    padding: 16px;
+    background: linear-gradient(135deg, rgba(122, 155, 118, 0.08) 0%, var(--bg-card) 100%);
+    border-radius: 16px;
+    border: 2px solid rgba(122, 155, 118, 0.2);
+    animation: freeTimeGlow 3s ease-in-out infinite;
+  }
+
+  @keyframes freeTimeGlow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(122, 155, 118, 0); }
+    50% { box-shadow: 0 0 20px 4px rgba(122, 155, 118, 0.1); }
+  }
+
+  .free-time-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .free-time-icon {
+    font-size: 18px;
+    animation: iconFloat 2s ease-in-out infinite;
+  }
+  @keyframes iconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+  .free-time-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .free-time-subtitle {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    margin-top: 2px;
+  }
+  .free-time-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(122, 155, 118, 0.1);
+    border: 2px dashed rgba(122, 155, 118, 0.4);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.3s var(--ease-out);
+    position: relative;
+    overflow: hidden;
+  }
+  .free-time-block::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, rgba(122, 155, 118, 0.6), rgba(122, 155, 118, 0.2));
+    transform: scaleY(0);
+    transition: transform 0.3s var(--ease-out);
+  }
+  .free-time-block:hover {
+    background: rgba(122, 155, 118, 0.18);
+    border-color: rgba(122, 155, 118, 0.6);
+    transform: translateX(6px);
+    box-shadow: 0 4px 16px rgba(122, 155, 118, 0.12);
+  }
+  .free-time-block:hover::before {
+    transform: scaleY(1);
+  }
+  .free-time-block .free-time-day {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    min-width: 40px;
+    padding: 4px 8px;
+    background: rgba(122, 155, 118, 0.12);
+    border-radius: 6px;
+  }
+  .free-time-time {
+    font-size: 12px;
+    color: var(--text);
+    font-weight: 500;
+    flex: 1;
+  }
+  .free-time-duration {
+    font-size: 11px;
+    color: #7A9B76;
+    background: rgba(122, 155, 118, 0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .free-time-suggestions {
+    font-size: 11px;
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .free-time-empty {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-tertiary);
+  }
+  .free-time-empty-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  .free-time-empty-text {
+    font-size: 12px;
+  }
+  .free-time-more {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-quaternary);
+    padding: 8px;
+    margin-top: 4px;
+  }
+
   /* ── Ideal Week: Timeline ── */
   .ideal-timeline {
     position: relative;
@@ -3345,13 +4811,6 @@
       gap: 56px;
     }
 
-    .demo-stage {
-      gap: 56px;
-    }
-
-    .phone-col:nth-child(2) {
-      margin-top: 0;
-    }
   }
 
   @media (max-width: 768px) {
@@ -3397,20 +4856,6 @@
     .footer-links {
       flex-direction: column;
       gap: 18px;
-    }
-
-    .iphone-screen {
-      width: 290px;
-      height: 600px;
-    }
-
-    .iphone-frame {
-      padding: 12px;
-      border-radius: 56px;
-    }
-
-    .iphone-screen {
-      border-radius: 44px;
     }
   }
 </style>
@@ -3523,276 +4968,160 @@
   </div>
 </section>
 
-<!-- Interactive Demo Showcase -->
-<section class="showcase" id="demo">
-  <div class="container">
-    <div class="showcase-header reveal">
-      <div class="section-eyebrow">亲身体验</div>
-      <h2 class="section-title">用三次点击，<br>感受<em>TapTime</em>的不同。</h2>
-      <p class="section-desc">
-        点击任意活动卡片，每一下代表15分钟。
-        记录时间，本该如此简单。
-      </p>
+<!-- Cinematic Demo -->
+<section class="cinematic" id="demo">
+  <div class="scene scene-hook scene-dark" data-scene>
+    <div class="scene-center">
+      <p class="scene-eyebrow">TapTime</p>
+      <h2 class="scene-headline">看见时间的形状</h2>
+      <p class="scene-subline">然后，把想做的事放进去</p>
     </div>
+    <div class="scroll-hint">
+      <svg width="24" height="24" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </div>
+  </div>
 
-    <div class="demo-stage">
-      <!-- Phone 1: Today -->
-      <div class="phone-col" data-phone-reveal>
-        <div class="phone-label">— 今日视图</div>
-        <div class="iphone-wrapper">
-          <div class="iphone-frame">
-            <div class="iphone-screen" id="phone1">
-              <div class="dynamic-island"></div>
-              <div class="status-bar">
-                <span>9:41</span>
-                <div class="status-bar-right">
-                  <div class="signal-bars">
-                    <div class="signal-bar" style="height:4px"></div>
-                    <div class="signal-bar" style="height:6px"></div>
-                    <div class="signal-bar" style="height:9px"></div>
-                    <div class="signal-bar" style="height:11px"></div>
-                  </div>
-                  <svg width="15" height="11" viewBox="0 0 16 12" fill="none" style="color:var(--text)">
-                    <path d="M8 11.5a1 1 0 100-2 1 1 0 000 2z" fill="currentColor" />
-                    <path d="M3 7.5a7 7 0 0110 0" stroke="currentColor" strokeWidth="1.3" fill="none" strokeLinecap="round" />
-                    <path d="M1 4.5a11 11 0 0114 0" stroke="currentColor" strokeWidth="1.3" fill="none" strokeLinecap="round" opacity="0.7" />
-                  </svg>
-                  <div class="battery-icon">
-                    <div class="battery-fill"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="app-content">
-                <!-- Today Screen -->
-                <div class="screen-today active" id="screen-today-1">
-                  <div class="date-row">
-                    <div class="date-main" id="date-main-1"></div>
-                    <div class="date-sub" id="date-sub-1"></div>
-                  </div>
-
-                  <div class="today-total">
-                    <div class="total-label">今日总时长</div>
-                    <div class="total-value" id="today-total-1">0<span class="total-unit">分钟</span></div>
-                  </div>
-
-                  <div class="category-grid" id="cat-grid-1"></div>
-
-                  <div class="records-title">最近记录</div>
-                  <div class="records-list" id="records-list-1"></div>
-                </div>
-
-                <!-- Week Screen -->
-                <div class="screen-week" id="screen-week-1">
-                  <div class="week-header">
-                    <div class="week-title">本周对比</div>
-                    <div class="week-range" id="week-range-1"></div>
-                  </div>
-
-                  <div class="week-day-tabs" id="week-day-tabs-1"></div>
-
-                  <div class="compare-section">
-                    <div class="compare-header">
-                      <div class="compare-view-toggle">
-                        <button class="toggle-btn active" data-view="timeline">
-                          <svg viewBox="0 0 24 24" width="16" height="16">
-                            <rect x="3" y="4" width="6" height="16" rx="2"/>
-                            <rect x="11" y="8" width="6" height="12" rx="2"/>
-                            <rect x="19" y="12" width="6" height="8" rx="2"/>
-                          </svg>
-                          <span>时间线</span>
-                        </button>
-                        <button class="toggle-btn" data-view="analysis">
-                          <svg viewBox="0 0 24 24" width="16" height="16">
-                            <path d="M12 2v20M2 12h20"/>
-                            <circle cx="12" cy="12" r="3"/>
-                          </svg>
-                          <span>分析报告</span>
-                        </button>
-                      </div>
-                      <div class="compare-legend">
-                        <div class="compare-label ideal-label">
-                          <span class="compare-dot ideal-dot"></span>
-                          <span>理想</span>
-                        </div>
-                        <div class="compare-label actual-label">
-                          <span class="compare-dot actual-dot"></span>
-                          <span>实际</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="compare-timeline" id="compare-timeline-1"></div>
-
-                    <div class="compare-analysis" id="compare-analysis-1"></div>
-
-                    <div class="compare-summary" id="compare-summary-1"></div>
-                  </div>
-                </div>
-
-                <!-- Ideal Screen -->
-                <div class="screen-ideal" id="screen-ideal-1">
-                  <div class="week-header">
-                    <div class="week-title">理想周</div>
-                    <div class="week-range">规划你的一周</div>
-                  </div>
-
-                  <div class="ideal-day-tabs" id="ideal-day-tabs-1"></div>
-                  <div class="ideal-timeline" id="ideal-timeline-1"></div>
-
-                  <div class="ideal-note">空白处是你还能安排的时间</div>
-                </div>
-              </div>
-
-              <!-- Tab Bar -->
-              <div class="tab-bar">
-                <div class="tab-item active" data-phone="1" data-tab="today">
-                  <div class="tab-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></div>
-                  <div class="tab-text">今日</div>
-                </div>
-                <div class="tab-item" data-phone="1" data-tab="week">
-                  <div class="tab-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-                  <div class="tab-text">本周</div>
-                </div>
-                <div class="tab-item" data-phone="1" data-tab="ideal">
-                  <div class="tab-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg></div>
-                  <div class="tab-text">理想</div>
-                </div>
-              </div>
-
-              <div class="home-indicator"></div>
+  <div class="scene scene-tap scene-light" data-scene>
+    <div class="scene-text">
+      <span class="scene-num">01</span>
+      <h2 class="scene-headline">点一下，<br>就是15分钟</h2>
+      <p class="scene-desc">没有弹窗。没有确认。不用保存。<br>做完一件事，点一下就好。</p>
+    </div>
+    <div class="scene-visual">
+      <div class="demo-phone" id="phone-today">
+        <div class="demo-phone-frame">
+          <div class="demo-phone-notch"></div>
+          <div class="demo-phone-status">
+            <span class="demo-phone-time">9:41</span>
+            <div class="demo-phone-signal">
+              <div class="signal-bars"><div class="signal-bar" style="height:2px"></div><div class="signal-bar" style="height:4px"></div><div class="signal-bar" style="height:6px"></div><div class="signal-bar" style="height:8px"></div></div>
+              <svg width="15" height="11" viewBox="0 0 15 11"><path d="M7.5 1c2.2 0 4.2.9 5.7 2.3M7.5 3.5c1.5 0 2.9.6 3.9 1.6M7.5 6c.8 0 1.6.3 2.2.9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              <div class="battery"><div class="battery-body"><div class="battery-level"></div></div><div class="battery-cap"></div></div>
             </div>
           </div>
+          <div class="demo-phone-screen">
+            <div class="demo-app-header">
+              <div class="demo-app-date">
+                <div class="demo-app-date-main" id="date-main-1"></div>
+                <div class="demo-app-date-sub" id="date-sub-1"></div>
+              </div>
+              <div class="demo-app-stats" id="today-stats-1"></div>
+            </div>
+            <div class="demo-app-categories" id="cat-grid-1"></div>
+            <div class="demo-app-records">
+              <div class="demo-app-records-header">
+                <span class="demo-app-records-title">今日记录</span>
+                <span class="demo-app-records-hint">长按删除</span>
+              </div>
+              <div class="demo-app-records-list" id="records-list-1"></div>
+            </div>
+          </div>
+          <div class="demo-phone-home-bar"></div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- Phone 2: Week + Ideal -->
-      <div class="phone-col" data-phone-reveal>
-        <div class="phone-label">— 本周统计</div>
-        <div class="iphone-wrapper">
-          <div class="iphone-frame">
-            <div class="iphone-screen" id="phone2">
-              <div class="dynamic-island"></div>
-              <div class="status-bar">
-                <span>9:41</span>
-                <div class="status-bar-right">
-                  <div class="signal-bars">
-                    <div class="signal-bar" style="height:4px"></div>
-                    <div class="signal-bar" style="height:6px"></div>
-                    <div class="signal-bar" style="height:9px"></div>
-                    <div class="signal-bar" style="height:11px"></div>
-                  </div>
-                  <svg width="15" height="11" viewBox="0 0 16 12" fill="none" style="color:var(--text)">
-                    <path d="M8 11.5a1 1 0 100-2 1 1 0 000 2z" fill="currentColor" />
-                    <path d="M3 7.5a7 7 0 0110 0" stroke="currentColor" strokeWidth="1.3" fill="none" strokeLinecap="round" />
-                    <path d="M1 4.5a11 11 0 0114 0" stroke="currentColor" strokeWidth="1.3" fill="none" strokeLinecap="round" opacity="0.7" />
-                  </svg>
-                  <div class="battery-icon">
-                    <div class="battery-fill"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="app-content">
-                <!-- Today Screen -->
-                <div class="screen-today" id="screen-today-2">
-                  <div class="date-row">
-                    <div class="date-main" id="date-main-2"></div>
-                    <div class="date-sub" id="date-sub-2"></div>
-                  </div>
-
-                  <div class="today-total">
-                    <div class="total-label">今日总时长</div>
-                    <div class="total-value" id="today-total-2">0<span class="total-unit">分钟</span></div>
-                  </div>
-
-                  <div class="category-grid" id="cat-grid-2"></div>
-
-                  <div class="records-title">最近记录</div>
-                  <div class="records-list" id="records-list-2"></div>
-                </div>
-
-                <!-- Week Screen -->
-                <div class="screen-week active" id="screen-week-2">
-                  <div class="week-header">
-                    <div class="week-title">本周对比</div>
-                    <div class="week-range" id="week-range-2"></div>
-                  </div>
-
-                  <div class="week-day-tabs" id="week-day-tabs-2"></div>
-
-                  <div class="compare-section">
-                    <div class="compare-header">
-                      <div class="compare-view-toggle">
-                        <button class="toggle-btn" data-view="timeline">
-                          <svg viewBox="0 0 24 24" width="16" height="16">
-                            <rect x="3" y="4" width="6" height="16" rx="2"/>
-                            <rect x="11" y="8" width="6" height="12" rx="2"/>
-                            <rect x="19" y="12" width="6" height="8" rx="2"/>
-                          </svg>
-                          <span>时间线</span>
-                        </button>
-                        <button class="toggle-btn active" data-view="analysis">
-                          <svg viewBox="0 0 24 24" width="16" height="16">
-                            <path d="M12 2v20M2 12h20"/>
-                            <circle cx="12" cy="12" r="3"/>
-                          </svg>
-                          <span>分析报告</span>
-                        </button>
-                      </div>
-                      <div class="compare-legend">
-                        <div class="compare-label ideal-label">
-                          <span class="compare-dot ideal-dot"></span>
-                          <span>理想</span>
-                        </div>
-                        <div class="compare-label actual-label">
-                          <span class="compare-dot actual-dot"></span>
-                          <span>实际</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="compare-timeline" id="compare-timeline-2"></div>
-
-                    <div class="compare-analysis" id="compare-analysis-2"></div>
-
-                    <div class="compare-summary" id="compare-summary-2"></div>
-                  </div>
-                </div>
-
-                <!-- Ideal Screen -->
-                <div class="screen-ideal" id="screen-ideal-2">
-                  <div class="week-header">
-                    <div class="week-title">理想周</div>
-                    <div class="week-range">规划你的一周</div>
-                  </div>
-
-                  <div class="ideal-day-tabs" id="ideal-day-tabs-2"></div>
-                  <div class="ideal-timeline" id="ideal-timeline-2"></div>
-
-                  <div class="ideal-note">空白处是你还能安排的时间</div>
-                </div>
-              </div>
-
-              <!-- Tab Bar -->
-              <div class="tab-bar">
-                <div class="tab-item" data-phone="2" data-tab="today">
-                  <div class="tab-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></div>
-                  <div class="tab-text">今日</div>
-                </div>
-                <div class="tab-item active" data-phone="2" data-tab="week">
-                  <div class="tab-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-                  <div class="tab-text">本周</div>
-                </div>
-                <div class="tab-item" data-phone="2" data-tab="ideal">
-                  <div class="tab-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg></div>
-                  <div class="tab-text">理想</div>
-                </div>
-              </div>
-
-              <div class="home-indicator"></div>
+  <div class="scene scene-week scene-dark" data-scene>
+    <div class="scene-visual">
+      <div class="demo-phone" id="phone-week-c">
+        <div class="demo-phone-frame demo-phone-dark">
+          <div class="demo-phone-notch"></div>
+          <div class="demo-phone-status demo-phone-status-dark">
+            <span class="demo-phone-time">9:41</span>
+            <div class="demo-phone-signal">
+              <div class="signal-bars"><div class="signal-bar" style="height:2px"></div><div class="signal-bar" style="height:4px"></div><div class="signal-bar" style="height:6px"></div><div class="signal-bar" style="height:8px"></div></div>
+              <svg width="15" height="11" viewBox="0 0 15 11"><path d="M7.5 1c2.2 0 4.2.9 5.7 2.3M7.5 3.5c1.5 0 2.9.6 3.9 1.6M7.5 6c.8 0 1.6.3 2.2.9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              <div class="battery"><div class="battery-body"><div class="battery-level"></div></div><div class="battery-cap"></div></div>
             </div>
           </div>
+          <div class="demo-phone-screen demo-phone-screen-dark">
+            <div class="demo-week-view">
+              <div class="demo-week-header">
+                <span class="demo-week-title">本周时间块</span>
+                <div class="demo-week-legend">
+                  <span class="demo-legend-item"><span class="demo-legend-dot" style="background:rgba(154,148,136,0.5)"></span>固定</span>
+                  <span class="demo-legend-item"><span class="demo-legend-dot" style="background:linear-gradient(135deg, #5B8A5C, #7A9B7A)"></span>活动</span>
+                </div>
+              </div>
+              <div class="demo-week-calendar" id="week-block-grid-c"></div>
+            </div>
+          </div>
+          <div class="demo-phone-home-bar demo-phone-home-bar-dark"></div>
+        </div>
+      </div>
+    </div>
+    <div class="scene-text">
+      <span class="scene-num">02</span>
+      <h2 class="scene-headline">一周时间，<br>一目了然</h2>
+      <p class="scene-desc">灰色的固定支出，彩色的已记录。<br>空白处，是你还能安排的人生。</p>
+    </div>
+  </div>
+
+  <div class="scene scene-ideal scene-light" data-scene>
+    <div class="scene-text">
+      <span class="scene-num">03</span>
+      <h2 class="scene-headline">灰色是固定的，<br>空白是你的</h2>
+      <p class="scene-desc">工作、通勤，每天雷打不动。<br>剩下的，才是你真正的人生。</p>
+    </div>
+    <div class="scene-visual">
+      <div class="demo-phone" id="phone-ideal-c">
+        <div class="demo-phone-frame">
+          <div class="demo-phone-notch"></div>
+          <div class="demo-phone-status">
+            <span class="demo-phone-time">9:41</span>
+            <div class="demo-phone-signal">
+              <div class="signal-bars"><div class="signal-bar" style="height:2px"></div><div class="signal-bar" style="height:4px"></div><div class="signal-bar" style="height:6px"></div><div class="signal-bar" style="height:8px"></div></div>
+              <svg width="15" height="11" viewBox="0 0 15 11"><path d="M7.5 1c2.2 0 4.2.9 5.7 2.3M7.5 3.5c1.5 0 2.9.6 3.9 1.6M7.5 6c.8 0 1.6.3 2.2.9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              <div class="battery"><div class="battery-body"><div class="battery-level"></div></div><div class="battery-cap"></div></div>
+            </div>
+          </div>
+          <div class="demo-phone-screen">
+            <div class="demo-week-view">
+              <div class="demo-week-header">
+                <span class="demo-week-title">理想周</span>
+                <span class="demo-week-sub">规划你的一周</span>
+              </div>
+              <div class="ideal-day-tabs" id="ideal-day-tabs-c"></div>
+              <div class="ideal-timeline" id="ideal-timeline-c"></div>
+              <div class="ideal-note">空白处是你还能安排的时间</div>
+              <div class="free-time-section" id="free-time-suggestions-c"></div>
+            </div>
+          </div>
+          <div class="demo-phone-home-bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene scene-free scene-dark" data-scene>
+    <div class="scene-text">
+      <span class="scene-num">04</span>
+      <h2 class="scene-headline">你不是没时间</h2>
+      <p class="scene-desc">周一晚8点 · 周三晚8点 · 周六上午<br>你只是没看见这些时间。</p>
+    </div>
+    <div class="scene-visual">
+      <div class="demo-phone" id="phone-free-c">
+        <div class="demo-phone-frame demo-phone-dark">
+          <div class="demo-phone-notch"></div>
+          <div class="demo-phone-status demo-phone-status-dark">
+            <span class="demo-phone-time">9:41</span>
+            <div class="demo-phone-signal">
+              <div class="signal-bars"><div class="signal-bar" style="height:2px"></div><div class="signal-bar" style="height:4px"></div><div class="signal-bar" style="height:6px"></div><div class="signal-bar" style="height:8px"></div></div>
+              <svg width="15" height="11" viewBox="0 0 15 11"><path d="M7.5 1c2.2 0 4.2.9 5.7 2.3M7.5 3.5c1.5 0 2.9.6 3.9 1.6M7.5 6c.8 0 1.6.3 2.2.9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              <div class="battery"><div class="battery-body"><div class="battery-level"></div></div><div class="battery-cap"></div></div>
+            </div>
+          </div>
+          <div class="demo-phone-screen demo-phone-screen-dark">
+            <div class="demo-free-view">
+              <div class="demo-free-title">发现空闲时间</div>
+              <div class="free-time-list" id="free-time-list-c"></div>
+              <div class="free-time-cta">
+                <span>把习惯放进这些时间</span>
+              </div>
+            </div>
+          </div>
+          <div class="demo-phone-home-bar demo-phone-home-bar-dark"></div>
         </div>
       </div>
     </div>
@@ -3998,6 +5327,7 @@
   // ==================== Data Model ====================
   const CATEGORIES = [
     { id: 'work', name: '工作', icon: '💼', idealHours: 40, color: '#B8794A' },
+    { id: 'commute', name: '通勤', icon: '🚇', idealHours: 5, color: '#9A9488' },
     { id: 'learn', name: '学习', icon: '📚', idealHours: 10, color: '#6B8E9B' },
     { id: 'read', name: '阅读', icon: '📖', idealHours: 5, color: '#8B7355' },
     { id: 'fitness', name: '运动', icon: '🏃', idealHours: 5, color: '#7A9B76' },
@@ -4018,7 +5348,7 @@
   });
 
   // Tap merge: track pending taps per category to merge rapid clicks into one record
-  const TAP_MERGE_WINDOW = 2000; // ms within which taps merge
+  const TAP_MERGE_WINDOW = 1000; // ms within which taps merge
   const pendingTaps = {}; // { 'phone_catId': { count, timer, cardEl } }
 
   function initSampleData() {
@@ -4053,39 +5383,42 @@
   }
 
   function initIdealWeekData() {
-    // dayIdx: 0=Mon ... 6=Sun
-    // blocks: { category, startHour, startMin, duration(min) }
     const defaults = {
-      0: [ // Monday
-        { category: 'work', startHour: 8, startMin: 30, duration: 570 },  // 8:30-18:00
-        { category: 'cook', startHour: 18, startMin: 0, duration: 60 },   // 18:00-19:00
-        { category: 'rest', startHour: 19, startMin: 0, duration: 180 },  // 19:00-22:00
+      0: [
+        { category: 'commute', startHour: 7, startMin: 30, duration: 60, fixed: true },
+        { category: 'work', startHour: 8, startMin: 30, duration: 570, fixed: true },
+        { category: 'cook', startHour: 18, startMin: 0, duration: 60 },
+        { category: 'rest', startHour: 19, startMin: 0, duration: 180 },
       ],
       1: [
-        { category: 'work', startHour: 8, startMin: 30, duration: 570 },
-        { category: 'fitness', startHour: 19, startMin: 0, duration: 60 }, // 19:00-20:00
+        { category: 'commute', startHour: 7, startMin: 30, duration: 60, fixed: true },
+        { category: 'work', startHour: 8, startMin: 30, duration: 570, fixed: true },
+        { category: 'fitness', startHour: 19, startMin: 0, duration: 60 },
         { category: 'rest', startHour: 20, startMin: 0, duration: 120 },
       ],
       2: [
-        { category: 'work', startHour: 8, startMin: 30, duration: 570 },
+        { category: 'commute', startHour: 7, startMin: 30, duration: 60, fixed: true },
+        { category: 'work', startHour: 8, startMin: 30, duration: 570, fixed: true },
         { category: 'learn', startHour: 19, startMin: 0, duration: 120 },
         { category: 'rest', startHour: 21, startMin: 0, duration: 60 },
       ],
       3: [
-        { category: 'work', startHour: 8, startMin: 30, duration: 570 },
-        { category: 'fitness', startHour: 19, startMin: 0, duration: 60 },  // Thu 7-8pm basketball
-        { category: 'rest', startHour: 20, startMin: 0, duration: 120 },    // Thu 8-10pm friends dinner
+        { category: 'commute', startHour: 7, startMin: 30, duration: 60, fixed: true },
+        { category: 'work', startHour: 8, startMin: 30, duration: 570, fixed: true },
+        { category: 'fitness', startHour: 19, startMin: 0, duration: 60 },
+        { category: 'rest', startHour: 20, startMin: 0, duration: 120 },
       ],
       4: [
-        { category: 'work', startHour: 8, startMin: 30, duration: 570 },
+        { category: 'commute', startHour: 7, startMin: 30, duration: 60, fixed: true },
+        { category: 'work', startHour: 8, startMin: 30, duration: 570, fixed: true },
         { category: 'read', startHour: 19, startMin: 0, duration: 90 },
         { category: 'rest', startHour: 20, startMin: 30, duration: 90 },
       ],
-      5: [ // Saturday
+      5: [
         { category: 'rest', startHour: 9, startMin: 0, duration: 120 },
         { category: 'cook', startHour: 12, startMin: 0, duration: 90 },
       ],
-      6: [ // Sunday
+      6: [
         { category: 'read', startHour: 10, startMin: 0, duration: 120 },
         { category: 'rest', startHour: 14, startMin: 0, duration: 120 },
       ],
@@ -4131,7 +5464,8 @@
 
   const phoneStates = {
     1: { activeTab: 'today', idealDay: 0, compareDay: new Date().getDay() === 0 ? 6 : new Date().getDay() - 1 },
-    2: { activeTab: 'week', idealDay: 0, compareDay: new Date().getDay() === 0 ? 6 : new Date().getDay() - 1 },
+    2: { activeTab: 'today', idealDay: 0, compareDay: new Date().getDay() === 0 ? 6 : new Date().getDay() - 1 },
+    c: { activeTab: 'today', idealDay: 0, compareDay: new Date().getDay() === 0 ? 6 : new Date().getDay() - 1 },
   };
 
   function getCatMinutes(catId, dateKey) {
@@ -4213,11 +5547,6 @@
     const sub = document.getElementById('date-sub-' + phoneNum);
     if (main) main.textContent = formatDateCN(now);
     if (sub) sub.textContent = formatDateSub(now);
-
-    // Update status bar time to real time
-    document.querySelectorAll('.status-bar > span:first-child').forEach(el => {
-      el.textContent = formatTime(now);
-    });
   }
 
   function renderWeekRange(phoneNum) {
@@ -4238,12 +5567,13 @@
     const todayKey = getTodayKey();
     grid.innerHTML = CATEGORIES.map(cat => {
       const mins = getCatMinutes(cat.id, todayKey);
-      const timeStr = mins > 0 ? formatDuration(mins) : '· · ·';
+      const timeStr = mins > 0 ? formatDuration(mins) : '';
       return `
         <div class="cat-card" data-phone="${phoneNum}" data-cat="${cat.id}" style="--cat-color:${cat.color}">
           <div class="cat-icon">${cat.icon}</div>
           <div class="cat-name">${cat.name}</div>
           <div class="cat-time">${timeStr}</div>
+          <div class="plus-indicator">+15</div>
         </div>
       `;
     }).join('');
@@ -4263,7 +5593,7 @@
     const todayKey = getTodayKey();
     const records = (appData.records[todayKey] || []).slice(0, 8);
     if (records.length === 0) {
-      list.innerHTML = '<div class="empty-state">点击卡片开始记录时间</div>';
+      list.innerHTML = '<div class="empty-state" style="text-align:center;padding:24px;color:var(--text-tertiary);font-size:12px">点击卡片开始记录时间</div>';
       return;
     }
     list.innerHTML = records.map(r => {
@@ -4272,14 +5602,14 @@
       return `
         <div class="record-item" data-phone="${phoneNum}" data-id="${r.id}" style="--cat-color:${color}">
           <div class="record-left">
-            <div class="record-icon">${cat ? cat.icon : '📌'}</div>
+            <div class="record-icon" style="background:rgba(20,19,16,0.04)">${cat ? cat.icon : '📌'}</div>
             <div class="record-info">
               <div class="record-name">${cat ? cat.name : r.category}</div>
-              <div class="record-range">${r.time}</div>
+              <div class="record-time">${r.time}</div>
             </div>
           </div>
-          <div class="record-dur">${formatDuration(r.duration)}</div>
-          <button class="record-delete">删除</button>
+          <div class="record-duration">${formatDuration(r.duration)}</div>
+          <button class="record-delete-btn">删除</button>
         </div>
       `;
     }).join('');
@@ -4288,22 +5618,27 @@
       let pressTimer;
       item.addEventListener('touchstart', () => {
         pressTimer = setTimeout(() => {
-          item.classList.add('show-delete');
+          item.classList.add('delete-mode');
         }, 500);
       });
-      item.addEventListener('touchend', () => clearTimeout(pressTimer));
-      item.addEventListener('touchmove', () => clearTimeout(pressTimer));
+      item.addEventListener('touchend', () => {
+        clearTimeout(pressTimer);
+        setTimeout(() => item.classList.remove('delete-mode'), 200);
+      });
+      item.addEventListener('touchmove', () => {
+        clearTimeout(pressTimer);
+        item.classList.remove('delete-mode');
+      });
 
-      item.addEventListener('mouseenter', () => item.classList.add('show-delete'));
-      item.addEventListener('mouseleave', () => item.classList.remove('show-delete'));
+      item.addEventListener('mouseenter', () => item.classList.add('delete-mode'));
+      item.addEventListener('mouseleave', () => item.classList.remove('delete-mode'));
 
-      item.querySelector('.record-delete')?.addEventListener('click', (e) => {
+      item.querySelector('.record-delete-btn')?.addEventListener('click', (e) => {
         e.stopPropagation();
         const phone = item.dataset.phone;
         const id = parseFloat(item.dataset.id);
         deleteRecord(id);
         renderAll(phone);
-        renderAll(phone === '1' ? '2' : '1');
       });
     });
   }
@@ -4319,6 +5654,33 @@
       const m = total % 60;
       el.innerHTML = h + '<span class="total-unit">h</span>' + (m > 0 ? ' ' + m + '<span class="total-unit">m</span>' : '');
     }
+  }
+
+  function renderTodayStats(phoneNum) {
+    const el = document.getElementById('today-stats-' + phoneNum);
+    if (!el) return;
+    const todayKey = getTodayKey();
+    const records = appData.records[todayKey] || [];
+    const totalMinutes = records.reduce((sum, r) => sum + r.duration, 0);
+    const uniqueCategories = new Set(records.map(r => r.category)).size;
+    const recordCount = records.length;
+
+    const hours = (totalMinutes / 60).toFixed(1);
+
+    el.innerHTML = `
+      <div class="demo-app-stat">
+        <span class="demo-app-stat-value">${hours}h</span>
+        <span class="demo-app-stat-label">已记录</span>
+      </div>
+      <div class="demo-app-stat">
+        <span class="demo-app-stat-value">${uniqueCategories}</span>
+        <span class="demo-app-stat-label">分类数</span>
+      </div>
+      <div class="demo-app-stat">
+        <span class="demo-app-stat-value">${recordCount}</span>
+        <span class="demo-app-stat-label">记录次数</span>
+      </div>
+    `;
   }
 
   function renderWeekTotal(phoneNum) {
@@ -4482,12 +5844,14 @@
       const icon = cat ? cat.icon : '📌';
       const name = cat ? cat.name : b.category;
       const tint = hexToRgba(color, 0.12);
+      const fixedClass = b.fixed ? ' fixed' : '';
       html += `
-        <div class="ideal-block" style="--cat-color:${color};--cat-tint:${tint}">
+        <div class="ideal-block${fixedClass}" style="--cat-color:${color};--cat-tint:${tint}">
           <div class="ideal-block-color"></div>
           <span class="timeline-cat-icon">${icon}</span>
           <div class="ideal-block-name">${name}</div>
           <div class="ideal-block-time">${formatHM(b.startHour, b.startMin)} — ${formatHM(Math.floor(end / 60), end % 60)}</div>
+          ${b.fixed ? '<div class="ideal-block-badge">固定</div>' : ''}
         </div>
       `;
       cursor = end;
@@ -4628,6 +5992,9 @@
       }
 
       let blockClass = evt.type === 'ideal' ? 'compare-block ideal' : 'compare-block actual';
+      if (evt.fixed) {
+        blockClass += ' fixed';
+      }
       if (evt.type === 'ideal' && !actualBlocks.some(a => a.category === evt.category)) {
         blockClass += ' missing';
       }
@@ -4704,8 +6071,118 @@
     `;
   }
 
+  function renderFreeTimeSuggestions(phoneNum) {
+    const container = document.getElementById('free-time-suggestions-' + phoneNum);
+    if (!container) return;
+
+    const dayLabels = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+    const freeSlots = [];
+    const MIN_FREE_DURATION = 30;
+
+    for (let dayIdx = 0; dayIdx < 7; dayIdx++) {
+      const idealBlocks = (appData.idealWeek[dayIdx] || []).slice();
+      idealBlocks.sort((a, b) => (a.startHour * 60 + a.startMin) - (b.startHour * 60 + b.startMin));
+
+      const WIN_START = 6 * 60;
+      const WIN_END = 24 * 60;
+      let cursor = WIN_START;
+
+      idealBlocks.forEach(b => {
+        const start = b.startHour * 60 + b.startMin;
+        if (start > cursor) {
+          const gapStart = Math.max(cursor, WIN_START);
+          const gapDuration = start - gapStart;
+          if (gapDuration >= MIN_FREE_DURATION) {
+            freeSlots.push({
+              dayIdx,
+              dayLabel: dayLabels[dayIdx],
+              start: gapStart,
+              duration: gapDuration
+            });
+          }
+        }
+        cursor = start + b.duration;
+      });
+
+      if (cursor < WIN_END) {
+        const gapDuration = WIN_END - cursor;
+        if (gapDuration >= MIN_FREE_DURATION) {
+          freeSlots.push({
+            dayIdx,
+            dayLabel: dayLabels[dayIdx],
+            start: cursor,
+            duration: gapDuration
+          });
+        }
+      }
+    }
+
+    freeSlots.sort((a, b) => a.dayIdx - b.dayIdx || a.start - b.start);
+
+    if (freeSlots.length === 0) {
+      container.innerHTML = `
+        <div class="free-time-empty">
+          <div class="free-time-empty-icon">🔄</div>
+          <div class="free-time-empty-text">本周日程已满，尝试调整计划吧</div>
+        </div>
+      `;
+      return;
+    }
+
+    let html = `
+      <div class="free-time-header">
+        <div class="free-time-icon">🌟</div>
+        <div>
+          <div class="free-time-title">空闲时间推荐</div>
+          <div class="free-time-subtitle">适合安排健身、学习等活动</div>
+        </div>
+      </div>
+    `;
+
+    freeSlots.slice(0, 6).forEach((slot, idx) => {
+      const startHour = Math.floor(slot.start / 60);
+      const startMin = slot.start % 60;
+      const endHour = Math.floor((slot.start + slot.duration) / 60);
+      const endMin = (slot.start + slot.duration) % 60;
+      const hours = Math.floor(slot.duration / 60);
+      const mins = slot.duration % 60;
+      const durationText = hours > 0 ? `${hours}小时${mins > 0 ? mins + '分钟' : ''}` : `${mins}分钟`;
+
+      const suggestions = [];
+      if (slot.duration >= 60 && slot.dayIdx < 5) {
+        suggestions.push('🏃 健身');
+      }
+      if (slot.duration >= 30) {
+        suggestions.push('📚 阅读');
+      }
+      if (slot.duration >= 45) {
+        suggestions.push('🧘 冥想');
+      }
+
+      html += `
+        <div class="free-time-block" data-day="${slot.dayIdx}" data-start="${slot.start}" data-duration="${slot.duration}">
+          <div class="free-time-day">${slot.dayLabel}</div>
+          <div class="free-time-time">${formatHM(startHour, startMin)} — ${formatHM(endHour, endMin)}</div>
+          <div class="free-time-duration">${durationText}</div>
+          <div class="free-time-suggestions">${suggestions.join(' ')}</div>
+        </div>
+      `;
+    });
+
+    if (freeSlots.length > 6) {
+      html += `
+        <div class="free-time-more">
+          还有 ${freeSlots.length - 6} 个空闲时间段...
+        </div>
+      `;
+    }
+
+    container.innerHTML = html;
+  }
+
   function renderAll(phoneNum) {
     renderDate(phoneNum);
+    renderTodayStats(phoneNum);
     renderWeekRange(phoneNum);
     renderCategories(phoneNum);
     renderRecords(phoneNum);
@@ -4715,6 +6192,7 @@
     renderCompareSummary(phoneNum);
     renderIdealDayTabs(phoneNum);
     renderIdealTimeline(phoneNum);
+    renderFreeTimeSuggestions(phoneNum);
   }
 
   function handleTap(phoneNum, catId, cardEl) {
@@ -4827,9 +6305,7 @@
       setTimeout(() => totalEl.classList.remove('pulse'), 550);
     }
 
-    const otherPhone = phoneNum === '1' ? '2' : '1';
     renderAll(phoneNum);
-    renderAll(otherPhone);
   }
 
   function deleteRecord(id) {
@@ -4841,13 +6317,6 @@
 
   function switchTab(phoneNum, tab) {
     phoneStates[phoneNum].activeTab = tab;
-
-    // Reset scroll position on tab switch (iOS standard behavior)
-    const phoneScreen = document.getElementById('phone' + phoneNum);
-    if (phoneScreen) {
-      const appContent = phoneScreen.querySelector('.app-content');
-      if (appContent) appContent.scrollTop = 0;
-    }
 
     const screens = ['today', 'week', 'ideal'];
     screens.forEach(s => {
@@ -5001,47 +6470,6 @@
     `;
   }
 
-  function setupGuideBubble() {
-    setTimeout(() => {
-      const firstCard = document.querySelector('#cat-grid-1 .cat-card');
-      if (!firstCard) return;
-
-      const phoneScreen = document.getElementById('phone1');
-      const cardRect = firstCard.getBoundingClientRect();
-      const screenRect = phoneScreen.getBoundingClientRect();
-
-      const bubble = document.createElement('div');
-      bubble.className = 'guide-bubble';
-      bubble.textContent = '点击这里开始记录';
-      bubble.style.left = `${cardRect.left - screenRect.left + cardRect.width / 2}px`;
-      bubble.style.top = `${cardRect.top - screenRect.top - 40}px`;
-      bubble.style.transform = 'translateX(-50%)';
-
-      phoneScreen.appendChild(bubble);
-      firstCard.classList.add('pulse');
-
-      let clickCount = 0;
-      const handleClick = () => {
-        clickCount++;
-        if (clickCount >= 3) {
-          bubble.classList.add('fade-out');
-          firstCard.classList.remove('pulse');
-          setTimeout(() => bubble.remove(), 400);
-          document.removeEventListener('click', handleClick);
-        }
-      };
-      document.addEventListener('click', handleClick);
-
-      setTimeout(() => {
-        if (clickCount < 3) {
-          bubble.classList.add('fade-out');
-          firstCard.classList.remove('pulse');
-          setTimeout(() => bubble.remove(), 400);
-        }
-      }, 8000);
-    }, 1500);
-  }
-
   function setupScrollReveal() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -5051,7 +6479,7 @@
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
 
-    document.querySelectorAll('[data-reveal], .reveal, .manifesto-item, .feature-row, .how-item, .phone-col').forEach(el => {
+    document.querySelectorAll('[data-reveal], .reveal, .manifesto-item, .feature-row, .how-item').forEach(el => {
       observer.observe(el);
     });
   }
@@ -5176,23 +6604,285 @@
     });
   }
 
+  // ==================== Cinematic Demo ====================
+  function initCinematicDemo() {
+    // Render full app content in cinematic phones (Scene 1 has the interactive phone)
+    renderAll('1');
+
+    // Populate Scene 2 week block view, Scene 3 ideal phone, Scene 4 free time
+    populateWeekBlockView();
+    populateScene3Phone();
+    populateFreeTimeView();
+
+    // IntersectionObserver for reveal animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const revealTargets = entry.target.querySelectorAll('.scene-text, .scene-visual, .scene-center');
+          revealTargets.forEach(el => el.classList.add('revealed'));
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('[data-scene]').forEach(scene => {
+      observer.observe(scene);
+    });
+
+    // Bind free time suggest clicks (Scene 4)
+    document.querySelectorAll('.free-time-suggest').forEach(suggest => {
+      suggest.addEventListener('click', function(e) {
+        e.stopPropagation();
+        this.classList.add('selected');
+        setTimeout(() => this.classList.remove('selected'), 300);
+        showCelebrationEffect(this);
+      });
+    });
+
+    // Bind free time CTA click
+    const cta = document.querySelector('.free-time-cta');
+    if (cta) {
+      cta.addEventListener('click', () => {
+        showCelebrationEffect(cta);
+      });
+    }
+  }
+
+  function populateWeekBlockView() {
+    const container = document.getElementById('week-block-grid-c');
+    if (!container) return;
+
+    const dayLabels = ['一', '二', '三', '四', '五', '六', '日'];
+    const shortDayLabels = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+    const colors = {
+      work: '#8B8578',
+      commute: '#7A746A',
+      meal: '#C8945A',
+      fitness: '#5B8A5C',
+      social: '#C47A5A',
+      read: '#9A8A78',
+      learn: '#5A7B8A',
+      rest: '#8A7B9A',
+      game: '#B88A4A',
+    };
+
+    const weekData = [
+      [
+        { type: 'fixed', label: '通勤', color: colors.commute, start: 30, end: 90 },
+        { type: 'fixed', label: '工作', color: colors.work, start: 90, end: 660 },
+        { type: 'fixed', label: '通勤', color: colors.commute, start: 660, end: 720 },
+        { type: 'fixed', label: '吃饭', color: colors.meal, start: 720, end: 765 },
+        { type: 'activity', label: '阅读', color: colors.read, start: 765, end: 855 },
+      ],
+      [
+        { type: 'fixed', label: '通勤', color: colors.commute, start: 30, end: 90 },
+        { type: 'fixed', label: '工作', color: colors.work, start: 90, end: 660 },
+        { type: 'fixed', label: '通勤', color: colors.commute, start: 660, end: 720 },
+        { type: 'fixed', label: '吃饭', color: colors.meal, start: 720, end: 765 },
+        { type: 'activity', label: '运动', color: colors.fitness, start: 765, end: 825 },
+      ],
+      [
+        { type: 'fixed', label: '通勤', color: colors.commute, start: 30, end: 90 },
+        { type: 'fixed', label: '工作', color: colors.work, start: 90, end: 660 },
+        { type: 'fixed', label: '通勤', color: colors.commute, start: 660, end: 720 },
+        { type: 'fixed', label: '吃饭', color: colors.meal, start: 720, end: 765 },
+        { type: 'activity', label: '学习', color: colors.learn, start: 765, end: 885 },
+      ],
+      [
+        { type: 'fixed', label: '通勤', color: colors.commute, start: 30, end: 90 },
+        { type: 'fixed', label: '工作', color: colors.work, start: 90, end: 660 },
+        { type: 'fixed', label: '通勤', color: colors.commute, start: 660, end: 720 },
+        { type: 'fixed', label: '吃饭', color: colors.meal, start: 720, end: 765 },
+        { type: 'activity', label: '🏸 羽毛球', color: colors.fitness, start: 765, end: 825 },
+        { type: 'activity', label: '聚餐', color: colors.social, start: 825, end: 945 },
+      ],
+      [
+        { type: 'fixed', label: '通勤', color: colors.commute, start: 30, end: 90 },
+        { type: 'fixed', label: '工作', color: colors.work, start: 90, end: 660 },
+        { type: 'fixed', label: '通勤', color: colors.commute, start: 660, end: 720 },
+        { type: 'fixed', label: '吃饭', color: colors.meal, start: 720, end: 765 },
+        { type: 'activity', label: '游戏', color: colors.game, start: 765, end: 885 },
+      ],
+      [
+        { type: 'activity', label: '做饭', color: colors.meal, start: 300, end: 390 },
+        { type: 'activity', label: '阅读', color: colors.read, start: 390, end: 510 },
+        { type: 'activity', label: '休息', color: colors.rest, start: 660, end: 780 },
+      ],
+      [
+        { type: 'activity', label: '运动', color: colors.fitness, start: 360, end: 420 },
+        { type: 'activity', label: '学习', color: colors.learn, start: 600, end: 720 },
+      ],
+    ];
+
+    const totalMin = 960;
+    const pxPerMin = 0.46;
+    const calendarHeight = totalMin * pxPerMin;
+
+    function minToTop(min) {
+      return min * pxPerMin;
+    }
+
+    function minToHeight(startMin, endMin) {
+      return (endMin - startMin) * pxPerMin;
+    }
+
+    function minToTime(min) {
+      const h = 7 + Math.floor(min / 60);
+      const m = min % 60;
+      return `${h}:${m.toString().padStart(2, '0')}`;
+    }
+
+    let html = '';
+
+    html += '<div class="week-cal-header">';
+    dayLabels.forEach((label, i) => {
+      const isToday = i === new Date().getDay() - 1 || (new Date().getDay() === 0 && i === 6);
+      html += `<div class="week-cal-day${isToday ? ' today' : ''}">周${label}</div>`;
+    });
+    html += '</div>';
+
+    html += '<div class="week-cal-body" style="height:' + calendarHeight + 'px">';
+    html += '<div class="week-cal-time-col">';
+    for (let hour = 7; hour <= 23; hour += 2) {
+      const top = minToTop((hour - 7) * 60);
+      html += `<div class="week-cal-time-marker" style="top:${top}px">${hour}</div>`;
+    }
+    html += '</div>';
+
+    html += '<div class="week-cal-grid-lines">';
+    for (let hour = 0; hour <= totalMin / 60; hour++) {
+      const top = hour * 60 * pxPerMin;
+      html += `<div class="week-cal-grid-line" style="top:${top}px"></div>`;
+      if (hour < totalMin / 60) {
+        html += `<div class="week-cal-grid-line half" style="top:${top + 30 * pxPerMin}px"></div>`;
+      }
+    }
+    html += '</div>';
+
+    html += '<div class="week-cal-cols">';
+    for (let dayIdx = 0; dayIdx < 7; dayIdx++) {
+      html += '<div class="week-cal-col">';
+      const blocks = weekData[dayIdx];
+      blocks.forEach(block => {
+        const top = minToTop(block.start);
+        const height = minToHeight(block.start, block.end);
+        const isShort = height < 24;
+        const isVeryShort = height < 16;
+        const label = isVeryShort ? '' : block.label;
+        const showTime = !isShort;
+
+        if (block.type === 'fixed') {
+          html += `<div class="week-cal-event fixed${isShort ? ' short' : ''}" style="top:${top}px;height:${height}px">
+            ${label ? `<span class="event-label">${label}</span>` : ''}
+          </div>`;
+        } else {
+          html += `<div class="week-cal-event activity${isShort ? ' short' : ''}" style="top:${top}px;height:${height}px;background:${block.color}">
+            ${label ? `<span class="event-label">${label}</span>` : ''}
+            ${showTime ? `<span class="event-time">${minToTime(block.start)}</span>` : ''}
+          </div>`;
+        }
+      });
+      html += '</div>';
+    }
+    html += '</div>';
+    html += '</div>';
+
+    container.innerHTML = html;
+  }
+
+  function populateScene3Phone() {
+    renderIdealDayTabs('c');
+    renderIdealTimeline('c');
+    renderFreeTimeSuggestions('c');
+  }
+
+  function populateFreeTimeView() {
+    const list = document.getElementById('free-time-list-c');
+    if (!list) return;
+
+    const freeTimes = [
+      {
+        day: '周一',
+        time: '20:00 – 23:00',
+        duration: '3 小时',
+        suggestions: ['💪 健身', '📖 阅读', '🎧 播客'],
+      },
+      {
+        day: '周三',
+        time: '20:00 – 21:00',
+        duration: '1 小时',
+        suggestions: ['🧘 冥想', '📝 写作', '🎵 练琴'],
+      },
+      {
+        day: '周六',
+        time: '08:00 – 12:00',
+        duration: '4 小时',
+        suggestions: ['🏃 跑步', '🧹 整理', '🍳 烹饪'],
+      },
+    ];
+
+    let html = '';
+    freeTimes.forEach(item => {
+      html += `
+        <div class="free-time-item">
+          <div class="free-time-header">
+            <div class="free-time-day">${item.day}</div>
+            <div class="free-time-duration">${item.duration}</div>
+          </div>
+          <div class="free-time-time">${item.time}</div>
+          <div class="free-time-suggestions">
+            ${item.suggestions.map(s => `<div class="free-time-suggest">${s}</div>`).join('')}
+          </div>
+        </div>
+      `;
+    });
+
+    list.innerHTML = html;
+  }
+
+  function showCelebrationEffect(element) {
+    const rect = element.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const particles = ['🎉', '✨', '🌟', '💫', '🎊', '👏', '💪', '🌱'];
+    for (let i = 0; i < 8; i++) {
+      const particle = document.createElement('div');
+      particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+      const angle = (i / 8) * Math.PI * 2;
+      const distance = 60 + Math.random() * 40;
+      const xOffset = Math.cos(angle) * distance;
+      const yOffset = Math.sin(angle) * distance;
+      particle.style.cssText = `
+        position: fixed;
+        left: ${centerX}px;
+        top: ${centerY}px;
+        font-size: ${16 + Math.random() * 8}px;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%) scale(0);
+      `;
+      particle.animate([
+        { opacity: 0, transform: `translate(-50%, -50%) scale(0)` },
+        { opacity: 1, transform: `translate(calc(-50% + ${xOffset}px), calc(-50% + ${yOffset}px)) scale(1.2)` },
+        { opacity: 0, transform: `translate(calc(-50% + ${xOffset * 1.5}px), calc(-50% + ${yOffset * 1.5 - 40}px)) scale(0.8)` }
+      ], {
+        duration: 1200 + Math.random() * 300,
+        easing: 'ease-out',
+        delay: i * 60
+      });
+      document.body.appendChild(particle);
+
+      setTimeout(() => {
+        particle.remove();
+      }, 1600);
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     initSampleData();
     initIdealWeekData();
 
-    renderAll('1');
-    renderAll('2');
-
-    document.querySelectorAll('.tab-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const phone = item.dataset.phone;
-        const tab = item.dataset.tab;
-        switchTab(phone, tab);
-      });
-    });
-
-    initCompareViewToggle();
-    setupGuideBubble();
+    initCinematicDemo();
 
     setupNavScroll();
     setupScrollReveal();
@@ -5201,14 +6891,6 @@
     setupCustomCursor();
     setupMagneticButtons();
     setupScrollProgress();
-
-    // Update status bar clock every minute
-    setInterval(() => {
-      const now = new Date();
-      document.querySelectorAll('.status-bar > span:first-child').forEach(el => {
-        el.textContent = formatTime(now);
-      });
-    }, 60000);
   });
 </script>
 

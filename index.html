@@ -6,36 +6,53 @@
 <title>TapTime — 轻点建立人生系统</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,200;1,9..144,300;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=Noto+Serif+SC:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=Noto+Serif+SC:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap">
 <style>
   :root {
-    --bg: #F5F1EA;
-    --bg-warm: #EDE7DA;
-    --bg-card: #FFFCF5;
-    --bg-elevated: #FAF6EE;
-    --bg-deep: #E8E0D2;
-    --text: #141310;
-    --text-secondary: #5C5850;
-    --text-tertiary: #9A9488;
-    --text-quaternary: #C9C4B8;
-    --text-faint: #DED9CC;
-    --accent: #B85C2E;
-    --accent-deep: #9A4A22;
-    --accent-light: #D4895A;
-    --accent-soft: #EBDAC8;
-    --accent-pale: #F5EBDF;
-    --accent-glow: rgba(184, 92, 46, 0.15);
-    --ink: #0A0907;
-    --paper: #FBF8F2;
-    --line: #D4CFc2;
-    --line-soft: #E8E4D9;
-    --line-faint: #F0ECE2;
-    --line-ink: rgba(20, 19, 16, 0.12);
+    --bg: #F8F5F0;
+    --bg-warm: #F0EBE2;
+    --bg-card: #FDFBF7;
+    --bg-elevated: #FAF7F1;
+    --bg-deep: #EBE5DA;
+    --text: #1A1815;
+    --text-secondary: #5E5950;
+    --text-tertiary: #9E978B;
+    --text-quaternary: #C9C3B5;
+    --text-faint: #E2DDD2;
+    --accent: #A6522C;
+    --accent-deep: #8B3E1E;
+    --accent-light: #C97849;
+    --accent-soft: #E8D5C3;
+    --accent-pale: #F4EADF;
+    --accent-glow: rgba(166, 82, 44, 0.12);
+    --ink: #0C0B09;
+    --paper: #FBF9F5;
+    --line: #D8D2C4;
+    --line-soft: #EAE5DA;
+    --line-faint: #F1EDE4;
+    --line-ink: rgba(20, 19, 16, 0.08);
 
-    --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
-    --font-serif: 'Instrument Serif', Georgia, serif;
-    --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'Fraunces', 'Noto Serif SC', Georgia, 'Times New Roman', serif;
+    --font-serif: 'Instrument Serif', 'Noto Serif SC', Georgia, serif;
+    --font-ui: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
     --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    --font-cn-display: 'Noto Serif SC', 'Fraunces', Georgia, serif;
+    --font-cn-ui: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
+
+    --space-unit: clamp(8px, 0.7vw, 16px);
+    --space-xs: calc(var(--space-unit) * 0.5);
+    --space-sm: var(--space-unit);
+    --space-md: calc(var(--space-unit) * 1.5);
+    --space-lg: calc(var(--space-unit) * 2.5);
+    --space-xl: calc(var(--space-unit) * 4);
+    --space-2xl: calc(var(--space-unit) * 6);
+    --space-3xl: calc(var(--space-unit) * 9);
+
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 22px;
+    --radius-xl: 28px;
 
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -60,18 +77,21 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-optical-sizing: auto;
   }
 
   body {
     font-family: var(--font-ui);
     background: var(--bg);
     color: var(--text);
-    line-height: 1.65;
-    font-weight: 300;
+    line-height: 1.75;
+    font-weight: 400;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1, "liga" 1, "clig" 1, "calt" 1, "ss01" 1;
+    -webkit-text-size-adjust: 100%;
   }
 
   body::before {
@@ -114,22 +134,22 @@
   }
 
   .container {
-    max-width: 1480px;
+    max-width: clamp(1000px, 90vw, 1480px);
     margin: 0 auto;
-    padding: 0 96px;
+    padding: 0 clamp(24px, 5vw, 96px);
     position: relative;
   }
 
   .section-eyebrow {
     font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.35em;
+    letter-spacing: 0.38em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 28px;
+    margin-bottom: 32px;
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
   }
 
   .section-eyebrow::before {
@@ -142,26 +162,30 @@
 
   .section-title {
     font-family: var(--font-display);
-    font-size: clamp(40px, 6vw, 84px);
-    font-weight: 200;
-    line-height: 1.05;
-    letter-spacing: -0.035em;
+    font-size: clamp(36px, 5vw, 76px);
+    font-weight: 400;
+    line-height: 1.06;
+    letter-spacing: -0.022em;
     color: var(--text);
-    margin-bottom: 28px;
+    margin-bottom: clamp(16px, 2vw, 32px);
+    font-variation-settings: 'opsz' 72, 'SOFT' 25;
+    font-feature-settings: "kern" 1, "liga" 1, "ss01" 1;
   }
 
   .section-title em {
     font-style: italic;
-    font-weight: 200;
+    font-weight: 300;
     color: var(--accent);
+    font-family: var(--font-serif);
+    font-size: 0.92em;
   }
 
   .section-desc {
-    font-size: 16px;
-    line-height: 1.9;
+    font-size: clamp(15px, 1vw, 17px);
+    line-height: 1.85;
     color: var(--text-secondary);
     max-width: 520px;
-    font-weight: 300;
+    font-weight: 400;
   }
 
   /* ─────────── Navigation ─────────── */
@@ -171,18 +195,19 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 36px 0;
-    transition: all 0.8s var(--ease-out);
+    padding: clamp(14px, 2.5vh, 36px) 0;
+    transition: all 0.6s var(--ease-out);
     backdrop-filter: blur(32px) saturate(1.2);
     -webkit-backdrop-filter: blur(32px) saturate(1.2);
-    background: rgba(247, 243, 236, 0.65);
+    background: rgba(248, 245, 240, 0.7);
     border-bottom: 1px solid transparent;
   }
 
   nav.scrolled {
-    padding: 20px 0;
+    padding: clamp(10px, 1.5vh, 16px) 0;
     border-bottom-color: var(--line-soft);
-    background: rgba(247, 243, 236, 0.85);
+    background: rgba(248, 245, 240, 0.92);
+    box-shadow: 0 1px 12px rgba(10, 9, 7, 0.04);
   }
 
   .nav-inner {
@@ -200,6 +225,7 @@
     cursor: pointer;
     transition: all 0.5s var(--ease-out);
     position: relative;
+    font-variation-settings: 'opsz' 24, 'SOFT' 40;
   }
 
   .logo:hover {
@@ -228,8 +254,8 @@
     color: var(--text-secondary);
     text-decoration: none;
     font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 0.01em;
+    font-weight: 500;
+    letter-spacing: 0.02em;
     transition: color 0.4s;
     position: relative;
   }
@@ -291,11 +317,12 @@
   /* ─────────── Hero ─────────── */
   .hero {
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 160px;
-    padding-bottom: 100px;
+    padding-top: clamp(100px, 12vh, 160px);
+    padding-bottom: clamp(60px, 8vh, 120px);
     position: relative;
     overflow: hidden;
   }
@@ -352,13 +379,15 @@
 
   .hero-title {
     font-family: var(--font-display);
-    font-size: clamp(72px, 11vw, 180px);
-    font-weight: 200;
-    line-height: 0.92;
-    letter-spacing: -0.055em;
+    font-size: clamp(52px, 9vw, 148px);
+    font-weight: 400;
+    line-height: 0.96;
+    letter-spacing: -0.028em;
     opacity: 0;
     transform: translateY(60px);
     animation: heroTitleIn 1.6s var(--ease-out) 0.35s forwards;
+    font-variation-settings: 'opsz' 144, 'SOFT' 30, 'WONK' 0;
+    font-feature-settings: "kern" 1, "liga" 1, "ss01" 1, "ss02" 1;
   }
 
   @keyframes heroTitleIn {
@@ -396,7 +425,8 @@
     color: var(--accent);
     position: relative;
     display: inline-block;
-    font-size: 0.92em;
+    font-size: 0.88em;
+    letter-spacing: -0.01em;
   }
 
   .hero-title em::after {
@@ -421,16 +451,16 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    gap: 100px;
-    margin-bottom: 80px;
+    gap: clamp(32px, 6vw, 100px);
+    margin-bottom: clamp(40px, 6vh, 80px);
   }
 
   .hero-sub {
-    font-size: 17px;
-    font-weight: 300;
+    font-size: clamp(15px, 1vw, 17px);
+    font-weight: 400;
     color: var(--text-secondary);
     max-width: 460px;
-    line-height: 1.95;
+    line-height: 1.9;
     opacity: 0;
     transform: translateY(24px);
     animation: heroFadeIn 1.2s var(--ease-out) 0.8s forwards;
@@ -457,13 +487,14 @@
   .hero-meta-item strong {
     display: block;
     font-family: var(--font-display);
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 300;
     color: var(--text);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
     text-transform: none;
     margin-top: 6px;
     font-style: italic;
+    font-variation-settings: 'opsz' 36, 'SOFT' 40;
   }
 
   .hero-actions {
@@ -627,14 +658,15 @@
 
   .btn-secondary {
     background: transparent;
-    color: var(--text);
+    color: var(--text-secondary);
     border: 1px solid var(--line);
     padding-left: 32px;
     padding-right: 32px;
   }
 
   .btn-secondary:hover {
-    border-color: var(--text);
+    border-color: var(--text-secondary);
+    color: var(--text);
     transform: translateY(-3px);
     background: var(--bg-card);
     box-shadow: 0 16px 32px -12px rgba(10, 9, 7, 0.08);
@@ -683,7 +715,7 @@
 
   .loader-logo em {
     font-style: italic;
-    font-weight: 200;
+    font-weight: 300;
     color: var(--accent);
   }
 
@@ -852,11 +884,12 @@
     color: var(--text-quaternary);
     font-style: italic;
     line-height: 1;
+    opacity: 0.6;
   }
 
   /* ─────────── Section Base ─────────── */
   section {
-    padding: 240px 0;
+    padding: clamp(80px, 12vh, 160px) 0;
     position: relative;
   }
 
@@ -882,23 +915,23 @@
   .section-title {
     font-family: var(--font-display);
     font-size: clamp(48px, 6vw, 84px);
-    font-weight: 200;
+    font-weight: 400;
     line-height: 1.04;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.015em;
     margin-bottom: 32px;
   }
 
   .section-title em {
     font-style: italic;
-    font-weight: 200;
+    font-weight: 300;
   }
 
   .section-desc {
-    font-size: 16px;
-    font-weight: 300;
+    font-size: clamp(15px, 1vw, 17px);
+    font-weight: 400;
     color: var(--text-secondary);
     max-width: 520px;
-    line-height: 1.9;
+    line-height: 1.85;
   }
 
   /* ─────────── Manifesto / Pain ─────────── */
@@ -920,7 +953,7 @@
   .manifesto-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 140px;
+    gap: clamp(60px, 8vw, 140px);
     align-items: start;
   }
 
@@ -963,18 +996,19 @@
 
   .manifesto-item h3 {
     font-family: var(--font-display);
-    font-size: 28px;
+    font-size: clamp(24px, 2.2vw, 32px);
     font-weight: 400;
-    margin-bottom: 14px;
-    letter-spacing: -0.02em;
+    margin-bottom: clamp(10px, 1vw, 16px);
+    letter-spacing: -0.015em;
+    line-height: 1.3;
   }
 
   .manifesto-item p {
     color: var(--text-secondary);
-    line-height: 1.8;
-    font-size: 14px;
+    line-height: 1.85;
+    font-size: clamp(14px, 1vw, 16px);
     max-width: 440px;
-    font-weight: 300;
+    font-weight: 400;
   }
 
   /* ===== Cinematic Demo ===== */
@@ -984,13 +1018,14 @@
 
   .scene {
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 100px 60px;
+    padding: clamp(60px, 8vh, 120px) clamp(24px, 5vw, 80px);
     position: relative;
     overflow: hidden;
-    gap: 80px;
+    gap: clamp(40px, 6vw, 100px);
   }
 
   .scene-inner {
@@ -998,9 +1033,9 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 1100px;
+    max-width: clamp(800px, 80vw, 1200px);
     margin: 0 auto;
-    gap: 80px;
+    gap: clamp(40px, 6vw, 100px);
   }
 
   .scene-inner.scene-reverse {
@@ -1030,10 +1065,11 @@
   }
   .scene-hook .scene-headline {
     font-size: 64px;
-    letter-spacing: -0.032em;
-    line-height: 1.05;
+    letter-spacing: -0.035em;
+    line-height: 1.04;
     margin-bottom: 20px;
-    font-weight: 300;
+    font-weight: 400;
+    font-variation-settings: 'opsz' 72, 'SOFT' 25;
   }
   .scene-hook .scene-eyebrow {
     font-family: var(--font-ui);
@@ -1046,9 +1082,9 @@
   }
   .scene-hook .scene-subline {
     font-size: 19px;
-    font-weight: 300;
+    font-weight: 400;
     opacity: 0.5;
-    line-height: 1.6;
+    line-height: 1.65;
     max-width: 500px;
   }
 
@@ -1058,10 +1094,11 @@
   }
   .scene-center .scene-headline {
     font-size: 56px;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
+    letter-spacing: -0.032em;
+    line-height: 1.08;
     margin-bottom: 24px;
-    font-weight: 300;
+    font-weight: 400;
+    font-variation-settings: 'opsz' 56, 'SOFT' 30;
   }
   .scene-center .scene-num {
     font-size: 100px;
@@ -1100,8 +1137,8 @@
   }
 
   .scene-text {
-    flex: 0 1 360px;
-    max-width: 360px;
+    flex: 0 1 clamp(300px, 28vw, 420px);
+    max-width: clamp(300px, 28vw, 420px);
     min-width: 0;
   }
   .scene-visual {
@@ -1113,34 +1150,36 @@
 
   .scene-num {
     font-family: var(--font-display);
-    font-size: 72px;
-    font-weight: 200;
+    font-size: clamp(56px, 5vw, 88px);
+    font-weight: 300;
     line-height: 1;
     display: block;
-    margin-bottom: -12px;
-    opacity: 0.05;
-    letter-spacing: -0.02em;
+    margin-bottom: -8px;
+    opacity: 0.06;
+    letter-spacing: -0.03em;
+    font-variation-settings: 'opsz' 72, 'SOFT' 20;
   }
 
   .scene-dark .scene-num {
-    opacity: 0.04;
+    opacity: 0.05;
   }
 
   .scene-headline {
     font-family: var(--font-display);
-    font-size: 40px;
-    font-weight: 300;
-    letter-spacing: -0.022em;
-    line-height: 1.12;
-    margin-bottom: 18px;
+    font-size: clamp(32px, 3.5vw, 52px);
+    font-weight: 400;
+    letter-spacing: -0.028em;
+    line-height: 1.1;
+    margin-bottom: clamp(12px, 1.5vw, 22px);
+    font-variation-settings: 'opsz' 48, 'SOFT' 30;
+    font-feature-settings: "kern" 1, "liga" 1, "ss01" 1;
   }
 
   .scene-desc {
-    font-size: 15px;
+    font-size: clamp(14px, 1.1vw, 16px);
     font-weight: 400;
-    line-height: 1.7;
-    opacity: 0.6;
-    letter-spacing: -0.005em;
+    line-height: 1.8;
+    opacity: 0.65;
   }
 
   .scene-dark .scene-desc {
@@ -1151,12 +1190,27 @@
   .demo-phone {
     position: relative;
     flex-shrink: 0;
+    transform: scale(1);
+    transform-origin: center center;
+  }
+
+  @media (min-width: 1400px) {
+    .demo-phone { transform: scale(1.05); }
+  }
+  @media (max-width: 1200px) {
+    .demo-phone { transform: scale(0.88); }
+  }
+  @media (max-width: 800px) {
+    .demo-phone { transform: scale(1); }
+  }
+  @media (max-width: 480px) {
+    .demo-phone { transform: scale(0.82); }
   }
 
   .demo-phone-frame {
-    width: 260px;
-    height: 563px;
-    border-radius: 46px;
+    width: 280px;
+    height: 606px;
+    border-radius: 48px;
     background: 
       linear-gradient(145deg, 
         #7A756E 0%, 
@@ -1168,7 +1222,7 @@
         #4A4641 72%, 
         #5E5952 88%, 
         #6B665E 100%);
-    padding: 4px;
+    padding: 4.5px;
     position: relative;
     overflow: visible;
     box-shadow: 
@@ -1354,18 +1408,14 @@
   }
 
   .demo-phone-screen {
-    background: #F5F1EA;
+    background: #FAF9F7;
     border-radius: 42px;
     width: 100%;
     height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
-    padding-top: 46px;
-    padding-bottom: 18px;
     box-sizing: border-box;
   }
 
@@ -1397,9 +1447,65 @@
     background: rgba(245,241,234,0.18);
   }
 
+  /* ===== 底部 Tab Bar ===== */
+  .demo-tab-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 62px;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+    padding: 8px 0 14px;
+    background: rgba(250,249,247,0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 0.5px solid rgba(20,19,16,0.08);
+    z-index: 15;
+  }
+  .demo-phone-screen-dark .demo-tab-bar {
+    background: rgba(26,24,22,0.92);
+    border-top: 0.5px solid rgba(245,241,234,0.08);
+  }
+  .demo-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    color: rgba(20,19,16,0.35);
+    transition: color 0.2s ease;
+  }
+  .demo-phone-screen-dark .demo-tab {
+    color: rgba(245,241,234,0.32);
+  }
+  .demo-tab.active {
+    color: #1A1816;
+  }
+  .demo-phone-screen-dark .demo-tab.active {
+    color: #F5F1EA;
+  }
+  .demo-tab-icon {
+    width: 22px;
+    height: 22px;
+    display: block;
+  }
+  .demo-tab-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .demo-tab.active .demo-tab-label {
+    font-weight: 600;
+  }
+
   .demo-app-header {
     padding: 0 14px 10px;
-    background: #F5F1EA;
+    background: rgba(250,249,247,0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     position: sticky;
     top: 0;
     z-index: 5;
@@ -1445,10 +1551,12 @@
 
   .demo-app-stat {
     flex: 1;
-    background: rgba(20,19,16,0.03);
-    border-radius: 11px;
-    padding: 7px 6px;
+    background: rgba(255,255,255,0.7);
+    border: 0.5px solid rgba(20,19,16,0.05);
+    border-radius: 14px;
+    padding: 8px 6px;
     text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.02);
   }
 
   .demo-phone-screen-dark .demo-app-stat {
@@ -1485,16 +1593,16 @@
 
   .demo-app-categories {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 7px;
-    padding: 4px 12px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 4px 16px;
   }
 
   .demo-app-categories .cat-card {
-    background: rgba(255,255,255,0.65);
-    border: 0.5px solid rgba(20,19,16,0.04);
-    border-radius: 16px;
-    padding: 12px 10px;
+    background: rgba(255,255,255,0.75);
+    border: 0.5px solid rgba(20,19,16,0.05);
+    border-radius: 18px;
+    padding: 16px 10px;
     cursor: pointer;
     transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
@@ -1784,7 +1892,7 @@
   }
 
   .demo-phone-screen .week-cal-header {
-    background: #F5F1EA;
+    background: #FAF9F7;
   }
 
   .demo-phone-screen-dark .week-cal-header {
@@ -1997,92 +2105,126 @@
 
   /* 习惯嵌入与断舍离视图 */
   .demo-embed-view {
-    padding: 0 14px 14px;
-    min-height: 100%;
     display: flex;
     flex-direction: column;
+    padding: 0 16px;
+  }
+  .demo-embed-header {
+    padding: 6px 0 8px;
+    flex-shrink: 0;
   }
   .demo-embed-title {
     font-family: var(--font-display);
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 17px;
+    font-weight: 600;
+    color: #1A1816;
+    letter-spacing: -0.02em;
+    display: block;
+  }
+  .demo-embed-sub {
+    font-size: 11px;
     color: rgba(20,19,16,0.4);
-    margin-bottom: 14px;
-    letter-spacing: -0.01em;
-    text-align: center;
-    flex-shrink: 0;
+    margin-top: 2px;
+    display: block;
   }
   .demo-embed-list {
-    flex: 0 0 auto;
+    flex-shrink: 0;
   }
   .demo-embed-item {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 10px;
+    gap: 10px;
+    padding: 8px 12px;
     border-radius: 10px;
     margin-bottom: 5px;
     transition: all 0.3s var(--ease-out);
   }
   .demo-embed-item.kept {
-    background: linear-gradient(135deg, rgba(91,138,92,0.1), rgba(122,155,122,0.05));
-    border: 1px solid rgba(91,138,92,0.15);
+    background: linear-gradient(135deg, rgba(91,138,92,0.08), rgba(122,155,122,0.03));
+    border: 1px solid rgba(91,138,92,0.12);
   }
   .demo-embed-item.dropped {
-    opacity: 0.35;
+    opacity: 0.4;
+    background: rgba(20,19,16,0.02);
   }
   .demo-embed-item.dropped .demo-embed-item-name {
     text-decoration: line-through;
     text-decoration-color: rgba(20,19,16,0.2);
+    color: rgba(20,19,16,0.35);
   }
   .demo-embed-item-icon {
-    font-size: 14px;
+    font-size: 16px;
     flex-shrink: 0;
-    width: 20px;
+    width: 24px;
     text-align: center;
+  }
+  .demo-embed-item-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
   }
   .demo-embed-item-name {
     font-family: var(--font-display);
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
     color: rgba(20,19,16,0.8);
-    flex: 1;
-    min-width: 0;
   }
-  .demo-embed-item.dropped .demo-embed-item-name {
-    color: rgba(20,19,16,0.4);
-  }
-  .demo-embed-item-time {
-    font-size: 9px;
+  .demo-embed-item-sched {
+    font-size: 10px;
     color: rgba(91,138,92,0.7);
     font-variant-numeric: tabular-nums;
     font-weight: 500;
+  }
+  .demo-embed-item-reason {
+    font-size: 10px;
+    color: rgba(20,19,16,0.3);
+    font-style: italic;
+  }
+  .demo-embed-item-badge {
+    font-size: 9px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.03em;
     flex-shrink: 0;
   }
-  .demo-embed-item-status {
-    font-size: 9px;
-    color: rgba(20,19,16,0.25);
-    flex-shrink: 0;
-    font-style: italic;
+  .demo-embed-item-badge.keep {
+    background: rgba(91,138,92,0.12);
+    color: #5B8A5C;
+  }
+  .demo-embed-item-badge.drop {
+    background: rgba(20,19,16,0.06);
+    color: rgba(20,19,16,0.3);
   }
   .demo-embed-divider {
     height: 1px;
     background: rgba(20,19,16,0.06);
-    margin: 8px 0 8px;
+    margin: 8px 0;
     flex-shrink: 0;
   }
+  .demo-embed-footer {
+    flex-shrink: 0;
+    padding: 8px 0 12px;
+    border-top: 1px solid rgba(20,19,16,0.06);
+    margin-top: 2px;
+  }
+  .demo-embed-counts {
+    text-align: center;
+    font-size: 10px;
+    color: rgba(20,19,16,0.35);
+    margin-bottom: 5px;
+    letter-spacing: 0.04em;
+  }
+  .demo-embed-counts span { margin: 0 4px; }
   .demo-embed-message {
     font-family: var(--font-display);
-    font-size: 11px;
-    font-weight: 400;
-    color: rgba(20,19,16,0.45);
-    line-height: 1.7;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(20,19,16,0.5);
+    line-height: 1.6;
     text-align: center;
-    flex-shrink: 0;
-  }
-  .demo-embed-message strong {
-    color: rgba(20,19,16,0.7);
-    font-weight: 600;
   }
 
   /* 旧 .scene-tab-item 和 .home-indicator-bar 样式已移除 */
@@ -2440,12 +2582,12 @@
 
   /* 响应式 - Cinematic */
   @media (max-width: 1000px) {
-    .scene { gap: 60px; padding: 100px 40px; }
+    .scene { gap: 60px; padding: 80px 40px; }
     .scene-inner { gap: 60px; }
   }
 
   @media (max-width: 800px) {
-    .scene { padding: 80px 32px; flex-direction: column !important; gap: 48px; }
+    .scene { padding: 64px 32px; flex-direction: column !important; gap: 48px; }
     .scene-inner { flex-direction: column !important; gap: 48px; }
     .scene-text { width: 100%; max-width: 500px; text-align: center; flex: 0 0 auto; }
     .scene-visual { width: 100%; justify-content: center; }
@@ -2458,7 +2600,7 @@
   }
 
   @media (max-width: 480px) {
-    .scene { padding: 60px 20px; }
+    .scene { padding: 48px 20px; }
     .scene-hook .scene-headline { font-size: 32px !important; }
     .scene-headline { font-size: 28px !important; }
     .demo-phone-frame { width: 240px; height: 520px; }
@@ -3927,6 +4069,207 @@
     font-family: var(--font-display);
   }
 
+  /* ── Dual Timeline Comparison (Scene 04) ── */
+  .demo-compare-view {
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px;
+    gap: 0;
+  }
+  .demo-compare-header {
+    padding: 6px 0 8px;
+    flex-shrink: 0;
+  }
+  .demo-compare-title {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+    color: #141310;
+    letter-spacing: -0.02em;
+  }
+  .demo-compare-sub {
+    font-size: 11px;
+    color: rgba(20,19,16,0.45);
+    margin-top: 2px;
+    letter-spacing: 0.01em;
+  }
+  .demo-compare-day-tabs {
+    display: flex;
+    gap: 4px;
+    margin: 8px 0 12px;
+    flex-shrink: 0;
+  }
+  .demo-compare-day-tab {
+    flex: 1;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(20,19,16,0.4);
+    background: rgba(20,19,16,0.04);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .demo-compare-day-tab.active {
+    background: var(--accent, #C45C2E);
+    color: white;
+    font-weight: 600;
+  }
+  .demo-dual-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex-shrink: 0;
+  }
+  .demo-dual-section {
+    flex-shrink: 0;
+  }
+  .demo-dual-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(20,19,16,0.4);
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .demo-dual-label-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .demo-dual-label-dot.ideal { background: rgba(184,155,122,0.8); }
+  .demo-dual-label-dot.actual { background: var(--accent, #C45C2E); }
+
+  .demo-dual-track {
+    position: relative;
+    padding-left: 36px;
+    min-height: 80px;
+    border-left: 1px solid rgba(20,19,16,0.08);
+    margin-left: 3px;
+  }
+  .demo-dual-track.ideal-track {
+    padding-bottom: 12px;
+  }
+  .demo-dual-track.actual-track {
+    padding-top: 4px;
+  }
+  .demo-dual-hour {
+    position: absolute;
+    left: -36px;
+    font-size: 9px;
+    color: rgba(20,19,16,0.3);
+    font-variant-numeric: tabular-nums;
+    transform: translateY(-50%);
+    line-height: 1;
+  }
+  .demo-dual-block {
+    position: absolute;
+    left: 8px;
+    right: 4px;
+    border-radius: 6px;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    overflow: hidden;
+    transition: opacity 0.2s;
+  }
+  .demo-dual-block .blk-icon { font-size: 10px; flex-shrink: 0; }
+  .demo-dual-block .blk-name { font-size: 10px; font-weight: 500; color: #141310; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .demo-dual-block .blk-time { font-size: 8px; color: rgba(20,19,16,0.4); margin-left: auto; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+
+  .demo-dual-block.ideal-fixed {
+    background: rgba(154,148,136,0.15);
+    border-left: 2px solid rgba(154,148,136,0.4);
+  }
+  .demo-dual-block.ideal-activity {
+    background: rgba(122,155,118,0.15);
+    border-left: 2px solid rgba(122,155,118,0.5);
+  }
+  .demo-dual-block.ideal-missing {
+    background: transparent;
+    border: 1px dashed rgba(20,19,16,0.1);
+    border-left: 2px dashed rgba(184,155,122,0.4);
+    opacity: 0.5;
+  }
+  .demo-dual-block.ideal-missing .blk-name { text-decoration: line-through; color: rgba(20,19,16,0.4); }
+  .demo-dual-block.actual-block {
+    background: rgba(184,121,74,0.2);
+    border-left: 2px solid rgba(184,121,74,0.5);
+  }
+  .demo-dual-block.actual-extra {
+    background: rgba(201,122,106,0.2);
+    border-left: 2px solid rgba(201,122,106,0.5);
+  }
+  .demo-dual-block.actual-extra .blk-name { color: #C97A6A; }
+  .demo-dual-divider {
+    height: 1px;
+    background: rgba(20,19,16,0.06);
+    margin: 8px 0;
+    flex-shrink: 0;
+  }
+  .demo-compare-summary {
+    flex-shrink: 0;
+    display: flex;
+    gap: 6px;
+    padding: 8px 0 12px;
+    border-top: 1px solid rgba(20,19,16,0.06);
+    margin-top: 4px;
+  }
+  .demo-compare-stat {
+    flex: 1;
+    text-align: center;
+    padding: 6px 2px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.6);
+    border: 0.5px solid rgba(20,19,16,0.05);
+  }
+  .demo-compare-stat-num {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    color: #141310;
+    line-height: 1;
+  }
+  .demo-compare-stat-num.green { color: #7A9B76; }
+  .demo-compare-stat-num.amber { color: #C8945A; }
+  .demo-compare-stat-num.dim { color: rgba(20,19,16,0.3); }
+  .demo-compare-stat-label {
+    font-size: 8px;
+    color: rgba(20,19,16,0.4);
+    margin-top: 3px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Ideal Week Planning (Scene 03, light) ── */
+  .demo-plan-view {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0 16px;
+  }
+  .demo-plan-header {
+    padding: 8px 0 10px;
+    flex-shrink: 0;
+  }
+  .demo-plan-title {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+    color: #1A1816;
+    letter-spacing: -0.02em;
+  }
+  .demo-plan-sub {
+    font-size: 11px;
+    color: rgba(20,19,16,0.4);
+    margin-top: 2px;
+  }
+
   /* ── Ideal Week: Day Tabs ── */
   .ideal-day-tabs {
     display: flex;
@@ -4309,6 +4652,34 @@
     flex-shrink: 0;
   }
 
+  .free-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, rgba(122,155,118,0.10), rgba(122,155,118,0.03));
+    border-radius: 14px;
+    border: 1px solid rgba(122,155,118,0.18);
+    flex-shrink: 0;
+  }
+  .free-summary-num {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 200;
+    color: #5D7A59;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .free-summary-label {
+    font-size: 10px;
+    color: rgba(20,19,16,0.45);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
   /* ─────────── Features ─────────── */
   .features {
     background: var(--bg-warm);
@@ -4338,7 +4709,7 @@
   }
 
   .features-header {
-    margin-bottom: 120px;
+    margin-bottom: clamp(60px, 8vw, 120px);
     max-width: 640px;
     position: relative;
     z-index: 2;
@@ -4347,8 +4718,8 @@
   .feature-row {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 100px;
-    padding: 80px 0;
+    gap: clamp(50px, 6vw, 100px);
+    padding: clamp(40px, 5vw, 80px) 0;
     border-top: 1px solid var(--line);
     opacity: 0;
     transform: translateY(40px);
@@ -4377,10 +4748,11 @@
     font-style: italic;
     margin-bottom: 28px;
     letter-spacing: 0.08em;
-    font-weight: 300;
+    font-weight: 400;
     display: flex;
     align-items: center;
     gap: 12px;
+    font-variation-settings: 'opsz' 12, 'SOFT' 50;
   }
 
   .feature-num::before {
@@ -4392,16 +4764,20 @@
 
   .feature-row h3 {
     font-family: var(--font-display);
-    font-size: 42px;
-    font-weight: 300;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    font-variation-settings: 'opsz' 42, 'SOFT' 30;
+    font-feature-settings: "kern" 1, "liga" 1, "ss01" 1;
   }
 
   .feature-row h3 em {
     font-style: italic;
-    font-weight: 200;
+    font-weight: 300;
     color: var(--accent);
+    font-family: var(--font-serif);
+    font-size: 0.92em;
   }
 
   .feature-body {
@@ -4413,7 +4789,7 @@
     color: var(--text-secondary);
     line-height: 1.9;
     margin-bottom: 32px;
-    font-weight: 300;
+    font-weight: 400;
   }
 
   .feature-detail {
@@ -4424,7 +4800,7 @@
     color: var(--text-secondary);
     line-height: 1.9;
     border-left: 2px solid var(--accent);
-    font-weight: 300;
+    font-weight: 400;
     font-style: normal;
     position: relative;
     transition: all 0.5s var(--ease-out);
@@ -4459,15 +4835,15 @@
   .how-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 72px;
-    margin-top: 120px;
+    gap: clamp(40px, 5vw, 72px);
+    margin-top: clamp(60px, 8vw, 120px);
     position: relative;
   }
 
   .how-grid::before {
     content: '';
     position: absolute;
-    top: 56px;
+    top: clamp(28px, 4vw, 56px);
     left: 15%;
     right: 15%;
     height: 1px;
@@ -4493,14 +4869,15 @@
 
   .how-number {
     font-family: var(--font-display);
-    font-size: 64px;
-    font-weight: 200;
+    font-size: clamp(44px, 5vw, 64px);
+    font-weight: 300;
     font-style: italic;
     color: var(--accent);
-    margin-bottom: 32px;
+    margin-bottom: clamp(20px, 2vw, 32px);
     line-height: 1;
     display: inline-block;
     position: relative;
+    font-variation-settings: 'opsz' 64, 'SOFT' 50;
   }
 
   .how-number::after {
@@ -4524,18 +4901,19 @@
 
   .how-item h4 {
     font-family: var(--font-display);
-    font-size: 28px;
+    font-size: clamp(22px, 2vw, 28px);
     font-weight: 400;
-    margin-bottom: 20px;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+    margin-bottom: clamp(14px, 1.5vw, 20px);
+    letter-spacing: -0.025em;
+    line-height: 1.18;
+    font-variation-settings: 'opsz' 28, 'SOFT' 30;
   }
 
   .how-item p {
     color: var(--text-secondary);
     font-size: 15px;
     line-height: 1.9;
-    font-weight: 300;
+    font-weight: 400;
   }
 
   /* ─────────── Philosophy / Story ─────────── */
@@ -4580,15 +4958,15 @@
 
   .philosophy .section-title {
     color: var(--bg);
-    font-weight: 200;
+    font-weight: 400;
     max-width: 640px;
   }
 
   .philosophy-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 120px;
-    margin-top: 100px;
+    gap: clamp(60px, 8vw, 120px);
+    margin-top: clamp(60px, 7vw, 100px);
     position: relative;
     z-index: 1;
     align-items: start;
@@ -4596,18 +4974,21 @@
 
   .philosophy-quote {
     font-family: var(--font-display);
-    font-size: clamp(32px, 4vw, 56px);
-    line-height: 1.25;
-    font-weight: 200;
-    letter-spacing: -0.025em;
+    font-size: clamp(30px, 3.8vw, 52px);
+    line-height: 1.28;
+    font-weight: 400;
+    letter-spacing: -0.022em;
     position: sticky;
     top: 200px;
+    font-variation-settings: 'opsz' 48, 'SOFT' 30;
+    font-feature-settings: "kern" 1, "liga" 1, "ss01" 1;
   }
 
   .philosophy-quote em {
     font-style: italic;
     color: var(--accent-light);
-    font-weight: 200;
+    font-weight: 300;
+    font-family: var(--font-serif);
   }
 
   .philosophy-quote::before {
@@ -4621,14 +5002,15 @@
     color: var(--accent-light);
     opacity: 0.15;
     line-height: 1;
+    font-variation-settings: 'opsz' 144, 'SOFT' 0;
   }
 
   .philosophy-text p {
-    color: rgba(248, 245, 240, 0.58);
+    color: rgba(248, 245, 240, 0.55);
     line-height: 2;
     font-size: 15px;
     margin-bottom: 32px;
-    font-weight: 300;
+    font-weight: 400;
   }
 
   .philosophy-text p:last-child {
@@ -4650,13 +5032,12 @@
     padding-top: 40px;
     border-top: 1px solid rgba(255,255,255,0.08);
     line-height: 1.5;
-    font-weight: 200;
   }
 
   /* ─────────── CTA ─────────── */
   .cta {
     text-align: center;
-    padding: 240px 0;
+    padding: clamp(100px, 14vh, 180px) 0;
     position: relative;
     overflow: hidden;
   }
@@ -4699,16 +5080,18 @@
 
   .cta h2 {
     font-family: var(--font-display);
-    font-size: clamp(56px, 8vw, 108px);
-    font-weight: 200;
-    line-height: 1;
-    letter-spacing: -0.05em;
+    font-size: clamp(52px, 7.5vw, 104px);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.032em;
     margin-bottom: 52px;
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
     position: relative;
     z-index: 1;
+    font-variation-settings: 'opsz' 96, 'SOFT' 35;
+    font-feature-settings: "kern" 1, "liga" 1, "ss01" 1;
   }
 
   .cta h2 em {
@@ -4716,7 +5099,8 @@
     font-style: italic;
     font-weight: 400;
     color: var(--accent);
-    font-size: 0.92em;
+    font-size: 0.88em;
+    letter-spacing: -0.01em;
   }
 
   .cta-sub {
@@ -4724,8 +5108,8 @@
     color: var(--text-secondary);
     max-width: 520px;
     margin: 0 auto 80px;
-    line-height: 1.95;
-    font-weight: 300;
+    line-height: 1.9;
+    font-weight: 400;
     position: relative;
     z-index: 1;
   }
@@ -4745,7 +5129,7 @@
   /* ─────────── Footer ─────────── */
   footer {
     border-top: 1px solid var(--line);
-    padding: 100px 0 48px;
+    padding: clamp(60px, 8vh, 100px) 0 clamp(32px, 4vh, 48px);
     position: relative;
     background: var(--bg-warm);
   }
@@ -4764,8 +5148,8 @@
   .footer-inner {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 80px;
-    margin-bottom: 80px;
+    gap: clamp(40px, 5vw, 80px);
+    margin-bottom: clamp(48px, 6vw, 80px);
   }
 
   .footer-brand {
@@ -4775,10 +5159,11 @@
   .footer-logo {
     font-family: var(--font-display);
     font-size: 30px;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: -0.035em;
     margin-bottom: 28px;
     display: block;
+    font-variation-settings: 'opsz' 30, 'SOFT' 40;
   }
 
   .footer-logo em {
@@ -4792,7 +5177,7 @@
     font-size: 14px;
     color: var(--text-secondary);
     line-height: 1.9;
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 32px;
   }
 
@@ -4902,30 +5287,35 @@
   /* ─────────── Responsive ─────────── */
   @media (max-width: 1024px) {
     .container {
-      padding: 0 56px;
+      padding: 0 clamp(32px, 5vw, 56px);
     }
 
     section {
-      padding: 180px 0;
+      padding: clamp(80px, 10vh, 120px) 0;
     }
 
     .manifesto-inner,
     .philosophy-inner,
     .feature-row {
       grid-template-columns: 1fr;
-      gap: 56px;
+      gap: clamp(40px, 5vw, 56px);
     }
 
     .how-grid {
       grid-template-columns: 1fr;
-      gap: 56px;
+      gap: clamp(40px, 5vw, 56px);
+    }
+
+    .footer-inner {
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 4vw, 56px);
     }
 
   }
 
   @media (max-width: 768px) {
     .container {
-      padding: 0 32px;
+      padding: 0 clamp(20px, 5vw, 32px);
     }
 
     .nav-links {
@@ -4933,22 +5323,28 @@
     }
 
     section {
-      padding: 140px 0;
+      padding: clamp(60px, 8vh, 96px) 0;
     }
 
-    .hero h1 {
-      font-size: clamp(56px, 15vw, 84px);
+    .hero-title {
+      font-size: clamp(44px, 13vw, 80px);
     }
 
-    .hero h1 .line-1,
-    .hero h1 .line-2 {
-      text-align: center;
-      padding: 0;
+    .hero-sub-row {
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .hero-meta {
+      text-align: left;
+      flex-direction: row;
+      gap: 32px;
     }
 
     .hero-actions {
       flex-direction: column;
       align-items: center;
+      gap: 16px;
     }
 
     .btn {
@@ -4957,16 +5353,1213 @@
       justify-content: center;
     }
 
+    .hero-decoration-left,
+    .hero-decoration-right {
+      display: none;
+    }
+
     .footer-inner {
-      flex-direction: column;
-      gap: 32px;
+      grid-template-columns: 1fr;
+      gap: 40px;
       text-align: center;
     }
 
     .footer-links {
       flex-direction: column;
-      gap: 18px;
+      gap: 16px;
     }
+
+    .footer-bottom {
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .footer-meta {
+      gap: 20px;
+    }
+  }
+
+  /* 针对低高度笔记本屏幕(1366x768 / 1440x900) */
+  @media (max-height: 800px) and (min-width: 1024px) {
+    section {
+      padding: 120px 0;
+    }
+    .cta {
+      padding: 140px 0;
+    }
+    .hero {
+      padding-top: 100px;
+      padding-bottom: 60px;
+    }
+    .scene {
+      padding: 60px 60px;
+      min-height: auto;
+    }
+    .scene-hook .scene-headline { font-size: 56px; }
+    .scene-center .scene-headline { font-size: 48px; }
+    .scene-center .scene-metaphor { margin-bottom: 32px; }
+  }
+
+  /* 针对大屏(>=1440px) - 内容更舒展 */
+  @media (min-width: 1440px) {
+    .scene-inner {
+      max-width: 1200px;
+      gap: 100px;
+    }
+    .scene-text {
+      flex: 0 1 420px;
+      max-width: 420px;
+    }
+    .manifesto-inner {
+      gap: 160px;
+    }
+    .philosophy-inner {
+      gap: 140px;
+    }
+  }
+
+  /* 针对4K及以上超大屏 */
+  @media (min-width: 1920px) {
+    .container {
+      max-width: 1400px;
+    }
+    .scene-inner {
+      max-width: 1280px;
+    }
+  }
+
+  /* ==================== Fullscreen App Mode ==================== */
+  .app-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--bg);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s;
+    overflow: hidden;
+  }
+  .app-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .app-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-elevated);
+    position: relative;
+    overflow: hidden;
+  }
+  .app-header {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px 10px;
+    padding-top: max(14px, env(safe-area-inset-top));
+    background: rgba(250,247,241,0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 0.5px solid var(--line-soft);
+    z-index: 10;
+  }
+  .app-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    color: var(--text-secondary, #6B6B6B);
+    font-size: 13px;
+    font-family: var(--font-ui, 'Space Grotesk', sans-serif);
+    cursor: pointer;
+    padding: 6px 10px 6px 4px;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+  .app-back-btn:hover {
+    background: rgba(20,19,16,0.04);
+    color: var(--text, #1A1A1A);
+  }
+  .app-logo {
+    font-family: var(--font-display, 'Fraunces', Georgia, serif);
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text, #1A1A1A);
+  }
+  .app-logo em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent, #C45C2E);
+  }
+  .app-header-spacer {
+    width: 80px;
+  }
+  .app-pages {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+  .app-page {
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 80px;
+    opacity: 0;
+    transform: translateX(12px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+  .app-page.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+  .app-page-inner {
+    padding: 0;
+    min-height: 100%;
+  }
+
+  /* App Tab Bar */
+  .app-tab-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+    padding: 6px 0 max(14px, env(safe-area-inset-bottom));
+    background: rgba(250,247,241,0.94);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-top: 0.5px solid var(--line-soft);
+    z-index: 20;
+  }
+  .app-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 6px 0 2px;
+    cursor: pointer;
+    color: var(--text-tertiary);
+    transition: color 0.25s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .app-tab svg {
+    width: 22px;
+    height: 22px;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .app-tab span {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .app-tab.active {
+    color: var(--accent);
+  }
+  .app-tab.active svg {
+    transform: scale(1.1);
+  }
+  .app-tab:active svg {
+    transform: scale(0.9);
+  }
+
+  /* App Today Page Styles */
+  .app-today-header {
+    padding: 16px 16px 12px;
+  }
+  .app-today-date-main {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .app-today-date-sub {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+  .app-today-stats {
+    margin-top: 14px;
+    display: flex;
+    gap: 6px;
+  }
+  .app-stat-card {
+    flex: 1;
+    background: var(--bg-card);
+    border: 0.5px solid var(--line-soft);
+    border-radius: var(--radius-md);
+    padding: 10px 8px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+  .app-stat-value {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .app-stat-label {
+    font-size: 9px;
+    color: var(--text-tertiary);
+    margin-top: 4px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .app-cat-grid {
+    padding: 4px 16px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .app-cat-card {
+    background: var(--bg-card);
+    border: 0.5px solid var(--line-soft);
+    border-radius: var(--radius-md);
+    padding: 16px 10px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    box-shadow: var(--shadow-sm);
+  }
+  .app-cat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2.5px;
+    background: var(--cat-color, var(--accent));
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0.8;
+  }
+  .app-cat-card.has-record::before {
+    transform: scaleX(1);
+  }
+  .app-cat-card:active {
+    transform: scale(0.94);
+  }
+  .app-cat-card.tapped {
+    transform: scale(0.96);
+    box-shadow: 0 0 0 2px var(--cat-color, var(--accent));
+  }
+  .app-cat-icon {
+    font-size: 22px;
+    display: block;
+    margin-bottom: 8px;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    line-height: 1;
+  }
+  .app-cat-card.tapped .app-cat-icon {
+    transform: scale(1.15);
+  }
+  .app-cat-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+    display: block;
+    letter-spacing: -0.01em;
+  }
+  .app-cat-time {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    margin-top: 4px;
+    font-variant-numeric: tabular-nums;
+    min-height: 14px;
+    line-height: 1.2;
+    transition: all 0.3s ease;
+  }
+  .app-cat-card.has-record .app-cat-time {
+    color: var(--text-secondary);
+  }
+  .app-cat-card.tapped .app-cat-time {
+    color: var(--accent);
+  }
+  .app-float-plus {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--cat-color, var(--accent));
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 8px;
+    animation: floatUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  @keyframes floatUp {
+    0% { opacity: 0; transform: translateY(4px) scale(0.8); }
+    30% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-8px) scale(0.9); }
+  }
+  .app-records-section {
+    margin: 20px 16px 0;
+  }
+  .app-records-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 0 4px;
+  }
+  .app-records-title {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 400;
+  }
+  .app-records-hint {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    font-weight: 400;
+  }
+  .app-record-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 13px;
+    background: var(--bg-card);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius-sm);
+    margin-bottom: 7px;
+    border-left: 3px solid var(--cat-color, var(--accent));
+    transition: all 0.3s;
+    cursor: default;
+  }
+  .app-record-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    background: rgba(20,19,16,0.04);
+  }
+  .app-record-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .app-record-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .app-record-time {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    margin-top: 1px;
+    font-weight: 300;
+  }
+  .app-record-duration {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--cat-color, var(--text-secondary));
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+  }
+  .app-record-delete {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(234,67,53,0.08);
+    color: #EA4335;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+    flex-shrink: 0;
+  }
+  .app-record-item:hover .app-record-delete {
+    opacity: 1;
+  }
+  .app-empty-state {
+    text-align: center;
+    padding: 28px 0;
+    color: var(--text-tertiary);
+    font-size: 12px;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  /* App Week Page Styles */
+  .app-week-header {
+    padding: 16px 16px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .app-week-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .app-week-subtitle {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+    font-weight: 400;
+  }
+  .app-week-day-tabs {
+    display: flex;
+    gap: 6px;
+    padding: 0 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .app-week-day-tabs::-webkit-scrollbar { display: none; }
+  .app-day-tab {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-card);
+    border: 0.5px solid var(--line-soft);
+    cursor: pointer;
+    transition: all 0.25s;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: var(--shadow-sm);
+  }
+  .app-day-tab .day-label {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    font-weight: 500;
+  }
+  .app-day-tab .day-num {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1;
+  }
+  .app-day-tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .app-day-tab.active .day-label,
+  .app-day-tab.active .day-num {
+    color: white;
+  }
+  .app-day-tab.today .day-num {
+    color: var(--accent);
+  }
+  .app-day-tab.active.today .day-num {
+    color: white;
+  }
+  .app-timeline-section {
+    margin: 12px 16px;
+    background: var(--bg-card);
+    border: 0.5px solid var(--line-soft);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    box-shadow: var(--shadow-sm);
+  }
+  .app-timeline-label {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 14px;
+  }
+  .app-timeline {
+    position: relative;
+    padding-left: 36px;
+  }
+  .app-timeline-hour {
+    position: absolute;
+    left: 0;
+    font-size: 9px;
+    color: var(--text-quaternary);
+    transform: translateY(-50%);
+    font-variant-numeric: tabular-nums;
+    width: 28px;
+    text-align: right;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .app-timeline-half {
+    position: absolute;
+    left: 36px;
+    right: 0;
+    border-top: 0.5px dashed var(--line-faint);
+  }
+  .app-timeline-track {
+    position: relative;
+    min-height: 340px;
+    border-left: 1px solid var(--line-soft);
+    margin-left: 4px;
+  }
+  .app-time-block {
+    position: absolute;
+    left: 6px;
+    right: 0;
+    border-radius: 6px;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    overflow: hidden;
+    cursor: default;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+  .app-time-block:hover {
+    transform: scaleX(1.02);
+    z-index: 2;
+  }
+  .app-time-block-icon {
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+  .app-time-block-name {
+    font-size: 10px;
+    font-weight: 600;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  }
+  .app-time-block-duration {
+    font-size: 9px;
+    color: rgba(255,255,255,0.85);
+    margin-left: auto;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+    font-weight: 400;
+  }
+  .app-week-summary {
+    margin: 0 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .app-summary-card {
+    background: var(--bg-card);
+    border: 0.5px solid var(--line-soft);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    box-shadow: var(--shadow-sm);
+  }
+  .app-summary-card-title {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    margin-bottom: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+  .app-summary-bar {
+    display: flex;
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: var(--line-soft);
+    margin-bottom: 10px;
+  }
+  .app-summary-bar-seg {
+    height: 100%;
+    transition: width 0.5s ease;
+  }
+  .app-summary-cats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .app-summary-cat {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+  .app-summary-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Week Grid View */
+  .app-week-view-toggle {
+    display: flex;
+    gap: 4px;
+    padding: 3px;
+    background: var(--line-faint);
+    border-radius: 8px;
+  }
+  .app-view-toggle-btn {
+    padding: 5px 10px;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .app-view-toggle-btn.active {
+    background: white;
+    color: var(--text);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .app-week-grid {
+    margin: 12px 16px;
+    background: var(--bg-card);
+    border: 0.5px solid var(--line-soft);
+    border-radius: var(--radius-lg);
+    padding: 12px 8px 12px 32px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+  .app-week-grid-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    margin-bottom: 4px;
+    padding-left: 0;
+  }
+  .app-week-grid-day-header {
+    text-align: center;
+    padding: 4px 0 8px;
+    font-size: 10px;
+  }
+  .app-week-grid-day-header .w-day {
+    color: var(--text-tertiary);
+    font-weight: 500;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .app-week-grid-day-header .w-date {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--text);
+    margin-top: 2px;
+  }
+  .app-week-grid-day-header.today .w-date {
+    color: var(--accent);
+  }
+  .app-week-grid-body {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+  }
+  .app-week-grid-hours {
+    position: absolute;
+    left: -28px;
+    top: 0;
+    bottom: 0;
+    width: 24px;
+  }
+  .app-week-grid-hour {
+    position: absolute;
+    left: 0;
+    font-size: 8px;
+    color: var(--text-quaternary);
+    font-weight: 500;
+    transform: translateY(-50%);
+    font-variant-numeric: tabular-nums;
+  }
+  .app-week-col {
+    position: relative;
+    background: var(--bg-elevated);
+    border-radius: 6px;
+    min-height: 280px;
+  }
+  .app-week-col.fixed-col {
+    background: var(--line-faint);
+  }
+  .app-week-block {
+    position: absolute;
+    left: 2px;
+    right: 2px;
+    border-radius: 4px;
+    padding: 2px 4px;
+    font-size: 8px;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: default;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    color: white;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+  }
+  .app-week-block.fixed {
+    background: rgba(154,148,136,0.45);
+    color: rgba(255,255,255,0.7);
+  }
+  .app-week-block-icon {
+    font-size: 8px;
+    flex-shrink: 0;
+  }
+  .app-week-block-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* App Ideal Page Styles */
+  .app-ideal-header {
+    padding: 16px 16px 12px;
+  }
+  .app-ideal-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .app-ideal-subtitle {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+  .app-ideal-tabs {
+    display: flex;
+    gap: 6px;
+    padding: 0 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .app-ideal-tabs::-webkit-scrollbar { display: none; }
+  .app-compare-stats {
+    margin: 12px 16px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .app-dual-timeline-section {
+    margin: 12px 16px 0;
+    background: var(--bg-card);
+    border: 0.5px solid var(--line-soft);
+    border-radius: var(--radius-lg);
+    padding: 16px 12px 16px 8px;
+    box-shadow: var(--shadow-sm);
+  }
+  .app-dual-track-wrap {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .app-dual-row-label {
+    flex-shrink: 0;
+    width: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    border-radius: var(--radius-sm);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    padding: 6px 0;
+  }
+  .app-dual-row-label.ideal-label {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+  .app-dual-row-label.actual-label {
+    background: var(--text);
+    color: white;
+  }
+  .app-dual-track {
+    flex: 1;
+    position: relative;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .app-dual-track-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--line-faint);
+    border-radius: var(--radius-sm);
+  }
+  .app-dual-divider {
+    height: 1px;
+    background: var(--line-soft);
+    margin: 12px 38px;
+  }
+  .app-dual-hour {
+    position: absolute;
+    left: 0px;
+    width: 32px;
+    text-align: right;
+    padding-right: 6px;
+    font-size: 8px;
+    color: var(--text-quaternary);
+    transform: translateY(-50%);
+    font-variant-numeric: tabular-nums;
+    z-index: 1;
+    font-weight: 500;
+  }
+  .app-dual-block {
+    position: absolute;
+    left: 36px;
+    right: 4px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 8px;
+    font-size: 10px;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: transform 0.15s;
+    cursor: default;
+  }
+  .app-dual-block.ideal {
+    color: var(--text-secondary);
+    font-size: 10px;
+    opacity: 0.8;
+    font-weight: 400;
+  }
+  .app-dual-block:not(.ideal) {
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  }
+  .app-dual-block.extra {
+    opacity: 0.7;
+    border: 1px dashed rgba(255,255,255,0.5);
+  }
+  .app-dual-block-icon {
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+  .app-dual-block-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .app-compare-stat {
+    text-align: center;
+    padding: 12px 6px;
+    background: var(--bg-card);
+    border: 0.5px solid var(--line-soft);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+  .app-compare-stat-value {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    font-style: italic;
+  }
+  .app-compare-stat-value.match { color: var(--accent); }
+  .app-compare-stat-value.miss { color: var(--text-tertiary); }
+  .app-compare-stat-value.extra { color: var(--accent-light); }
+  .app-compare-stat-label {
+    font-size: 9px;
+    color: var(--text-tertiary);
+    margin-top: 4px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .app-priority-section {
+    margin: 16px 16px 24px;
+  }
+  .app-priority-title {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 10px;
+    padding: 0 4px;
+    letter-spacing: -0.01em;
+  }
+  .app-priority-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--bg-card);
+    border: 0.5px solid var(--line-soft);
+    border-radius: var(--radius-md);
+    margin-bottom: 8px;
+    box-shadow: var(--shadow-sm);
+  }
+  .app-priority-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .app-priority-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .app-priority-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .app-priority-sched {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    margin-top: 2px;
+    font-style: italic;
+  }
+  .app-priority-badge {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+  }
+  .app-priority-badge.keep {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+  .app-priority-badge.drop {
+    background: var(--line-faint);
+    color: var(--text-tertiary);
+  }
+
+  /* Ideal Sub-tabs */
+  .app-ideal-sub-tabs {
+    display: flex;
+    gap: 0;
+    margin: 0 16px 4px;
+    background: var(--line-faint);
+    border-radius: 10px;
+    padding: 3px;
+  }
+  .app-ideal-sub-tab {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .app-ideal-sub-tab.active {
+    background: white;
+    color: var(--text);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  /* Plan view */
+  .app-plan-section {
+    margin: 8px 16px 0;
+    background: var(--bg-card);
+    border: 0.5px solid var(--line-soft);
+    border-radius: var(--radius-lg);
+    padding: 16px 12px 16px 8px;
+    box-shadow: var(--shadow-sm);
+  }
+  .app-plan-track {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: 200px;
+  }
+  .app-plan-block {
+    position: absolute;
+    left: 36px;
+    right: 4px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 8px;
+    font-size: 10px;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: default;
+    border: 0.5px solid transparent;
+  }
+  .app-plan-block.fixed {
+    background: rgba(154,148,136,0.15);
+    color: var(--text-secondary);
+    border-color: rgba(154,148,136,0.2);
+  }
+  .app-plan-block.activity {
+    background: var(--cat-color);
+    color: white;
+    opacity: 0.85;
+  }
+  .app-plan-empty {
+    position: absolute;
+    left: 40px;
+    right: 8px;
+    border-radius: 6px;
+    border: 1px dashed var(--line-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: var(--text-quaternary);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .app-plan-empty:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .app-plan-note {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    padding: 12px 16px 4px;
+    font-style: italic;
+    font-family: var(--font-display);
+    font-weight: 300;
+  }
+
+  /* Demo phone adaptation */
+  .demo-phone-app-wrap {
+    width: 100%;
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: var(--bg-elevated);
+    padding-top: 44px;
+    padding-bottom: 24px;
+    box-sizing: border-box;
+  }
+  .demo-phone-screen .app-today-header,
+  .demo-phone-screen .app-week-header,
+  .demo-phone-screen .app-ideal-header { padding: 12px 12px 8px; }
+  .demo-phone-screen .app-cat-grid { padding: 4px 12px; gap: 6px; }
+  .demo-phone-screen .app-cat-card { padding: 10px 6px 8px; border-radius: 12px; }
+  .demo-phone-screen .app-cat-icon { font-size: 20px; }
+  .demo-phone-screen .app-cat-name { font-size: 10px; }
+  .demo-phone-screen .app-week-day-tabs { padding: 0 12px; gap: 4px; }
+  .demo-phone-screen .app-day-tab { padding: 6px 10px; }
+  .demo-phone-screen .app-week-grid { margin: 8px 12px; padding: 10px 6px 10px 26px; }
+  .demo-phone-screen .app-week-grid-hours { left: -24px; width: 20px; }
+  .demo-phone-screen .app-week-col { min-height: 220px; }
+  .demo-phone-screen .app-timeline-section,
+  .demo-phone-screen .app-plan-section,
+  .demo-phone-screen .app-dual-timeline-section { margin: 8px 12px; padding: 12px; }
+  .demo-phone-screen .app-ideal-sub-tabs { margin: 0 12px 4px; }
+  .demo-phone-screen .app-priority-section { margin: 12px; }
+  .demo-phone-screen .app-back-btn { display: none; }
+  .demo-phone-screen .app-logo { text-align: center; }
+  .demo-phone-screen .app-tab-bar { display: none; }
+  .demo-phone-screen .app-header-spacer { display: none; }
+  .demo-phone-screen .app-header { padding: 12px 16px 8px; }
+  .demo-phone-screen .app-today-stats { gap: 6px; }
+  .demo-phone-screen .app-stat-card { padding: 8px 6px; }
+  .demo-phone-screen .app-stat-value { font-size: 18px; }
+  .demo-phone-screen .app-stat-label { font-size: 9px; }
+  .demo-phone-screen .app-records-section { padding: 8px 12px 16px; }
+  .demo-phone-screen .app-timeline-track { min-height: 220px; }
+  .demo-phone-screen .app-week-summary { margin: 0 12px; gap: 6px; }
+  .demo-phone-screen .app-summary-card { padding: 10px; }
+  .demo-phone-screen .app-compare-stats { margin: 8px 12px 0; gap: 6px; }
+  .demo-phone-screen .app-compare-stat { padding: 10px 4px; }
+  .demo-phone-screen .app-compare-stat-value { font-size: 18px; }
+  .demo-phone-screen .app-priority-item { padding: 10px 12px; }
+  .demo-phone-screen .app-week-grid-day-header .w-date { font-size: 14px; }
+  .demo-phone-screen .app-week-grid-hour { font-size: 7px; }
+  .demo-phone-screen.priority-only .app-compare-stats,
+  .demo-phone-screen.priority-only .app-dual-timeline-section { display: none; }
+  .demo-phone-screen.priority-only .app-priority-section { margin-top: 0; }
+
+  /* Desktop: center the phone-like container */
+  @media (min-width: 520px) {
+    .app-overlay {
+      background: rgba(20,19,16,0.5);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .app-container {
+      width: 420px;
+      height: min(860px, 92vh);
+      max-width: 92vw;
+      max-height: 92vh;
+      border-radius: 40px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.25), 0 0 0 0.5px rgba(255,255,255,0.1) inset;
+      overflow: hidden;
+    }
+  }
+
+  body.app-mode {
+    overflow: hidden;
+    cursor: auto !important;
+  }
+  html:has(body.app-mode) {
+    overflow: hidden;
+  }
+  body.app-mode * {
+    cursor: auto !important;
+  }
+  body.app-mode .app-cat-card,
+  body.app-mode .app-tab,
+  body.app-mode .app-day-tab,
+  body.app-mode .app-back-btn,
+  body.app-mode .app-record-delete {
+    cursor: pointer !important;
   }
 </style>
 </head>
@@ -5070,11 +6663,6 @@
         </div>
         <div class="manifesto-item" data-reveal>
           <div class="manifesto-num">— 03</div>
-          <h3>数据很好看，但没用</h3>
-          <p>漂亮的图表、详尽的报表。看完之后呢？你还是不知道怎么让明天比今天更好一点。</p>
-        </div>
-        <div class="manifesto-item" data-reveal>
-          <div class="manifesto-num">— 04</div>
           <h3>几年下来，原地踏步</h3>
           <p>学了很多方法论，懂了很多道理，想做很多事情。但都在不知不觉中放弃了，生活并没有实打实的变化。不是你不够好，是你缺一个把方法变成日常的系统。</p>
         </div>
@@ -5116,21 +6704,7 @@
             </div>
           </div>
           <div class="demo-phone-screen">
-            <div class="demo-app-header">
-              <div class="demo-app-date">
-                <div class="demo-app-date-main" id="date-main-1"></div>
-                <div class="demo-app-date-sub" id="date-sub-1"></div>
-              </div>
-              <div class="demo-app-stats" id="today-stats-1"></div>
-            </div>
-            <div class="demo-app-categories" id="cat-grid-1"></div>
-            <div class="demo-app-records">
-              <div class="demo-app-records-header">
-                <span class="demo-app-records-title">今日记录</span>
-                <span class="demo-app-records-hint">长按删除</span>
-              </div>
-              <div class="demo-app-records-list" id="records-list-1"></div>
-            </div>
+            <div class="demo-phone-app-wrap" id="demo-today-content"></div>
           </div>
           <div class="demo-phone-home-bar"></div>
         </div>
@@ -5141,9 +6715,9 @@
   <div class="scene scene-week scene-dark" data-scene>
     <div class="scene-visual">
       <div class="demo-phone" id="phone-week-c">
-        <div class="demo-phone-frame demo-phone-dark">
+        <div class="demo-phone-frame">
           <div class="demo-phone-notch"></div>
-          <div class="demo-phone-status demo-phone-status-dark">
+          <div class="demo-phone-status">
             <span class="demo-phone-time">9:41</span>
             <div class="demo-phone-signal">
               <div class="signal-bars"><div class="signal-bar" style="height:2px"></div><div class="signal-bar" style="height:4px"></div><div class="signal-bar" style="height:6px"></div><div class="signal-bar" style="height:8px"></div></div>
@@ -5151,19 +6725,10 @@
               <div class="battery"><div class="battery-body"><div class="battery-level"></div></div><div class="battery-cap"></div></div>
             </div>
           </div>
-          <div class="demo-phone-screen demo-phone-screen-dark">
-            <div class="demo-week-view">
-              <div class="demo-week-header">
-                <span class="demo-week-title">本周时间块</span>
-                <div class="demo-week-legend">
-                  <span class="demo-legend-item"><span class="demo-legend-dot" style="background:rgba(154,148,136,0.5)"></span>固定</span>
-                  <span class="demo-legend-item"><span class="demo-legend-dot" style="background:linear-gradient(135deg, #5B8A5C, #7A9B7A)"></span>活动</span>
-                </div>
-              </div>
-              <div class="demo-week-calendar" id="week-block-grid-c"></div>
-            </div>
+          <div class="demo-phone-screen">
+            <div class="demo-phone-app-wrap" id="demo-week-content"></div>
           </div>
-          <div class="demo-phone-home-bar demo-phone-home-bar-dark"></div>
+          <div class="demo-phone-home-bar"></div>
         </div>
       </div>
     </div>
@@ -5178,7 +6743,7 @@
     <div class="scene-text">
       <span class="scene-num">03</span>
       <h2 class="scene-headline">灰色是固定的，<br>空白是你的</h2>
-      <p class="scene-desc">想做的事太多，能安排的时间太少。<br>先看清哪些是雷打不动的，再决定把什么放进去。</p>
+      <p class="scene-desc">安排你理想的一周。<br>工作、通勤这些雷打不动的，TapTime帮你标灰。<br>剩下的空白，放你真正想做的事。</p>
     </div>
     <div class="scene-visual">
       <div class="demo-phone" id="phone-ideal-c">
@@ -5193,16 +6758,7 @@
             </div>
           </div>
           <div class="demo-phone-screen">
-            <div class="demo-week-view">
-              <div class="demo-week-header">
-                <span class="demo-week-title">理想周</span>
-                <span class="demo-week-sub">规划你的一周</span>
-              </div>
-              <div class="ideal-day-tabs" id="ideal-day-tabs-c"></div>
-              <div class="ideal-timeline" id="ideal-timeline-c"></div>
-              <div class="ideal-note">空白处是你还能安排的时间</div>
-              <div class="free-time-section" id="free-time-suggestions-c"></div>
-            </div>
+            <div class="demo-phone-app-wrap" id="demo-ideal-plan-content"></div>
           </div>
           <div class="demo-phone-home-bar"></div>
         </div>
@@ -5213,14 +6769,14 @@
   <div class="scene scene-free scene-dark" data-scene>
     <div class="scene-text">
       <span class="scene-num">04</span>
-      <h2 class="scene-headline">你不是没时间</h2>
-      <p class="scene-desc">周一晚8点 · 周三晚8点 · 周六上午<br>你只是想做的太多，看见的太少。</p>
+      <h2 class="scene-headline">也许，<br>你不是没时间</h2>
+      <p class="scene-desc">一周过去，理想和现实对上了吗？<br>对比视图像一面镜子——不评判，只呈现。<br>你可能会发现：时间其实够用，只是被悄悄偷走了。</p>
     </div>
     <div class="scene-visual">
       <div class="demo-phone" id="phone-free-c">
-        <div class="demo-phone-frame demo-phone-dark">
+        <div class="demo-phone-frame">
           <div class="demo-phone-notch"></div>
-          <div class="demo-phone-status demo-phone-status-dark">
+          <div class="demo-phone-status">
             <span class="demo-phone-time">9:41</span>
             <div class="demo-phone-signal">
               <div class="signal-bars"><div class="signal-bar" style="height:2px"></div><div class="signal-bar" style="height:4px"></div><div class="signal-bar" style="height:6px"></div><div class="signal-bar" style="height:8px"></div></div>
@@ -5228,16 +6784,10 @@
               <div class="battery"><div class="battery-body"><div class="battery-level"></div></div><div class="battery-cap"></div></div>
             </div>
           </div>
-          <div class="demo-phone-screen demo-phone-screen-dark">
-            <div class="demo-free-view">
-              <div class="demo-free-title">发现空闲时间</div>
-              <div class="free-time-list" id="free-time-list-c"></div>
-              <div class="free-time-cta">
-                <span>把习惯放进这些时间</span>
-              </div>
-            </div>
+          <div class="demo-phone-screen">
+            <div class="demo-phone-app-wrap" id="demo-ideal-compare-content"></div>
           </div>
-          <div class="demo-phone-home-bar demo-phone-home-bar-dark"></div>
+          <div class="demo-phone-home-bar"></div>
         </div>
       </div>
     </div>
@@ -5246,8 +6796,8 @@
   <div class="scene scene-embed scene-light" data-scene>
     <div class="scene-text">
       <span class="scene-num">05</span>
-      <h2 class="scene-headline">选择，<br>而不是贪多</h2>
-      <p class="scene-desc">想健身、做vlog、学编程、打网球……<br>先看看哪些放得进真实的时间。<br>放不进去的，不是放弃，是断舍离。</p>
+      <h2 class="scene-headline">也许，该做出选择，<br>而不是贪多</h2>
+      <p class="scene-desc">想健身、做vlog、学编程、打网球……<br>先看看真实的时间还剩多少。<br>放得进去的，认真做；放不进去的，勇敢放下。</p>
     </div>
     <div class="scene-visual">
       <div class="demo-phone" id="phone-embed-c">
@@ -5261,39 +6811,8 @@
               <div class="battery"><div class="battery-body"><div class="battery-level"></div></div><div class="battery-cap"></div></div>
             </div>
           </div>
-          <div class="demo-phone-screen">
-            <div class="demo-embed-view">
-              <div class="demo-embed-title">想做的事</div>
-              <div class="demo-embed-list">
-                <div class="demo-embed-item kept">
-                  <span class="demo-embed-item-icon">💪</span>
-                  <span class="demo-embed-item-name">健身</span>
-                  <span class="demo-embed-item-time">周一 20:00</span>
-                </div>
-                <div class="demo-embed-item kept">
-                  <span class="demo-embed-item-icon">🎬</span>
-                  <span class="demo-embed-item-name">vlog</span>
-                  <span class="demo-embed-item-time">周六 09:00</span>
-                </div>
-                <div class="demo-embed-item kept">
-                  <span class="demo-embed-item-icon">🎾</span>
-                  <span class="demo-embed-item-name">网球</span>
-                  <span class="demo-embed-item-time">周三 20:00</span>
-                </div>
-                <div class="demo-embed-item dropped">
-                  <span class="demo-embed-item-icon">💻</span>
-                  <span class="demo-embed-item-name">编程</span>
-                  <span class="demo-embed-item-status">暂时放下</span>
-                </div>
-                <div class="demo-embed-item dropped">
-                  <span class="demo-embed-item-icon">🎨</span>
-                  <span class="demo-embed-item-name">手工</span>
-                  <span class="demo-embed-item-status">暂时放下</span>
-                </div>
-              </div>
-              <div class="demo-embed-divider"></div>
-              <div class="demo-embed-message"><strong>与其每件事都失败，<br>不如先做好三件。</strong></div>
-            </div>
+          <div class="demo-phone-screen priority-only">
+            <div class="demo-phone-app-wrap" id="demo-ideal-priority-content"></div>
           </div>
           <div class="demo-phone-home-bar"></div>
         </div>
@@ -5525,6 +7044,44 @@
   </div>
 </footer>
 
+<div class="app-overlay" id="app-overlay">
+  <div class="app-container">
+    <div class="app-header">
+      <button class="app-back-btn" id="app-back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span>返回官网</span>
+      </button>
+      <div class="app-logo">Tap<em>Time</em></div>
+      <div class="app-header-spacer"></div>
+    </div>
+    <div class="app-pages" id="app-pages">
+      <div class="app-page app-page-today active" id="app-page-today">
+        <div class="app-page-inner" id="app-today-content"></div>
+      </div>
+      <div class="app-page app-page-week" id="app-page-week">
+        <div class="app-page-inner" id="app-week-content"></div>
+      </div>
+      <div class="app-page app-page-ideal" id="app-page-ideal">
+        <div class="app-page-inner" id="app-ideal-content"></div>
+      </div>
+    </div>
+    <div class="app-tab-bar" id="app-tab-bar">
+      <div class="app-tab active" data-tab="today">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <span>今日</span>
+      </div>
+      <div class="app-tab" data-tab="week">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        <span>本周</span>
+      </div>
+      <div class="app-tab" data-tab="ideal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span>理想周</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   // ==================== Data Model ====================
   const CATEGORIES = [
@@ -5532,9 +7089,13 @@
     { id: 'commute', name: '通勤', icon: '🚇', idealHours: 5, color: '#9A9488' },
     { id: 'learn', name: '学习', icon: '📚', idealHours: 10, color: '#6B8E9B' },
     { id: 'read', name: '阅读', icon: '📖', idealHours: 5, color: '#8B7355' },
-    { id: 'fitness', name: '运动', icon: '🏃', idealHours: 5, color: '#7A9B76' },
+    { id: 'fitness', name: '运动', icon: '💪', idealHours: 5, color: '#7A9B76' },
     { id: 'cook', name: '做饭', icon: '🍳', idealHours: 5, color: '#C4956A' },
     { id: 'rest', name: '休息', icon: '🌙', idealHours: 15, color: '#9B8BA8' },
+    { id: 'vlog', name: 'Vlog', icon: '🎬', idealHours: 3, color: '#C97A6A' },
+    { id: 'tennis', name: '网球', icon: '🎾', idealHours: 2, color: '#7A9B76' },
+    { id: 'social', name: '社交', icon: '🍻', idealHours: 4, color: '#B89B7A' },
+    { id: 'phone', name: '刷手机', icon: '📱', idealHours: 0, color: '#9A9488' },
   ];
 
   const TAP_MINUTES = 15;
@@ -5555,31 +7116,68 @@
 
   function initSampleData() {
     const today = new Date();
-    for (let i = 6; i >= 0; i--) {
-      const d = new Date(today);
-      d.setDate(d.getDate() - i);
+    const fixedRecords = {
+      0: [
+        { category: 'commute', duration: 60, time: '07:30 — 08:30' },
+        { category: 'work', duration: 600, time: '08:30 — 18:30' },
+        { category: 'cook', duration: 60, time: '18:30 — 19:30' },
+        { category: 'rest', duration: 180, time: '19:30 — 22:30' },
+      ],
+      1: [
+        { category: 'commute', duration: 60, time: '07:30 — 08:30' },
+        { category: 'work', duration: 600, time: '08:30 — 18:30' },
+        { category: 'phone', duration: 120, time: '20:00 — 22:00' },
+        { category: 'rest', duration: 60, time: '22:00 — 23:00' },
+      ],
+      2: [
+        { category: 'commute', duration: 60, time: '07:30 — 08:30' },
+        { category: 'work', duration: 600, time: '08:30 — 18:30' },
+        { category: 'fitness', duration: 60, time: '20:00 — 21:00' },
+        { category: 'rest', duration: 120, time: '21:00 — 23:00' },
+      ],
+      3: [
+        { category: 'commute', duration: 60, time: '07:30 — 08:30' },
+        { category: 'work', duration: 630, time: '08:30 — 19:00' },
+        { category: 'social', duration: 180, time: '19:00 — 22:00' },
+      ],
+      4: [
+        { category: 'commute', duration: 60, time: '07:30 — 08:30' },
+        { category: 'work', duration: 600, time: '08:30 — 18:30' },
+        { category: 'phone', duration: 90, time: '19:00 — 20:30' },
+        { category: 'rest', duration: 90, time: '20:30 — 22:00' },
+      ],
+      5: [
+        { category: 'vlog', duration: 120, time: '09:00 — 11:00' },
+        { category: 'cook', duration: 90, time: '12:00 — 13:30' },
+        { category: 'rest', duration: 180, time: '14:00 — 17:00' },
+        { category: 'social', duration: 180, time: '18:00 — 21:00' },
+      ],
+      6: [
+        { category: 'tennis', duration: 90, time: '10:00 — 11:30' },
+        { category: 'rest', duration: 270, time: '12:00 — 16:30' },
+        { category: 'read', duration: 120, time: '18:00 — 20:00' },
+      ],
+    };
+    const todayDoW = today.getDay() === 0 ? 6 : today.getDay() - 1;
+    const monday = new Date(today);
+    monday.setDate(monday.getDate() - todayDoW);
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(monday);
+      d.setDate(d.getDate() + i);
       const key = dateKey(d);
       if (!appData.records[key]) {
         appData.records[key] = [];
       }
-      if (i > 0 && appData.records[key].length === 0) {
-        const samples = Math.floor(Math.random() * 4) + 3;
-        for (let j = 0; j < samples; j++) {
-          const cat = CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)];
-          const duration = [15, 30, 45, 60][Math.floor(Math.random() * 4)];
-          const hour = 9 + Math.floor(Math.random() * 10);
-          const minute = Math.floor(Math.random() * 60);
-          const startTime = new Date(d);
-          startTime.setHours(hour, minute - duration, 0, 0);
-          const endTime = new Date(d);
-          endTime.setHours(hour, minute, 0, 0);
+      if (appData.records[key].length === 0) {
+        const records = fixedRecords[i] || fixedRecords[0];
+        records.forEach((r, j) => {
           appData.records[key].push({
             id: Date.now() + Math.random() + i * 1000 + j,
-            category: cat.id,
-            duration: duration,
-            time: formatTime(startTime) + ' — ' + formatTime(endTime),
+            category: r.category,
+            duration: r.duration,
+            time: r.time,
           });
-        }
+        });
       }
     }
   }
@@ -5595,20 +7193,20 @@
       1: [
         { category: 'commute', startHour: 7, startMin: 30, duration: 60, fixed: true },
         { category: 'work', startHour: 8, startMin: 30, duration: 570, fixed: true },
-        { category: 'fitness', startHour: 19, startMin: 0, duration: 60 },
-        { category: 'rest', startHour: 20, startMin: 0, duration: 120 },
+        { category: 'learn', startHour: 20, startMin: 0, duration: 60 },
+        { category: 'rest', startHour: 21, startMin: 0, duration: 120 },
       ],
       2: [
         { category: 'commute', startHour: 7, startMin: 30, duration: 60, fixed: true },
         { category: 'work', startHour: 8, startMin: 30, duration: 570, fixed: true },
-        { category: 'learn', startHour: 19, startMin: 0, duration: 120 },
-        { category: 'rest', startHour: 21, startMin: 0, duration: 60 },
+        { category: 'fitness', startHour: 20, startMin: 0, duration: 60 },
+        { category: 'rest', startHour: 21, startMin: 0, duration: 120 },
       ],
       3: [
         { category: 'commute', startHour: 7, startMin: 30, duration: 60, fixed: true },
         { category: 'work', startHour: 8, startMin: 30, duration: 570, fixed: true },
-        { category: 'fitness', startHour: 19, startMin: 0, duration: 60 },
-        { category: 'rest', startHour: 20, startMin: 0, duration: 120 },
+        { category: 'social', startHour: 19, startMin: 0, duration: 120 },
+        { category: 'rest', startHour: 21, startMin: 0, duration: 60 },
       ],
       4: [
         { category: 'commute', startHour: 7, startMin: 30, duration: 60, fixed: true },
@@ -5617,12 +7215,15 @@
         { category: 'rest', startHour: 20, startMin: 30, duration: 90 },
       ],
       5: [
-        { category: 'rest', startHour: 9, startMin: 0, duration: 120 },
+        { category: 'vlog', startHour: 9, startMin: 0, duration: 120 },
         { category: 'cook', startHour: 12, startMin: 0, duration: 90 },
+        { category: 'rest', startHour: 14, startMin: 0, duration: 240 },
+        { category: 'social', startHour: 18, startMin: 0, duration: 180 },
       ],
       6: [
-        { category: 'read', startHour: 10, startMin: 0, duration: 120 },
-        { category: 'rest', startHour: 14, startMin: 0, duration: 120 },
+        { category: 'tennis', startHour: 10, startMin: 0, duration: 90 },
+        { category: 'rest', startHour: 12, startMin: 0, duration: 240 },
+        { category: 'read', startHour: 18, startMin: 0, duration: 120 },
       ],
     };
     for (let i = 0; i < 7; i++) {
@@ -6394,7 +7995,6 @@
     renderCompareSummary(phoneNum);
     renderIdealDayTabs(phoneNum);
     renderIdealTimeline(phoneNum);
-    renderFreeTimeSuggestions(phoneNum);
   }
 
   function handleTap(phoneNum, catId, cardEl) {
@@ -6808,15 +8408,6 @@
 
   // ==================== Cinematic Demo ====================
   function initCinematicDemo() {
-    // Render full app content in cinematic phones (Scene 1 has the interactive phone)
-    renderAll('1');
-
-    // Populate Scene 2 week block view, Scene 3 ideal phone, Scene 4 free time
-    populateWeekBlockView();
-    populateScene3Phone();
-    populateFreeTimeView();
-
-    // IntersectionObserver for reveal animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -6830,7 +8421,6 @@
       observer.observe(scene);
     });
 
-    // Bind free time suggest clicks (Scene 4)
     document.querySelectorAll('.free-time-suggest').forEach(suggest => {
       suggest.addEventListener('click', function(e) {
         e.stopPropagation();
@@ -6840,7 +8430,6 @@
       });
     });
 
-    // Bind free time CTA click
     const cta = document.querySelector('.free-time-cta');
     if (cta) {
       cta.addEventListener('click', () => {
@@ -6991,54 +8580,254 @@
     container.innerHTML = html;
   }
 
+  function renderFreeSummary(phoneNum) {
+    const container = document.getElementById('free-summary-' + phoneNum);
+    if (!container) return;
+
+    let totalFreeMinutes = 0;
+    const WIN_START = 6 * 60;
+    const WIN_END = 24 * 60;
+    const MIN_FREE_DURATION = 30;
+
+    for (let dayIdx = 0; dayIdx < 7; dayIdx++) {
+      const blocks = (appData.idealWeek[dayIdx] || []).slice();
+      blocks.sort((a, b) => (a.startHour * 60 + a.startMin) - (b.startHour * 60 + b.startMin));
+      let cursor = WIN_START;
+      blocks.forEach(b => {
+        const start = b.startHour * 60 + b.startMin;
+        if (start > cursor) {
+          const gapStart = Math.max(cursor, WIN_START);
+          const gapDuration = start - gapStart;
+          if (gapDuration >= MIN_FREE_DURATION) {
+            totalFreeMinutes += gapDuration;
+          }
+        }
+        cursor = start + b.duration;
+      });
+      if (cursor < WIN_END) {
+        const gapDuration = WIN_END - cursor;
+        if (gapDuration >= MIN_FREE_DURATION) {
+          totalFreeMinutes += gapDuration;
+        }
+      }
+    }
+
+    const hours = Math.floor(totalFreeMinutes / 60);
+    const mins = totalFreeMinutes % 60;
+    const display = hours > 0 ? (mins > 0 ? `${hours}h${mins}m` : `${hours}h`) : `${mins}m`;
+
+    container.querySelector('.free-summary-num').textContent = display;
+  }
+
+  function injectTabBars() {
+    const icons = {
+      today: '<svg class="demo-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>',
+      week: '<svg class="demo-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+      ideal: '<svg class="demo-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>'
+    };
+    const tabsHTML = (active) => `
+      <div class="demo-tab-bar">
+        <div class="demo-tab ${active==='today'?'active':''}">
+          ${icons.today}
+          <span class="demo-tab-label">今日</span>
+        </div>
+        <div class="demo-tab ${active==='week'?'active':''}">
+          ${icons.week}
+          <span class="demo-tab-label">本周</span>
+        </div>
+        <div class="demo-tab ${active==='ideal'?'active':''}">
+          ${icons.ideal}
+          <span class="demo-tab-label">理想周</span>
+        </div>
+      </div>
+    `;
+
+    // Scene 1: 今日 active
+    const phone1 = document.querySelector('#phone-1 .demo-phone-screen');
+    if (phone1) phone1.insertAdjacentHTML('beforeend', tabsHTML('today'));
+
+    // Scene 2: 本周 active
+    const phone2 = document.querySelector('#phone-week-c .demo-phone-screen');
+    if (phone2) phone2.insertAdjacentHTML('beforeend', tabsHTML('week'));
+
+    // Scene 3: 本周 active → 改为理想周active
+    const phone3 = document.querySelector('#phone-ideal-c .demo-phone-screen');
+    if (phone3) phone3.insertAdjacentHTML('beforeend', tabsHTML('ideal'));
+
+    // Scene 4: 理想周 active → 改为本周active
+    const phone4 = document.querySelector('#phone-free-c .demo-phone-screen');
+    if (phone4) phone4.insertAdjacentHTML('beforeend', tabsHTML('week'));
+
+    // Scene 5: 理想周 active (保持)
+    const phone5 = document.querySelector('#phone-embed-c .demo-phone-screen');
+    if (phone5) phone5.insertAdjacentHTML('beforeend', tabsHTML('ideal'));
+  }
+
   function populateScene3Phone() {
     renderIdealDayTabs('c');
     renderIdealTimeline('c');
-    renderFreeTimeSuggestions('c');
   }
 
-  function populateFreeTimeView() {
-    const list = document.getElementById('free-time-list-c');
-    if (!list) return;
+  // Dual timeline comparison for Scene 4
+  let compareDayState = { c: 1 };
 
-    const freeTimes = [
-      {
-        day: '周一',
-        time: '20:00 – 23:00',
-        duration: '3 小时',
-        suggestions: ['💪 健身', '📖 阅读', '🎧 播客'],
-      },
-      {
-        day: '周三',
-        time: '20:00 – 21:00',
-        duration: '1 小时',
-        suggestions: ['🧘 冥想', '📝 写作', '🎵 练琴'],
-      },
-      {
-        day: '周六',
-        time: '08:00 – 12:00',
-        duration: '4 小时',
-        suggestions: ['🏃 跑步', '🧹 整理', '🍳 烹饪'],
-      },
-    ];
+  function renderCompareDayTabs(phoneNum) {
+    const container = document.getElementById('compare-day-tabs-' + phoneNum);
+    if (!container) return;
+    const labels = ['一', '二', '三', '四', '五', '六', '日'];
+    const activeDay = compareDayState[phoneNum] !== undefined ? compareDayState[phoneNum] : 2;
+    container.innerHTML = labels.map((label, idx) => {
+      const cls = idx === activeDay ? 'demo-compare-day-tab active' : 'demo-compare-day-tab';
+      return `<div class="${cls}" data-phone="${phoneNum}" data-day="${idx}">${label}</div>`;
+    }).join('');
+    container.querySelectorAll('.demo-compare-day-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const phone = tab.dataset.phone;
+        const day = parseInt(tab.dataset.day);
+        compareDayState[phone] = day;
+        renderCompareDayTabs(phone);
+        renderDualTimeline(phone);
+        renderDualSummary(phone);
+      });
+    });
+  }
 
-    let html = '';
-    freeTimes.forEach(item => {
-      html += `
-        <div class="free-time-item">
-          <div class="free-time-header">
-            <div class="free-time-day">${item.day}</div>
-            <div class="free-time-duration">${item.duration}</div>
-          </div>
-          <div class="free-time-time">${item.time}</div>
-          <div class="free-time-suggestions">
-            ${item.suggestions.map(s => `<div class="free-time-suggest">${s}</div>`).join('')}
-          </div>
-        </div>
-      `;
+  function renderDualTimeline(phoneNum) {
+    const container = document.getElementById('dual-timeline-' + phoneNum);
+    if (!container) return;
+    const dayIdx = compareDayState[phoneNum] !== undefined ? compareDayState[phoneNum] : 2;
+
+    const idealBlocks = (appData.idealWeek[dayIdx] || []).slice();
+    idealBlocks.sort((a, b) => (a.startHour * 60 + a.startMin) - (b.startHour * 60 + b.startMin));
+
+    const actualRecords = getDayRecords(dayIdx);
+    const actualBlocks = actualRecords.map(r => {
+      const [startStr] = r.time.split(' — ');
+      const [sh, sm] = startStr.split(':').map(Number);
+      return { category: r.category, startHour: sh, startMin: sm, duration: r.duration };
+    });
+    actualBlocks.sort((a, b) => (a.startHour * 60 + a.startMin) - (b.startHour * 60 + b.startMin));
+
+    const WIN_START = 7 * 60;
+    const WIN_END = 24 * 60;
+    const TOTAL_MIN = WIN_END - WIN_START;
+    const TRACK_HEIGHT = 105;
+
+    function blockStyle(b) {
+      const start = b.startHour * 60 + b.startMin;
+      const end = start + b.duration;
+      const top = ((start - WIN_START) / TOTAL_MIN) * TRACK_HEIGHT;
+      const height = Math.max((b.duration / TOTAL_MIN) * TRACK_HEIGHT, 22);
+      return `top:${top}px;height:${height}px;`;
+    }
+
+    function formatRange(b) {
+      const start = b.startHour * 60 + b.startMin;
+      const end = start + b.duration;
+      return formatHM(Math.floor(start/60), start%60) + ' — ' + formatHM(Math.floor(end/60), end%60);
+    }
+
+    const hourMarks = [];
+    for (let h = 8; h <= 22; h += 2) {
+      const top = ((h*60 - WIN_START) / TOTAL_MIN) * TRACK_HEIGHT;
+      hourMarks.push(`<div class="demo-dual-hour" style="top:${top}px">${String(h).padStart(2,'0')}:00</div>`);
+    }
+
+    // Ideal blocks
+    let idealHTML = '';
+    const idealCatSet = new Set(idealBlocks.map(b => b.category));
+    idealBlocks.forEach(b => {
+      const cat = CATEGORIES.find(c => c.id === b.category);
+      const icon = cat ? cat.icon : '📌';
+      const name = cat ? cat.name : b.category;
+      const isActual = actualBlocks.some(a => a.category === b.category);
+      let cls = 'demo-dual-block ';
+      if (b.fixed) cls += 'ideal-fixed';
+      else if (!isActual) cls += 'ideal-missing';
+      else cls += 'ideal-activity';
+      idealHTML += `<div class="${cls}" style="${blockStyle(b)}">
+        <span class="blk-icon">${icon}</span>
+        <span class="blk-name">${name}</span>
+        <span class="blk-time">${b.duration >= 60 ? Math.round(b.duration/60*10)/10 + 'h' : b.duration + 'm'}</span>
+      </div>`;
     });
 
-    list.innerHTML = html;
+    // Actual blocks
+    let actualHTML = '';
+    const actualCatSet = new Set(actualBlocks.map(b => b.category));
+    actualBlocks.forEach(b => {
+      const cat = CATEGORIES.find(c => c.id === b.category);
+      const icon = cat ? cat.icon : '📌';
+      const name = cat ? cat.name : b.category;
+      const isIdeal = idealBlocks.some(i => i.category === b.category);
+      let cls = 'demo-dual-block ';
+      if (!isIdeal) cls += 'actual-extra';
+      else cls += 'actual-block';
+      actualHTML += `<div class="${cls}" style="${blockStyle(b)}">
+        <span class="blk-icon">${icon}</span>
+        <span class="blk-name">${name}</span>
+        <span class="blk-time">${b.duration >= 60 ? Math.round(b.duration/60*10)/10 + 'h' : b.duration + 'm'}</span>
+      </div>`;
+    });
+
+    container.innerHTML = `
+      <div class="demo-dual-section">
+        <div class="demo-dual-label">
+          <span class="demo-dual-label-dot ideal"></span>
+          理想
+        </div>
+        <div class="demo-dual-track ideal-track" style="height:${TRACK_HEIGHT}px;">
+          ${hourMarks.join('')}
+          ${idealHTML}
+        </div>
+      </div>
+      <div class="demo-dual-divider"></div>
+      <div class="demo-dual-section">
+        <div class="demo-dual-label">
+          <span class="demo-dual-label-dot actual"></span>
+          实际
+        </div>
+        <div class="demo-dual-track actual-track" style="height:${TRACK_HEIGHT}px;">
+          ${hourMarks.map(m => m.replace('rgba(245,241,234,0.25)', 'rgba(245,241,234,0.2)')).join('')}
+          ${actualHTML}
+        </div>
+      </div>
+    `;
+  }
+
+  function renderDualSummary(phoneNum) {
+    const container = document.getElementById('dual-summary-' + phoneNum);
+    if (!container) return;
+    const dayIdx = compareDayState[phoneNum] !== undefined ? compareDayState[phoneNum] : 2;
+
+    const idealBlocks = (appData.idealWeek[dayIdx] || []);
+    const actualRecords = getDayRecords(dayIdx);
+    const idealCats = new Set(idealBlocks.map(b => b.category));
+    const actualCats = new Set(actualRecords.map(r => r.category));
+    const matched = [...idealCats].filter(c => actualCats.has(c)).length;
+    const missing = idealCats.size - matched;
+    const extra = actualCats.size - matched;
+
+    container.innerHTML = `
+      <div class="demo-compare-stat">
+        <div class="demo-compare-stat-num green">${matched}</div>
+        <div class="demo-compare-stat-label">符合</div>
+      </div>
+      <div class="demo-compare-stat">
+        <div class="demo-compare-stat-num dim">${missing}</div>
+        <div class="demo-compare-stat-label">未完成</div>
+      </div>
+      <div class="demo-compare-stat">
+        <div class="demo-compare-stat-num amber">${extra}</div>
+        <div class="demo-compare-stat-label">额外</div>
+      </div>
+    `;
+  }
+
+  function populateScene4Phone() {
+    renderCompareDayTabs('c');
+    renderDualTimeline('c');
+    renderDualSummary('c');
   }
 
   function showCelebrationEffect(element) {
@@ -7093,7 +8882,963 @@
     setupCustomCursor();
     setupMagneticButtons();
     setupScrollProgress();
+
+    initFullscreenApp();
   });
+
+  // ==================== Fullscreen App Mode ====================
+  let appCurrentTab = 'today';
+  let appWeekDay = 2;
+  let appIdealDay = 2;
+  let appWeekViewMode = 'week';
+  let appIdealSubTab = 'plan';
+  let appScrollY = null;
+  const appPendingTaps = {};
+  const APP_TAP_MERGE = 1000;
+  let appRenderTarget = null;
+
+  function initFullscreenApp() {
+    document.querySelectorAll('.nav-cta, .btn-primary, [data-app-enter]').forEach(btn => {
+      const href = btn.getAttribute('href') || '';
+      if (href === '#' || href === '#demo' || btn.classList.contains('nav-cta') || btn.hasAttribute('data-app-enter')) {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          enterAppMode();
+        });
+      }
+    });
+    document.getElementById('app-back-btn').addEventListener('click', exitAppMode);
+    document.querySelectorAll('.app-tab').forEach(tab => {
+      tab.addEventListener('click', () => switchAppTab(tab.dataset.tab));
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && document.getElementById('app-overlay').classList.contains('active')) {
+        exitAppMode();
+      }
+    });
+    renderAppToday();
+    renderAppWeek();
+    renderAppIdeal();
+
+    setTimeout(() => {
+      renderAppPageInto('demo-today-content', 'today');
+      renderAppPageInto('demo-week-content', 'week', 'week');
+      renderAppPageInto('demo-ideal-plan-content', 'ideal', null, 'plan');
+      renderAppPageInto('demo-ideal-compare-content', 'ideal', null, 'compare');
+      renderAppPageInto('demo-ideal-priority-content', 'ideal', null, 'priority');
+    }, 100);
+  }
+
+  function enterAppMode() {
+    appScrollY = window.scrollY;
+    document.getElementById('app-overlay').classList.add('active');
+    document.body.classList.add('app-mode');
+    const dot = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    if (dot) dot.style.display = 'none';
+    if (ring) ring.style.display = 'none';
+    renderAppToday();
+  }
+
+  function exitAppMode() {
+    document.getElementById('app-overlay').classList.remove('active');
+    document.body.classList.remove('app-mode');
+    const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (isFinePointer) {
+      const dot = document.getElementById('cursorDot');
+      const ring = document.getElementById('cursorRing');
+      if (dot) dot.style.display = '';
+      if (ring) ring.style.display = '';
+    }
+    if (appScrollY !== null) {
+      requestAnimationFrame(() => {
+        window.scrollTo(0, appScrollY);
+        requestAnimationFrame(() => {
+          window.scrollTo(0, appScrollY);
+        });
+      });
+    }
+  }
+
+  function switchAppTab(tab) {
+    if (tab === appCurrentTab) return;
+    document.querySelectorAll('.app-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+    document.querySelectorAll('.app-page').forEach(p => p.classList.remove('active'));
+    document.getElementById('app-page-' + tab).classList.add('active');
+    appCurrentTab = tab;
+    if (tab === 'today') renderAppToday();
+    else if (tab === 'week') renderAppWeek();
+    else if (tab === 'ideal') renderAppIdeal();
+  }
+
+  function appEl(id) {
+    if (appRenderTarget) {
+      const target = document.getElementById(appRenderTarget);
+      if (target) {
+        const el = target.querySelector('#' + id);
+        if (el) return el;
+      }
+    }
+    return document.getElementById(id);
+  }
+
+  function layoutBlocksNoOverlap(blocks, winStart, totalMin, trackHeight, baseLeftPx, rightPaddingPx, isIdeal) {
+    const tracks = [];
+    const sorted = blocks.slice().sort((a, b) => {
+      const aStart = a.startMin != null ? a.startMin : (a.startHour * 60 + (a.startMin || 0));
+      const bStart = b.startMin != null ? b.startMin : (b.startHour * 60 + (b.startMin || 0));
+      return aStart - bStart;
+    });
+    sorted.forEach(b => {
+      const startMin = b.startMin != null ? b.startMin : (b.startHour * 60 + (b.startMin || 0));
+      const endMin = startMin + b.duration;
+      let placed = false;
+      for (let t = 0; t < tracks.length; t++) {
+        let canPlace = true;
+        for (const existing of tracks[t]) {
+          const exStart = existing.startMin != null ? existing.startMin : (existing.startHour * 60 + (existing.startMin || 0));
+          const exEnd = exStart + existing.duration;
+          if (!(startMin >= exEnd - 2 || endMin <= exStart + 2)) {
+            canPlace = false;
+            break;
+          }
+        }
+        if (canPlace) {
+          tracks[t].push(b);
+          b._track = t;
+          placed = true;
+          break;
+        }
+      }
+      if (!placed) {
+        b._track = tracks.length;
+        tracks.push([b]);
+      }
+    });
+    const numTracks = Math.max(1, tracks.length);
+    const GAP = 4;
+    return sorted.map(b => {
+      const track = b._track || 0;
+      const startMin = b.startMin != null ? b.startMin : (b.startHour * 60 + (b.startMin || 0));
+      const top = Math.max(0, ((startMin - winStart) / totalMin) * trackHeight);
+      const height = Math.max(isIdeal ? 20 : 24, (b.duration / totalMin) * trackHeight);
+      let posStyle;
+      if (numTracks === 1) {
+        posStyle = `left:${baseLeftPx}px;right:${rightPaddingPx}px;`;
+      } else {
+        const availPercent = `(100% - ${baseLeftPx + rightPaddingPx + (numTracks - 1) * GAP}px)`;
+        const colWidth = `calc(${availPercent} / ${numTracks})`;
+        const colLeft = `calc(${baseLeftPx}px + ${track} * (${colWidth} + ${GAP}px))`;
+        posStyle = `left:${colLeft};width:${colWidth};`;
+      }
+      return { block: b, top, height, posStyle, numTracks };
+    });
+  }
+
+  function renderAppToday(containerId) {
+    const cid = containerId || 'app-today-content';
+    const container = document.getElementById(cid);
+    if (!container) return;
+    const todayKey = getTodayKey();
+    const now = new Date();
+    const dayNames = ['周日','周一','周二','周三','周四','周五','周六'];
+    const monthNames = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+    const dateStr = monthNames[now.getMonth()] + now.getDate() + '日';
+    const dayStr = dayNames[now.getDay()];
+
+    const todayRecords = appData.records[todayKey] || [];
+    const totalMin = todayRecords.reduce((s, r) => s + r.duration, 0);
+    const catCount = new Set(todayRecords.map(r => r.category)).size;
+
+    const catGridId = cid + '-cat-grid';
+    const recListId = cid + '-records-list';
+
+    container.innerHTML = `
+      <div class="app-today-header">
+        <div class="app-today-date-main">${dateStr}</div>
+        <div class="app-today-date-sub">${dayStr} · 记录你的时间</div>
+        <div class="app-today-stats">
+          <div class="app-stat-card">
+            <div class="app-stat-value">${formatDuration(totalMin)}</div>
+            <div class="app-stat-label">今日记录</div>
+          </div>
+          <div class="app-stat-card">
+            <div class="app-stat-value">${catCount}</div>
+            <div class="app-stat-label">活动类型</div>
+          </div>
+          <div class="app-stat-card">
+            <div class="app-stat-value">${todayRecords.length}</div>
+            <div class="app-stat-label">记录条数</div>
+          </div>
+        </div>
+      </div>
+      <div class="app-cat-grid" id="${catGridId}"></div>
+      <div class="app-records-section">
+        <div class="app-records-header">
+          <span class="app-records-title">今日记录</span>
+          <span class="app-records-hint">点击卡片开始记录</span>
+        </div>
+        <div id="${recListId}"></div>
+      </div>
+    `;
+
+    const grid = document.getElementById(catGridId);
+    grid.innerHTML = CATEGORIES.map(cat => {
+      const mins = getCatMinutes(cat.id, todayKey);
+      const timeStr = mins > 0 ? formatDuration(mins) : '+15m';
+      const hasRec = mins > 0;
+      return `
+        <div class="app-cat-card ${hasRec?'has-record':''}" data-cat="${cat.id}" style="--cat-color:${cat.color}">
+          <span class="app-cat-icon">${cat.icon}</span>
+          <span class="app-cat-name">${cat.name}</span>
+          <span class="app-cat-time">${timeStr}</span>
+        </div>
+      `;
+    }).join('');
+
+    grid.querySelectorAll('.app-cat-card').forEach(card => {
+      card.addEventListener('click', () => handleAppTap(card.dataset.cat, card, containerId));
+    });
+
+    renderAppRecords(containerId);
+  }
+
+  function renderAppRecords(containerId) {
+    const cid = containerId || 'app-today-content';
+    const listId = cid + '-records-list';
+    const list = document.getElementById(listId);
+    if (!list) return;
+    const todayKey = getTodayKey();
+    const records = (appData.records[todayKey] || []).slice().reverse().slice(0, 12);
+    if (records.length === 0) {
+      list.innerHTML = '<div class="app-empty-state">点击上方卡片，开始记录时间</div>';
+      return;
+    }
+    list.innerHTML = records.map(r => {
+      const cat = CATEGORIES.find(c => c.id === r.category);
+      const color = cat ? cat.color : 'var(--accent)';
+      const icon = cat ? cat.icon : '📌';
+      const name = cat ? cat.name : r.category;
+      return `
+        <div class="app-record-item" data-id="${r.id}" style="--cat-color:${color}">
+          <div class="app-record-icon">${icon}</div>
+          <div class="app-record-info">
+            <div class="app-record-name">${name}</div>
+            <div class="app-record-time">${r.time}</div>
+          </div>
+          <div class="app-record-duration">${formatDuration(r.duration)}</div>
+          <button class="app-record-delete" data-del-id="${r.id}" data-cid="${cid}">×</button>
+        </div>
+      `;
+    }).join('');
+
+    list.querySelectorAll('.app-record-delete').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = parseFloat(btn.dataset.delId);
+        const tk = getTodayKey();
+        appData.records[tk] = (appData.records[tk] || []).filter(r => r.id !== id);
+        const targetCid = btn.dataset.cid || null;
+        if (targetCid && targetCid !== 'app-today-content') {
+          appRenderTarget = null;
+          renderAppToday();
+          renderAppPageInto(targetCid, 'today');
+        } else {
+          appRenderTarget = null;
+          renderAppToday();
+        }
+      });
+    });
+  }
+
+  function handleAppTap(catId, cardEl, containerId) {
+    const now = Date.now();
+    const tk = getTodayKey();
+    if (!appData.records[tk]) appData.records[tk] = [];
+
+    if (appPendingTaps[catId] && (now - appPendingTaps[catId].firstTap) < APP_TAP_MERGE) {
+      appPendingTaps[catId].count++;
+      clearTimeout(appPendingTaps[catId].timer);
+      appPendingTaps[catId].timer = setTimeout(() => finalizeAppTap(catId, containerId), APP_TAP_MERGE);
+
+      const totalMin = appPendingTaps[catId].count * TAP_MINUTES;
+      cardEl.classList.add('tapped');
+      setTimeout(() => cardEl.classList.remove('tapped'), 400);
+
+      let plus = cardEl.querySelector('.app-float-plus');
+      if (plus) plus.remove();
+      plus = document.createElement('div');
+      plus.className = 'app-float-plus';
+      plus.textContent = '+' + totalMin + 'm';
+      plus.style.setProperty('--cat-color', cardEl.style.getPropertyValue('--cat-color'));
+      cardEl.appendChild(plus);
+      setTimeout(() => { if (plus.parentNode) plus.remove(); }, 900);
+
+      const timeEl = cardEl.querySelector('.app-cat-time');
+      if (timeEl) {
+        const existing = getCatMinutes(catId, tk);
+        timeEl.textContent = formatDuration(existing + totalMin);
+      }
+      return;
+    }
+
+    appPendingTaps[catId] = {
+      count: 1,
+      firstTap: now,
+      timer: setTimeout(() => finalizeAppTap(catId, containerId), APP_TAP_MERGE),
+    };
+
+    cardEl.classList.add('tapped');
+    setTimeout(() => cardEl.classList.remove('tapped'), 400);
+
+    const plus = document.createElement('div');
+    plus.className = 'app-float-plus';
+    plus.textContent = '+15m';
+    plus.style.setProperty('--cat-color', cardEl.style.getPropertyValue('--cat-color'));
+    cardEl.appendChild(plus);
+    setTimeout(() => { if (plus.parentNode) plus.remove(); }, 900);
+
+    const existingMins = getCatMinutes(catId, tk);
+    const timeEl = cardEl.querySelector('.app-cat-time');
+    if (timeEl) timeEl.textContent = formatDuration(existingMins + 15);
+  }
+
+  function finalizeAppTap(catId, containerId) {
+    const tk = getTodayKey();
+    const count = appPendingTaps[catId].count;
+    const totalMin = count * TAP_MINUTES;
+    delete appPendingTaps[catId];
+
+    const now = new Date();
+    const endH = now.getHours(), endM = now.getMinutes();
+    const endTotal = endH * 60 + endM;
+    const startTotal = endTotal - totalMin;
+    const startH = Math.max(0, Math.floor(startTotal / 60));
+    const startM = Math.max(0, startTotal % 60);
+    const timeStr = String(startH).padStart(2,'0') + ':' + String(startM).padStart(2,'0')
+      + ' — ' + String(endH).padStart(2,'0') + ':' + String(endM).padStart(2,'0');
+
+    appData.records[tk].push({
+      id: Date.now() + Math.random(),
+      category: catId,
+      duration: totalMin,
+      time: timeStr,
+    });
+
+    appRenderTarget = null;
+    renderAppToday();
+    if (containerId && containerId !== 'app-today-content') {
+      renderAppPageInto(containerId, 'today');
+    }
+  }
+
+  function renderAppWeekGrid(container) {
+    const GRID_HEIGHT = 280;
+    const WIN_START = 7 * 60;
+    const WIN_END = 23 * 60;
+    const TOTAL_MIN = WIN_END - WIN_START;
+    const dayNames = ['一','二','三','四','五','六','日'];
+    const today = new Date();
+    const todayDoW = today.getDay() === 0 ? 6 : today.getDay() - 1;
+
+    let headerHTML = '';
+    let colsHTML = '';
+    let hoursHTML = '';
+
+    for (let h = 7; h <= 23; h += 2) {
+      const top = ((h * 60 - WIN_START) / TOTAL_MIN) * GRID_HEIGHT;
+      hoursHTML += `<div class="app-week-grid-hour" style="top:${top}px">${h}:00</div>`;
+    }
+
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(today);
+      d.setDate(d.getDate() - todayDoW + i);
+      const isToday = i === todayDoW;
+      headerHTML += `<div class="app-week-grid-day-header ${isToday?'today':''}">
+        <div class="w-day">周${dayNames[i]}</div>
+        <div class="w-date">${d.getDate()}</div>
+      </div>`;
+
+      const isWeekend = i >= 5;
+      let blocksHTML = '';
+
+      const fixedBlocks = [];
+      if (!isWeekend) {
+        fixedBlocks.push({ category: 'commute', startHour: 7, startMin: 30, duration: 60, fixed: true });
+        fixedBlocks.push({ category: 'work', startHour: 8, startMin: 30, duration: 600, fixed: true });
+        fixedBlocks.push({ category: 'commute', startHour: 18, startMin: 30, duration: 60, fixed: true });
+      }
+      fixedBlocks.push({ category: 'cook', startHour: 12, startMin: 0, duration: isWeekend ? 90 : 60, fixed: true });
+      fixedBlocks.push({ category: 'cook', startHour: isWeekend ? 18 : 19, startMin: isWeekend ? 30 : 0, duration: isWeekend ? 90 : 60, fixed: true });
+      fixedBlocks.push({ category: 'rest', startHour: 21, startMin: 30, duration: 90, fixed: true });
+
+      fixedBlocks.forEach(b => {
+        b.startMin = b.startHour * 60 + b.startMin;
+      });
+
+      const records = getDayRecords(i);
+      const FIXED_CATS = new Set(['work','commute','cook','rest']);
+      const activityBlocks = records.filter(r => !FIXED_CATS.has(r.category)).map(r => {
+        const [startStr] = r.time.split(' — ');
+        const [sh, sm] = startStr.split(':').map(Number);
+        return { category: r.category, startMin: sh*60+sm, duration: r.duration, fixed: false };
+      }).filter(b => b.startMin >= WIN_START && b.startMin < WIN_END);
+
+      const allBlocks = [...fixedBlocks, ...activityBlocks].filter(b => {
+        const end = b.startMin + b.duration;
+        return end > WIN_START && b.startMin < WIN_END;
+      });
+
+      allBlocks.forEach(b => {
+        const cat = CATEGORIES.find(c => c.id === b.category);
+        const color = cat ? cat.color : '#9A9488';
+        const icon = cat ? cat.icon : '📌';
+        const name = cat ? cat.name : b.category;
+        const clampedStart = Math.max(b.startMin, WIN_START);
+        const clampedEnd = Math.min(b.startMin + b.duration, WIN_END);
+        const top = ((clampedStart - WIN_START) / TOTAL_MIN) * GRID_HEIGHT;
+        const height = Math.max(12, ((clampedEnd - clampedStart) / TOTAL_MIN) * GRID_HEIGHT);
+        blocksHTML += `<div class="app-week-block ${b.fixed?'fixed':''}" style="top:${top}px;height:${height}px;${!b.fixed?'background:'+color:''}">
+          <span class="app-week-block-icon">${icon}</span>
+          ${height >= 24 ? `<span class="app-week-block-name">${name}</span>` : ''}
+        </div>`;
+      });
+
+      colsHTML += `<div class="app-week-col ${isWeekend?'fixed-col':''}">${blocksHTML}</div>`;
+    }
+
+    container.innerHTML = `
+      <div class="app-week-grid">
+        <div class="app-week-grid-header">${headerHTML}</div>
+        <div class="app-week-grid-body" style="height:${GRID_HEIGHT}px">
+          <div class="app-week-grid-hours">${hoursHTML}</div>
+          ${colsHTML}
+        </div>
+      </div>
+    `;
+  }
+
+  function renderAppWeek(containerId, forceMode) {
+    const cid = containerId || 'app-week-content';
+    const container = document.getElementById(cid);
+    if (!container) return;
+    const dayNames = ['一','二','三','四','五','六','日'];
+    const today = new Date();
+    const todayDoW = today.getDay() === 0 ? 6 : today.getDay() - 1;
+    const viewMode = forceMode || appWeekViewMode;
+
+    let tabsHTML = '';
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(today);
+      d.setDate(d.getDate() - todayDoW + i);
+      const isToday = i === todayDoW;
+      const active = i === appWeekDay;
+      tabsHTML += `<div class="app-day-tab ${active?'active':''} ${isToday?'today':''}" data-day="${i}">
+        <span class="day-label">周${dayNames[i]}</span>
+        <span class="day-num">${d.getDate()}</span>
+      </div>`;
+    }
+
+    const timelineId = cid + '-timeline';
+    const summaryId = cid + '-summary';
+    const gridId = cid + '-grid';
+
+    let contentHTML = '';
+    if (viewMode === 'week') {
+      contentHTML = `<div id="${gridId}"></div>`;
+    } else {
+      contentHTML = `
+        <div class="app-timeline-section">
+          <div class="app-timeline-label">时间轴</div>
+          <div class="app-timeline" id="${timelineId}"></div>
+        </div>
+        <div class="app-week-summary" id="${summaryId}"></div>
+      `;
+    }
+
+    container.innerHTML = `
+      <div class="app-week-header">
+        <div>
+          <div class="app-week-title">本周时间</div>
+          <div class="app-week-subtitle">${viewMode === 'week' ? '灰色固定，彩色是你的记录' : '看见你的时间都去了哪里'}</div>
+        </div>
+        <div class="app-week-view-toggle">
+          <button class="app-view-toggle-btn ${viewMode==='week'?'active':''}" data-wv-mode="week">📅</button>
+          <button class="app-view-toggle-btn ${viewMode==='day'?'active':''}" data-wv-mode="day">🕐</button>
+        </div>
+      </div>
+      <div class="app-week-day-tabs">${tabsHTML}</div>
+      ${contentHTML}
+    `;
+
+    container.querySelectorAll('.app-day-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        appWeekDay = parseInt(tab.dataset.day);
+        if (forceMode) {
+          renderAppPageInto(cid, 'week', forceMode);
+        } else {
+          if (appWeekViewMode === 'week') {
+            appWeekViewMode = 'day';
+          }
+          renderAppWeek();
+        }
+      });
+    });
+
+    container.querySelectorAll('.app-view-toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (forceMode) return;
+        appWeekViewMode = btn.dataset.wvMode;
+        renderAppWeek();
+      });
+    });
+
+    if (viewMode === 'week') {
+      const gridContainer = document.getElementById(gridId);
+      if (gridContainer) renderAppWeekGrid(gridContainer);
+    } else {
+      renderAppTimeline(containerId);
+      renderAppWeekSummary(containerId);
+    }
+  }
+
+  function renderAppTimeline(containerId) {
+    const cid = containerId || 'app-week-content';
+    const timelineId = cid + '-timeline';
+    const container = document.getElementById(timelineId);
+    if (!container) return;
+    const WIN_START = 7 * 60;
+    const WIN_END = 24 * 60;
+    const TOTAL_MIN = WIN_END - WIN_START;
+    const TRACK_HEIGHT = 340;
+
+    let hoursHTML = '';
+    for (let h = 7; h <= 23; h += 2) {
+      const pct = ((h * 60 - WIN_START) / TOTAL_MIN) * 100;
+      hoursHTML += `<div class="app-timeline-hour" style="top:${pct}%">${h}:00</div>`;
+      if (h < 23) {
+        const midPct = ((h * 60 + 60 - WIN_START) / TOTAL_MIN) * 100;
+        hoursHTML += `<div class="app-timeline-half" style="top:${midPct}%"></div>`;
+      }
+    }
+
+    const records = getDayRecords(appWeekDay);
+    const blocksData = records.map(r => {
+      const [startStr] = r.time.split(' — ');
+      const [sh, sm] = startStr.split(':').map(Number);
+      return { ...r, startMin: sh*60+sm };
+    });
+
+    const laidOut = layoutBlocksNoOverlap(blocksData, WIN_START, TOTAL_MIN, TRACK_HEIGHT, 6, 0, false);
+    let blocksHTML = '';
+    laidOut.forEach(({ block: r, top, height, posStyle }) => {
+      const cat = CATEGORIES.find(c => c.id === r.category);
+      const color = cat ? cat.color : '#B8794A';
+      const icon = cat ? cat.icon : '📌';
+      const name = cat ? cat.name : r.category;
+      blocksHTML += `<div class="app-time-block" style="top:${top}px;height:${height}px;${posStyle}background:${color}">
+        <span class="app-time-block-icon">${icon}</span>
+        <span class="app-time-block-name">${name}</span>
+        <span class="app-time-block-duration">${formatDuration(r.duration)}</span>
+      </div>`;
+    });
+
+    container.innerHTML = `
+      ${hoursHTML}
+      <div class="app-timeline-track" style="height:${TRACK_HEIGHT}px">${blocksHTML}</div>
+    `;
+  }
+
+  function renderAppWeekSummary(containerId) {
+    const cid = containerId || 'app-week-content';
+    const summaryId = cid + '-summary';
+    const container = document.getElementById(summaryId);
+    if (!container) return;
+
+    const weekCats = {};
+    let weekTotal = 0;
+    for (let i = 0; i < 7; i++) {
+      const recs = getDayRecords(i);
+      recs.forEach(r => {
+        if (!weekCats[r.category]) weekCats[r.category] = 0;
+        weekCats[r.category] += r.duration;
+        weekTotal += r.duration;
+      });
+    }
+
+    const sortedCats = Object.entries(weekCats).sort((a,b) => b[1] - a[1]).slice(0, 6);
+    let barHTML = '';
+    let catsHTML = '';
+    sortedCats.forEach(([catId, mins]) => {
+      const cat = CATEGORIES.find(c => c.id === catId);
+      if (!cat) return;
+      const pct = weekTotal > 0 ? (mins / weekTotal) * 100 : 0;
+      barHTML += `<div class="app-summary-bar-seg" style="width:${pct}%;background:${cat.color}"></div>`;
+      catsHTML += `<div class="app-summary-cat">
+        <span class="app-summary-dot" style="background:${cat.color}"></span>
+        ${cat.name} ${formatDuration(mins)}
+      </div>`;
+    });
+
+    const workMin = weekCats['work'] || 0;
+    const freeMin = weekTotal - workMin - (weekCats['commute']||0);
+
+    container.innerHTML = `
+      <div class="app-summary-card">
+        <div class="app-summary-card-title">本周分布</div>
+        <div class="app-summary-bar">${barHTML}</div>
+        <div class="app-summary-cats">${catsHTML}</div>
+      </div>
+      <div class="app-summary-card">
+        <div class="app-summary-card-title">时间洞察</div>
+        <div style="font-size:12px;color:var(--text-secondary);line-height:1.7">
+          <div>工作占比 ${weekTotal>0?Math.round(workMin/weekTotal*100):0}%</div>
+          <div>可支配时间 ${formatDuration(Math.max(0,freeMin))}</div>
+          <div>共记录 ${formatDuration(weekTotal)}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderAppPlanTimeline(container, dayIdx) {
+    const ROW_HEIGHT = 200;
+    const WIN_START = 7 * 60;
+    const WIN_END = 24 * 60;
+    const TOTAL_MIN = WIN_END - WIN_START;
+
+    const idealBlocks = (appData.idealWeek[dayIdx] || []).filter(b => !b.fixed);
+    const fixedDefs = [];
+    const isWeekend = dayIdx >= 5;
+    if (!isWeekend) {
+      fixedDefs.push({ category: 'commute', startHour: 7, startMin: 30, duration: 60, fixed: true });
+      fixedDefs.push({ category: 'work', startHour: 8, startMin: 30, duration: 570, fixed: true });
+    }
+    fixedDefs.push({ category: 'cook', startHour: 12, startMin: 0, duration: isWeekend ? 90 : 60, fixed: true });
+
+    const fixedBlocks = fixedDefs.map(b => ({ ...b, startMin: b.startHour * 60 + b.startMin })).filter(b => {
+      const end = b.startMin + b.duration;
+      return end > WIN_START && b.startMin < WIN_END;
+    });
+
+    const activityBlocks = idealBlocks.map(b => ({
+      ...b, startMin: b.startHour * 60 + b.startMin, fixed: false
+    })).filter(b => {
+      const end = b.startMin + b.duration;
+      return end > WIN_START && b.startMin < WIN_END;
+    });
+
+    let hoursHTML = '';
+    for (let h = 7; h <= 23; h += 2) {
+      const top = ((h*60 - WIN_START) / TOTAL_MIN) * ROW_HEIGHT;
+      hoursHTML += `<div class="app-dual-hour" style="top:${top}px">${h}:00</div>`;
+    }
+
+    let blocksHTML = '';
+    fixedBlocks.forEach(b => {
+      const cat = CATEGORIES.find(c => c.id === b.category);
+      const icon = cat ? cat.icon : '📌';
+      const name = cat ? cat.name : b.category;
+      const clampedStart = Math.max(b.startMin, WIN_START);
+      const clampedEnd = Math.min(b.startMin + b.duration, WIN_END);
+      const top = ((clampedStart - WIN_START) / TOTAL_MIN) * ROW_HEIGHT;
+      const height = Math.max(20, (clampedEnd - clampedStart) / TOTAL_MIN * ROW_HEIGHT);
+      blocksHTML += `<div class="app-plan-block fixed" style="top:${top}px;height:${height}px;left:36px;right:4px;z-index:1;">
+        <span>${icon}</span><span>${name}</span>
+      </div>`;
+    });
+
+    const ACTIVITY_BASE_LEFT = 40;
+    const ACTIVITY_RIGHT = 8;
+    const laidOut = layoutBlocksNoOverlap(activityBlocks, WIN_START, TOTAL_MIN, ROW_HEIGHT, ACTIVITY_BASE_LEFT, ACTIVITY_RIGHT, true);
+    laidOut.forEach(({ block: b, top, height, posStyle }) => {
+      const cat = CATEGORIES.find(c => c.id === b.category);
+      const color = cat ? cat.color : '#9A9488';
+      const icon = cat ? cat.icon : '📌';
+      const name = cat ? cat.name : b.category;
+      blocksHTML += `<div class="app-plan-block activity" style="top:${top}px;height:${height}px;${posStyle}z-index:2;--cat-color:${color};">
+        <span>${icon}</span><span>${name}</span>
+      </div>`;
+    });
+
+    let emptyHTML = '';
+    const occupiedRanges = [...fixedBlocks, ...activityBlocks].map(b => ({
+      start: Math.max(b.startMin, WIN_START),
+      end: Math.min(b.startMin + b.duration, WIN_END)
+    })).sort((a,b) => a.start - b.start);
+    let gapStart = WIN_START;
+    occupiedRanges.forEach(r => {
+      if (r.start > gapStart + 30) {
+        const gapTop = ((gapStart - WIN_START) / TOTAL_MIN) * ROW_HEIGHT;
+        const gapHeight = Math.max(20, ((r.start - gapStart) / TOTAL_MIN) * ROW_HEIGHT);
+        if (gapHeight > 24) {
+          emptyHTML += `<div class="app-plan-empty" style="top:${gapTop}px;height:${gapHeight - 4}px">可安排</div>`;
+        }
+      }
+      gapStart = Math.max(gapStart, r.end);
+    });
+    if (gapStart < WIN_END - 30) {
+      const gapTop = ((gapStart - WIN_START) / TOTAL_MIN) * ROW_HEIGHT;
+      const gapHeight = Math.max(20, ((WIN_END - gapStart) / TOTAL_MIN) * ROW_HEIGHT);
+      if (gapHeight > 24) {
+        emptyHTML += `<div class="app-plan-empty" style="top:${gapTop}px;height:${gapHeight - 4}px">可安排</div>`;
+      }
+    }
+
+    container.innerHTML = `
+      <div class="app-plan-section">
+        <div class="app-timeline" style="padding-left:0;">
+          ${hoursHTML}
+          <div class="app-plan-track" style="height:${ROW_HEIGHT}px;position:relative;">
+            ${blocksHTML}
+            ${emptyHTML}
+          </div>
+        </div>
+      </div>
+      <div class="app-plan-note">灰色是固定的，空白是你的</div>
+    `;
+  }
+
+  function renderAppIdeal(containerId, forceSubTab) {
+    const cid = containerId || 'app-ideal-content';
+    const container = document.getElementById(cid);
+    if (!container) return;
+    const dayNames = ['一','二','三','四','五','六','日'];
+    const today = new Date();
+    const todayDoW = today.getDay() === 0 ? 6 : today.getDay() - 1;
+    const subTab = forceSubTab || appIdealSubTab;
+
+    let tabsHTML = '';
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(today);
+      d.setDate(d.getDate() - todayDoW + i);
+      const isToday = i === todayDoW;
+      const active = i === appIdealDay;
+      tabsHTML += `<div class="app-day-tab ${active?'active':''} ${isToday?'today':''}" data-ideal-day="${i}">
+        <span class="day-label">周${dayNames[i]}</span>
+        <span class="day-num">${d.getDate()}</span>
+      </div>`;
+    }
+
+    const statsId = cid + '-compare-stats';
+    const dualId = cid + '-dual-timeline';
+    const priorityId = cid + '-priority-list';
+    const planId = cid + '-plan';
+
+    let viewContentHTML = '';
+    if (subTab === 'plan') {
+      viewContentHTML = `<div id="${planId}"></div>`;
+    } else if (subTab === 'compare' || subTab === 'priority') {
+      const hideTL = subTab === 'priority' ? 'display:none;' : '';
+      viewContentHTML = `
+        <div class="app-compare-stats" id="${statsId}" style="${hideTL}"></div>
+        <div class="app-dual-timeline-section" style="${hideTL}">
+          <div class="app-timeline" id="${dualId}"></div>
+        </div>
+        <div class="app-priority-section" style="${subTab==='priority'?'margin-top:0;':''}">
+          <div class="app-priority-title">本周聚焦</div>
+          <div id="${priorityId}"></div>
+        </div>
+      `;
+    }
+
+    const showSubTabs = !forceSubTab || forceSubTab === 'plan' || forceSubTab === 'compare';
+    let subTabsHTML = '';
+    if (showSubTabs && forceSubTab !== 'priority') {
+      subTabsHTML = `
+        <div class="app-ideal-sub-tabs">
+          <button class="app-ideal-sub-tab ${subTab==='plan'?'active':''}" data-subtab="plan">📋 规划</button>
+          <button class="app-ideal-sub-tab ${subTab==='compare'?'active':''}" data-subtab="compare">📊 对比</button>
+        </div>
+      `;
+    }
+
+    container.innerHTML = `
+      <div class="app-ideal-header">
+        <div class="app-ideal-title">理想周</div>
+        <div class="app-ideal-subtitle">规划你想要的生活</div>
+      </div>
+      <div class="app-ideal-tabs">${tabsHTML}</div>
+      ${subTabsHTML}
+      ${viewContentHTML}
+    `;
+
+    container.querySelectorAll('.app-day-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        appIdealDay = parseInt(tab.dataset.idealDay);
+        if (forceSubTab) {
+          renderAppPageInto(cid, 'ideal', null, forceSubTab);
+        } else {
+          renderAppIdeal();
+        }
+      });
+    });
+
+    container.querySelectorAll('.app-ideal-sub-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (forceSubTab) return;
+        appIdealSubTab = btn.dataset.subtab;
+        renderAppIdeal();
+      });
+    });
+
+    if (subTab === 'plan') {
+      const planContainer = document.getElementById(planId);
+      if (planContainer) renderAppPlanTimeline(planContainer, appIdealDay);
+    } else {
+      renderAppDualTimeline(containerId);
+      renderAppCompareStats(containerId);
+      renderAppPriority(containerId);
+    }
+  }
+
+  function renderAppDualTimeline(containerId) {
+    const cid = containerId || 'app-ideal-content';
+    const dualId = cid + '-dual-timeline';
+    const container = document.getElementById(dualId);
+    if (!container) return;
+    const WIN_START = 7 * 60;
+    const WIN_END = 24 * 60;
+    const TOTAL_MIN = WIN_END - WIN_START;
+    const ROW_HEIGHT = 200;
+
+    const dayIdx = appIdealDay;
+    const idealBlocks = (appData.idealWeek[dayIdx] || []).filter(b => !b.fixed).map(b => ({
+      ...b, startMin: b.startHour*60+b.startMin
+    }));
+    const actualRecords = getDayRecords(dayIdx);
+    const actualBlocks = actualRecords.map(r => {
+      const [startStr] = r.time.split(' — ');
+      const [sh, sm] = startStr.split(':').map(Number);
+      return { category: r.category, startHour: sh, startMin: sh*60+sm, duration: r.duration };
+    });
+
+    let hoursHTML = '';
+    for (let h = 7; h <= 23; h += 2) {
+      const top = ((h*60 - WIN_START) / TOTAL_MIN) * ROW_HEIGHT;
+      hoursHTML += `<div class="app-dual-hour" style="top:${top}px">${h}:00</div>`;
+    }
+
+    const idealCatMap = {};
+
+    function renderBlocksLaid(blocks, isIdeal) {
+      const laid = layoutBlocksNoOverlap(blocks, WIN_START, TOTAL_MIN, ROW_HEIGHT, 36, 4, isIdeal);
+      return laid.map(({ block: b, top, height, posStyle }) => {
+        const cat = CATEGORIES.find(c => c.id === b.category);
+        const color = cat ? cat.color : '#999';
+        const name = cat ? cat.name : b.category;
+        const icon = cat ? cat.icon : '📌';
+        if (isIdeal) {
+          idealCatMap[b.category] = true;
+          return `<div class="app-dual-block ideal" style="top:${top}px;height:${height}px;${posStyle}background:${color}18;border:1px solid ${color}55;border-left:3px solid ${color}">
+            <span class="app-dual-block-icon">${icon}</span>
+            <span class="app-dual-block-name" style="color:${color}">${name}</span>
+          </div>`;
+        } else {
+          const isExtra = !idealCatMap[b.category] && !['commute','work','cook','rest'].includes(b.category);
+          return `<div class="app-dual-block ${isExtra?'extra':''}" style="top:${top}px;height:${height}px;${posStyle}background:${isExtra?color+'bb':color}">
+            <span class="app-dual-block-icon">${icon}</span>
+            <span class="app-dual-block-name">${name}</span>
+          </div>`;
+        }
+      }).join('');
+    }
+
+    const idealBlockHTML = renderBlocksLaid(idealBlocks, true);
+    const actualBlockHTML = renderBlocksLaid(actualBlocks, false);
+
+    let matchCount = 0, extraCount = 0;
+    actualBlocks.forEach(b => {
+      if (idealCatMap[b.category]) matchCount++;
+      else if (!['commute','work','cook','rest'].includes(b.category)) extraCount++;
+    });
+    const missCount = Math.max(0, Object.keys(idealCatMap).filter(c => !['work','commute','cook','rest'].includes(c)).length - matchCount);
+
+    container._stats = { match: matchCount, miss: missCount, extra: extraCount };
+
+    container.innerHTML = `
+      <div class="app-dual-track-wrap">
+        <div class="app-dual-row-label ideal-label">理想</div>
+        <div class="app-dual-track" style="height:${ROW_HEIGHT}px">
+          <div class="app-dual-track-bg">${idealBlockHTML}</div>
+        </div>
+      </div>
+      <div class="app-dual-divider"></div>
+      <div class="app-dual-track-wrap">
+        <div class="app-dual-row-label actual-label">实际</div>
+        <div class="app-dual-track" style="height:${ROW_HEIGHT}px">
+          <div class="app-dual-track-bg">${hoursHTML}${actualBlockHTML}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderAppCompareStats(containerId) {
+    const cid = containerId || 'app-ideal-content';
+    const statsId = cid + '-compare-stats';
+    const container = document.getElementById(statsId);
+    if (!container) return;
+    const dualId = cid + '-dual-timeline';
+    const tl = document.getElementById(dualId);
+    const stats = tl && tl._stats ? tl._stats : { match: 0, miss: 0, extra: 0 };
+    container.innerHTML = `
+      <div class="app-compare-stat">
+        <div class="app-compare-stat-value match">${stats.match}</div>
+        <div class="app-compare-stat-label">符合</div>
+      </div>
+      <div class="app-compare-stat">
+        <div class="app-compare-stat-value miss">${stats.miss}</div>
+        <div class="app-compare-stat-label">未完成</div>
+      </div>
+      <div class="app-compare-stat">
+        <div class="app-compare-stat-value extra">${stats.extra}</div>
+        <div class="app-compare-stat-label">额外</div>
+      </div>
+    `;
+  }
+
+  function renderAppPriority(containerId) {
+    const cid = containerId || 'app-ideal-content';
+    const priorityId = cid + '-priority-list';
+    const container = document.getElementById(priorityId);
+    if (!container) return;
+    const items = [
+      { icon: '💪', name: '健身', sched: '周三 20:00 · 1小时', keep: true, color: '#7A9B76' },
+      { icon: '🎬', name: 'Vlog', sched: '周六 09:00 · 2小时', keep: true, color: '#C97A6A' },
+      { icon: '🎾', name: '网球', sched: '周日 10:00 · 1.5小时', keep: true, color: '#7A9B76' },
+      { icon: '📚', name: '编程学习', sched: '时间不够，先放下', keep: false, color: '#6B8E9B' },
+    ];
+    container.innerHTML = items.map(it => `
+      <div class="app-priority-item">
+        <div class="app-priority-icon" style="background:${it.color}15">${it.icon}</div>
+        <div class="app-priority-info">
+          <div class="app-priority-name">${it.name}</div>
+          <div class="app-priority-sched">${it.sched}</div>
+        </div>
+        <span class="app-priority-badge ${it.keep?'keep':'drop'}">${it.keep?'保留':'暂时放下'}</span>
+      </div>
+    `).join('');
+  }
+
+  function renderAppPageInto(containerId, page, weekMode, idealSubTab) {
+    const prevTarget = appRenderTarget;
+    appRenderTarget = containerId;
+    const container = document.getElementById(containerId);
+    if (!container) {
+      appRenderTarget = prevTarget;
+      return;
+    }
+
+    if (page === 'today') {
+      renderAppToday(containerId);
+    } else if (page === 'week') {
+      renderAppWeek(containerId, weekMode);
+    } else if (page === 'ideal') {
+      renderAppIdeal(containerId, idealSubTab);
+    }
+
+    appRenderTarget = prevTarget;
+  }
+
 </script>
 
 </body>

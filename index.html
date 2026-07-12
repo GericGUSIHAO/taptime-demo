@@ -1085,8 +1085,18 @@
     font-size: 18px;
     font-weight: 300;
     opacity: 0.5;
-    margin-bottom: 48px;
+    margin-bottom: 20px;
     line-height: 1.6;
+  }
+
+  .scene-center .scene-metaphor {
+    font-size: 15px;
+    font-weight: 300;
+    opacity: 0.35;
+    line-height: 1.7;
+    max-width: 440px;
+    margin: 0 auto 48px;
+    font-style: italic;
   }
 
   .scene-text {
@@ -1686,7 +1696,13 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .demo-week-view::-webkit-scrollbar {
+    display: none;
   }
 
   .demo-week-header {
@@ -1977,6 +1993,96 @@
     color: #F5F1EA;
     margin-bottom: 12px;
     letter-spacing: -0.02em;
+  }
+
+  /* 习惯嵌入与断舍离视图 */
+  .demo-embed-view {
+    padding: 0 14px 14px;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .demo-embed-title {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(20,19,16,0.4);
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .demo-embed-list {
+    flex: 0 0 auto;
+  }
+  .demo-embed-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    transition: all 0.3s var(--ease-out);
+  }
+  .demo-embed-item.kept {
+    background: linear-gradient(135deg, rgba(91,138,92,0.1), rgba(122,155,122,0.05));
+    border: 1px solid rgba(91,138,92,0.15);
+  }
+  .demo-embed-item.dropped {
+    opacity: 0.35;
+  }
+  .demo-embed-item.dropped .demo-embed-item-name {
+    text-decoration: line-through;
+    text-decoration-color: rgba(20,19,16,0.2);
+  }
+  .demo-embed-item-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
+  }
+  .demo-embed-item-name {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(20,19,16,0.8);
+    flex: 1;
+    min-width: 0;
+  }
+  .demo-embed-item.dropped .demo-embed-item-name {
+    color: rgba(20,19,16,0.4);
+  }
+  .demo-embed-item-time {
+    font-size: 9px;
+    color: rgba(91,138,92,0.7);
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .demo-embed-item-status {
+    font-size: 9px;
+    color: rgba(20,19,16,0.25);
+    flex-shrink: 0;
+    font-style: italic;
+  }
+  .demo-embed-divider {
+    height: 1px;
+    background: rgba(20,19,16,0.06);
+    margin: 8px 0 8px;
+    flex-shrink: 0;
+  }
+  .demo-embed-message {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(20,19,16,0.45);
+    line-height: 1.7;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .demo-embed-message strong {
+    color: rgba(20,19,16,0.7);
+    font-weight: 600;
   }
 
   /* 旧 .scene-tab-item 和 .home-indicator-bar 样式已移除 */
@@ -3824,12 +3930,13 @@
   /* ── Ideal Week: Day Tabs ── */
   .ideal-day-tabs {
     display: flex;
-    gap: 6px;
-    margin-bottom: 18px;
+    gap: 4px;
+    margin-bottom: 14px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding-bottom: 2px;
+    flex-shrink: 0;
   }
 
   .ideal-day-tabs::-webkit-scrollbar {
@@ -3839,28 +3946,29 @@
   .ideal-day-tab {
     flex: 1;
     text-align: center;
-    padding: 8px 0;
+    padding: 7px 0;
     font-size: 11px;
     font-weight: 500;
-    color: var(--text-tertiary);
-    background: var(--bg-warm);
-    border-radius: 9px;
+    color: rgba(20,19,16,0.35);
+    background: rgba(20,19,16,0.04);
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.35s var(--ease-out);
     font-family: var(--font-ui);
     border: 1px solid transparent;
-    min-width: 34px;
+    min-width: 28px;
   }
 
   .ideal-day-tab:hover {
-    color: var(--text-secondary);
+    color: rgba(20,19,16,0.6);
+    background: rgba(20,19,16,0.06);
   }
 
   .ideal-day-tab.active {
-    background: var(--bg-card);
-    color: var(--text);
-    border-color: var(--line);
-    box-shadow: 0 2px 8px rgba(10, 9, 7, 0.05);
+    background: rgba(20,19,16,0.85);
+    color: #F5F1EA;
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(10, 9, 7, 0.12);
   }
 
   .compare-block.fixed {
@@ -4015,20 +4123,21 @@
   /* ── Ideal Week: Timeline ── */
   .ideal-timeline {
     position: relative;
-    margin-bottom: 12px;
-    padding: 16px;
+    margin-bottom: 10px;
+    padding: 12px 12px;
     background: var(--bg-card);
-    border-radius: 16px;
+    border-radius: 14px;
     border: 1px solid var(--line-soft);
+    flex-shrink: 0;
   }
 
   .ideal-block {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 11px 13px;
-    border-radius: 12px;
-    margin-bottom: 8px;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    margin-bottom: 6px;
     background: linear-gradient(135deg, var(--cat-tint, rgba(184, 121, 74, 0.12)), var(--cat-tint, rgba(184, 121, 74, 0.06)));
     border-left: 4px solid var(--cat-color, var(--accent));
     transition: all 0.35s var(--ease-out);
@@ -4091,18 +4200,18 @@
   .ideal-gap {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 13px;
-    margin-bottom: 8px;
-    border-radius: 12px;
-    border: 2px dashed var(--line);
-    background: linear-gradient(135deg, rgba(184, 92, 46, 0.03), rgba(237, 231, 218, 0.3));
-    font-size: 11px;
-    color: var(--text-tertiary);
+    gap: 6px;
+    padding: 8px 10px;
+    margin-bottom: 6px;
+    border-radius: 10px;
+    border: 1.5px dashed rgba(20,19,16,0.12);
+    background: rgba(20,19,16,0.015);
+    font-size: 10px;
+    color: rgba(20,19,16,0.35);
     font-style: italic;
     font-family: var(--font-display);
     font-weight: 300;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
     transition: all 0.35s var(--ease-out);
     cursor: pointer;
     position: relative;
@@ -4186,17 +4295,18 @@
   }
 
   .ideal-note {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--text-tertiary);
     text-align: center;
     font-style: italic;
     font-family: var(--font-display);
-    margin-top: 16px;
+    margin-top: 8px;
     font-weight: 300;
-    padding: 12px 16px;
+    padding: 8px 12px;
     background: var(--bg-elevated);
-    border-radius: 12px;
+    border-radius: 10px;
     border: 1px solid var(--line-soft);
+    flex-shrink: 0;
   }
 
   /* ─────────── Features ─────────── */
@@ -4963,6 +5073,11 @@
           <h3>数据很好看，但没用</h3>
           <p>漂亮的图表、详尽的报表。看完之后呢？你还是不知道怎么让明天比今天更好一点。</p>
         </div>
+        <div class="manifesto-item" data-reveal>
+          <div class="manifesto-num">— 04</div>
+          <h3>几年下来，原地踏步</h3>
+          <p>学了很多方法论，懂了很多道理，想做很多事情。但都在不知不觉中放弃了，生活并没有实打实的变化。不是你不够好，是你缺一个把方法变成日常的系统。</p>
+        </div>
       </div>
     </div>
   </div>
@@ -4975,6 +5090,7 @@
       <p class="scene-eyebrow">TapTime</p>
       <h2 class="scene-headline">看见时间的形状</h2>
       <p class="scene-subline">然后，把想做的事放进去</p>
+      <p class="scene-metaphor">记录时间就像记账——先看见花在哪了，才知道还能投资什么</p>
     </div>
     <div class="scroll-hint">
       <svg width="24" height="24" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -5062,7 +5178,7 @@
     <div class="scene-text">
       <span class="scene-num">03</span>
       <h2 class="scene-headline">灰色是固定的，<br>空白是你的</h2>
-      <p class="scene-desc">工作、通勤，每天雷打不动。<br>剩下的，才是你真正的人生。</p>
+      <p class="scene-desc">想做的事太多，能安排的时间太少。<br>先看清哪些是雷打不动的，再决定把什么放进去。</p>
     </div>
     <div class="scene-visual">
       <div class="demo-phone" id="phone-ideal-c">
@@ -5098,7 +5214,7 @@
     <div class="scene-text">
       <span class="scene-num">04</span>
       <h2 class="scene-headline">你不是没时间</h2>
-      <p class="scene-desc">周一晚8点 · 周三晚8点 · 周六上午<br>你只是没看见这些时间。</p>
+      <p class="scene-desc">周一晚8点 · 周三晚8点 · 周六上午<br>你只是想做的太多，看见的太少。</p>
     </div>
     <div class="scene-visual">
       <div class="demo-phone" id="phone-free-c">
@@ -5122,6 +5238,64 @@
             </div>
           </div>
           <div class="demo-phone-home-bar demo-phone-home-bar-dark"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene scene-embed scene-light" data-scene>
+    <div class="scene-text">
+      <span class="scene-num">05</span>
+      <h2 class="scene-headline">选择，<br>而不是贪多</h2>
+      <p class="scene-desc">想健身、做vlog、学编程、打网球……<br>先看看哪些放得进真实的时间。<br>放不进去的，不是放弃，是断舍离。</p>
+    </div>
+    <div class="scene-visual">
+      <div class="demo-phone" id="phone-embed-c">
+        <div class="demo-phone-frame">
+          <div class="demo-phone-notch"></div>
+          <div class="demo-phone-status">
+            <span class="demo-phone-time">9:41</span>
+            <div class="demo-phone-signal">
+              <div class="signal-bars"><div class="signal-bar" style="height:2px"></div><div class="signal-bar" style="height:4px"></div><div class="signal-bar" style="height:6px"></div><div class="signal-bar" style="height:8px"></div></div>
+              <svg width="15" height="11" viewBox="0 0 15 11"><path d="M7.5 1c2.2 0 4.2.9 5.7 2.3M7.5 3.5c1.5 0 2.9.6 3.9 1.6M7.5 6c.8 0 1.6.3 2.2.9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              <div class="battery"><div class="battery-body"><div class="battery-level"></div></div><div class="battery-cap"></div></div>
+            </div>
+          </div>
+          <div class="demo-phone-screen">
+            <div class="demo-embed-view">
+              <div class="demo-embed-title">想做的事</div>
+              <div class="demo-embed-list">
+                <div class="demo-embed-item kept">
+                  <span class="demo-embed-item-icon">💪</span>
+                  <span class="demo-embed-item-name">健身</span>
+                  <span class="demo-embed-item-time">周一 20:00</span>
+                </div>
+                <div class="demo-embed-item kept">
+                  <span class="demo-embed-item-icon">🎬</span>
+                  <span class="demo-embed-item-name">vlog</span>
+                  <span class="demo-embed-item-time">周六 09:00</span>
+                </div>
+                <div class="demo-embed-item kept">
+                  <span class="demo-embed-item-icon">🎾</span>
+                  <span class="demo-embed-item-name">网球</span>
+                  <span class="demo-embed-item-time">周三 20:00</span>
+                </div>
+                <div class="demo-embed-item dropped">
+                  <span class="demo-embed-item-icon">💻</span>
+                  <span class="demo-embed-item-name">编程</span>
+                  <span class="demo-embed-item-status">暂时放下</span>
+                </div>
+                <div class="demo-embed-item dropped">
+                  <span class="demo-embed-item-icon">🎨</span>
+                  <span class="demo-embed-item-name">手工</span>
+                  <span class="demo-embed-item-status">暂时放下</span>
+                </div>
+              </div>
+              <div class="demo-embed-divider"></div>
+              <div class="demo-embed-message"><strong>与其每件事都失败，<br>不如先做好三件。</strong></div>
+            </div>
+          </div>
+          <div class="demo-phone-home-bar"></div>
         </div>
       </div>
     </div>
@@ -5187,6 +5361,23 @@
         </div>
       </div>
     </div>
+
+    <div class="feature-row" data-reveal>
+      <div>
+        <div class="feature-num">功能 04</div>
+        <h3>习惯稳定后，<br><em>反向打卡</em>。</h3>
+      </div>
+      <div class="feature-body">
+        <p class="feature-desc">
+          建立期：每天点一下，帮你度过习惯最脆弱的阶段。
+          稳定期：系统默认你今天做了，只有没做才需要点一下。
+          打卡不是目的，习惯才是。
+        </p>
+        <div class="feature-detail">
+          <strong>设计原则：</strong>工具应该随着你的成长而退后。当你不再需要它时，它就成功了——这是大多数习惯App做不到的事，它们希望你永远依赖。
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -5201,18 +5392,18 @@
     <div class="how-grid">
       <div class="how-item" data-reveal>
         <div class="how-number">01</div>
-        <h4>设置你的活动卡片</h4>
-        <p>添加你日常会做的事——工作、阅读、运动、休息。给每张卡片一个图标和名字，就像给生活分类。</p>
+        <h4>先记录，不急着改变</h4>
+        <p>第一周，只是记录。不设目标，不做计划。先看看时间真实地花在了哪里——就像记账，先搞清楚支出。</p>
       </div>
       <div class="how-item" data-reveal>
         <div class="how-number">02</div>
-        <h4>结束时轻点一下</h4>
-        <p>做完一件事，点一下对应的卡片。每下代表15分钟，时间自动回溯记录。多了少了，稍后再调整。</p>
+        <h4>看见空白，嵌入习惯</h4>
+        <p>第二周开始，你会发现真实的空闲时间。把想做的事放进去——不是塞进忙碌的日程，而是嵌入你真正拥有的时间里。</p>
       </div>
       <div class="how-item" data-reveal>
         <div class="how-number">03</div>
-        <h4>看见时间的形状</h4>
-        <p>每周花5分钟看看统计。你的时间去哪了？和理想的差距在哪？看见是改变的第一步。</p>
+        <h4>稳定后，放下工具</h4>
+        <p>当习惯自然运行，TapTime 会从"每天打卡"变成"默认你做了"。工具随你成长而退后，这才是系统该有的样子。</p>
       </div>
     </div>
   </div>
@@ -5237,6 +5428,17 @@
         <p>
           大多数时间管理工具隐含着一个假设：你应该最大化每一分钟的产出。
           我们不这么想。
+        </p>
+        <p>
+          <strong>不要设定目标，建立系统。</strong>
+          目标是"每天运动30分钟"，系统是"在周三晚上8点那段空白时间里，做一个你已经能做的事"。
+          目标让你焦虑，系统让你安心。目标指向终点，系统本身就是路径。
+        </p>
+        <p>
+          <strong>人不可能一次性做好所有事。</strong>
+          想健身、做vlog、学编程、打网球——先看看真实的时间还剩多少。
+          放得进去的，认真做；放不进去的，勇敢放下。
+          断舍离不是失败，是对自己诚实。与其每件事都半途而废，不如先做好三件。
         </p>
         <p>
           <strong>TapTime 相信，好的时间记录是一面镜子，而不是一把鞭子。</strong>

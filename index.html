@@ -935,80 +935,51 @@
   }
 
   /* ─────────── Manifesto / Pain ─────────── */
-  .manifesto {
+  .pain {
     background: var(--bg-warm);
     position: relative;
   }
 
-  .manifesto::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--line), transparent);
-  }
-
-  .manifesto-inner {
+  .pain-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: clamp(60px, 8vw, 140px);
-    align-items: start;
+    gap: clamp(40px, 5vw, 80px);
+    margin-top: clamp(40px, 5vw, 80px);
   }
 
-  .manifesto-left .section-title {
-    font-size: clamp(40px, 5vw, 68px);
-  }
-
-  .manifesto-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .manifesto-item {
-    padding: 48px 0;
-    border-top: 1px solid var(--line);
-    opacity: 0;
-    transform: translateY(28px);
-    transition: all 1s var(--ease-out);
-  }
-
-  .manifesto-item:last-child {
+  .pain-item {
+    padding-bottom: clamp(24px, 3vw, 48px);
     border-bottom: 1px solid var(--line);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
   }
 
-  .manifesto-item.visible {
+  .pain-item.visible {
     opacity: 1;
     transform: translateY(0);
   }
 
-  .manifesto-num {
+  .pain-num {
     font-family: var(--font-display);
-    font-size: 12px;
+    font-size: 14px;
     color: var(--accent);
+    margin-bottom: 16px;
     font-style: italic;
-    margin-bottom: 18px;
-    letter-spacing: 0.08em;
-    font-weight: 300;
   }
 
-  .manifesto-item h3 {
+  .pain-item h3 {
     font-family: var(--font-display);
-    font-size: clamp(24px, 2.2vw, 32px);
+    font-size: clamp(20px, 2.2vw, 28px);
     font-weight: 400;
-    margin-bottom: clamp(10px, 1vw, 16px);
-    letter-spacing: -0.015em;
-    line-height: 1.3;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
   }
 
-  .manifesto-item p {
+  .pain-item p {
     color: var(--text-secondary);
-    line-height: 1.85;
-    font-size: clamp(14px, 1vw, 16px);
-    max-width: 440px;
-    font-weight: 400;
+    line-height: 1.7;
+    font-size: clamp(13px, 1vw, 15px);
   }
 
   /* ===== Cinematic Demo ===== */
@@ -1136,6 +1107,17 @@
     font-style: italic;
   }
 
+  .scene-cta-entry .scene-note {
+    font-size: 13px;
+    opacity: 0.3;
+    margin-top: 20px;
+  }
+
+  .scene-cta-entry .btn-large {
+    padding: 18px 48px;
+    font-size: 16px;
+  }
+
   .scene-text {
     flex: 0 1 clamp(300px, 28vw, 420px);
     max-width: clamp(300px, 28vw, 420px);
@@ -1190,26 +1172,21 @@
   .demo-phone {
     position: relative;
     flex-shrink: 0;
-    transform: scale(1);
+    --phone-scale: clamp(0.55, calc(100vh * 0.00106), 1.0);
+    transform: scale(var(--phone-scale));
     transform-origin: center center;
+    will-change: transform;
   }
-
-  @media (min-width: 1400px) {
-    .demo-phone { transform: scale(1.05); }
-  }
-  @media (max-width: 1200px) {
-    .demo-phone { transform: scale(0.88); }
-  }
-  @media (max-width: 800px) {
-    .demo-phone { transform: scale(1); }
-  }
-  @media (max-width: 480px) {
-    .demo-phone { transform: scale(0.82); }
+  @supports (height: 100dvh) {
+    .demo-phone {
+      --phone-scale: clamp(0.55, calc(100dvh * 0.00106), 1.0);
+    }
   }
 
   .demo-phone-frame {
     width: 280px;
     height: 606px;
+    aspect-ratio: 280 / 606;
     border-radius: 48px;
     background: 
       linear-gradient(145deg, 
@@ -2595,7 +2572,6 @@
     .scene-hook .scene-headline { font-size: 42px !important; }
     .scene-center .scene-headline { font-size: 38px !important; }
     .scene-num { font-size: 56px !important; margin-bottom: -8px; }
-    .demo-phone-frame { width: 250px; height: 542px; }
     .free-cards { flex-direction: column; align-items: center; }
   }
 
@@ -2603,7 +2579,6 @@
     .scene { padding: 48px 20px; }
     .scene-hook .scene-headline { font-size: 32px !important; }
     .scene-headline { font-size: 28px !important; }
-    .demo-phone-frame { width: 240px; height: 520px; }
   }
 
   /* ─────────── App Screens ─────────── */
@@ -4715,103 +4690,165 @@
     z-index: 2;
   }
 
-  .feature-row {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: clamp(50px, 6vw, 100px);
-    padding: clamp(40px, 5vw, 80px) 0;
-    border-top: 1px solid var(--line);
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 1.2s var(--ease-out);
-    position: relative;
-    z-index: 2;
+  .features-list {
+    margin-top: clamp(50px, 6vw, 100px);
   }
 
-  .feature-row:last-child {
+  .feature {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: clamp(40px, 5vw, 60px);
+    padding: clamp(40px, 5vw, 60px) 0;
+    border-top: 1px solid var(--line);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+  }
+
+  .feature:last-child {
     border-bottom: 1px solid var(--line);
   }
 
-  .feature-row.visible {
+  .feature.visible {
     opacity: 1;
     transform: translateY(0);
   }
 
-  .feature-row:nth-child(2) { transition-delay: 0.1s; }
-  .feature-row:nth-child(3) { transition-delay: 0.2s; }
-  .feature-row:nth-child(4) { transition-delay: 0.3s; }
-
   .feature-num {
     font-family: var(--font-display);
-    font-size: 12px;
+    font-size: 14px;
     color: var(--text-tertiary);
     font-style: italic;
-    margin-bottom: 28px;
-    letter-spacing: 0.08em;
-    font-weight: 400;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-variation-settings: 'opsz' 12, 'SOFT' 50;
+    margin-bottom: 16px;
   }
 
-  .feature-num::before {
-    content: '';
-    width: 20px;
-    height: 1px;
-    background: var(--accent);
-  }
-
-  .feature-row h3 {
+  .feature h3 {
     font-family: var(--font-display);
-    font-size: clamp(28px, 3vw, 42px);
+    font-size: clamp(24px, 3vw, 32px);
     font-weight: 400;
-    line-height: 1.08;
-    letter-spacing: -0.025em;
-    font-variation-settings: 'opsz' 42, 'SOFT' 30;
-    font-feature-settings: "kern" 1, "liga" 1, "ss01" 1;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 
-  .feature-row h3 em {
+  .feature h3 em {
     font-style: italic;
     font-weight: 300;
     color: var(--accent);
-    font-family: var(--font-serif);
-    font-size: 0.92em;
-  }
-
-  .feature-body {
-    padding-top: 14px;
-  }
-
-  .feature-desc {
-    font-size: 16px;
-    color: var(--text-secondary);
-    line-height: 1.9;
-    margin-bottom: 32px;
-    font-weight: 400;
   }
 
   .feature-detail {
-    padding: 32px 36px;
-    background: var(--bg);
-    border-radius: 4px;
+    font-size: clamp(14px, 1.1vw, 16px);
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .feature-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--accent-pale);
+    color: var(--accent-deep);
+    font-family: var(--font-ui);
+    vertical-align: middle;
+    margin-left: 6px;
+    letter-spacing: 0.02em;
+  }
+
+  .features-footer {
+    margin-top: clamp(60px, 8vw, 100px);
+    padding-top: clamp(40px, 5vw, 60px);
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+
+  .features-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(16px, 2vw, 32px);
+    margin-bottom: clamp(24px, 3vw, 40px);
+  }
+
+  .progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .progress-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    position: relative;
+  }
+
+  .progress-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--accent-soft);
+  }
+
+  .progress-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+  }
+
+  .feature-system-note {
+    display: block;
+    margin-top: 16px;
+    padding: 12px 18px;
+    background: rgba(168, 130, 94, 0.06);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 8px 8px 0;
     font-size: 13px;
     color: var(--text-secondary);
-    line-height: 1.9;
-    border-left: 2px solid var(--accent);
-    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .feature-system-note em {
     font-style: normal;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .progress-line {
+    width: clamp(60px, 10vw, 120px);
+    height: 1px;
+    background: var(--line);
     position: relative;
-    transition: all 0.5s var(--ease-out);
+    top: -18px;
   }
 
-  .feature-detail:hover {
-    transform: translateX(4px);
-    box-shadow: -4px 0 20px -8px rgba(168, 107, 61, 0.15);
+  .progress-line::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-soft));
   }
 
-  .feature-detail strong {
+  .features-footer-text {
+    font-size: clamp(15px, 1.2vw, 18px);
+    line-height: 1.8;
+    color: var(--text-secondary);
+  }
+
+  .features-footer-text strong {
     color: var(--text);
     font-weight: 500;
   }
@@ -5294,11 +5331,11 @@
       padding: clamp(80px, 10vh, 120px) 0;
     }
 
-    .manifesto-inner,
+    .pain-grid,
     .philosophy-inner,
-    .feature-row {
+    .feature {
       grid-template-columns: 1fr;
-      gap: clamp(40px, 5vw, 56px);
+      gap: clamp(20px, 3vw, 40px);
     }
 
     .how-grid {
@@ -5698,6 +5735,12 @@
   .app-cat-card.has-record .app-cat-time {
     color: var(--text-secondary);
   }
+  .app-cat-card.checked .app-cat-time {
+    color: var(--accent);
+  }
+  .app-cat-card.checked {
+    opacity: 0.6;
+  }
   .app-cat-card.tapped .app-cat-time {
     color: var(--accent);
   }
@@ -5739,6 +5782,45 @@
     font-size: 10px;
     color: var(--text-tertiary);
     font-weight: 400;
+  }
+  .app-checkin-mode-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    padding: 0 4px;
+  }
+  .checkin-mode-label {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    margin-right: 2px;
+  }
+  .checkin-mode-btn {
+    padding: 4px 10px;
+    border-radius: 14px;
+    border: 1px solid var(--line-soft);
+    background: transparent;
+    font-size: 10px;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .checkin-mode-btn.active {
+    border-color: var(--accent);
+    background: var(--accent-pale);
+    color: var(--accent-deep);
+  }
+  .checkin-mode-btn.clear-btn {
+    border-color: transparent;
+    opacity: 0.5;
+    padding: 4px 6px;
+  }
+  .checkin-mode-btn.clear-btn:hover {
+    opacity: 1;
+    background: rgba(200,50,50,0.1);
+    border-color: rgba(200,50,50,0.3);
+    color: #C43A3A;
   }
   .app-record-item {
     display: flex;
@@ -6462,6 +6544,66 @@
     border-color: var(--accent);
     color: var(--accent);
   }
+  .app-plan-empty-addable {
+    border-style: dashed;
+    cursor: pointer;
+  }
+  .empty-add-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    font-size: 14px;
+    line-height: 1;
+    margin-left: 4px;
+    transition: transform 0.2s;
+  }
+  .app-plan-empty-addable:hover .empty-add-btn {
+    transform: scale(1.15);
+  }
+  .app-plan-block-editable {
+    position: relative;
+  }
+  .app-plan-block-editable:hover {
+    opacity: 1;
+  }
+  .app-plan-block-del {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    border: none;
+    color: rgba(255,255,255,0.8);
+    font-size: 12px;
+    line-height: 1;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background 0.15s;
+  }
+  .app-plan-block-editable:hover .app-plan-block-del {
+    display: flex;
+  }
+  .app-plan-block-del:hover {
+    background: rgba(255,255,255,0.5);
+  }
+  .app-ideal-edit-hint {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    padding: 8px 16px 4px;
+    font-style: italic;
+    opacity: 0.7;
+  }
   .app-plan-note {
     text-align: center;
     font-size: 11px;
@@ -6470,6 +6612,138 @@
     font-style: italic;
     font-family: var(--font-display);
     font-weight: 300;
+  }
+
+  /* Demo phone adaptation */
+  .ideal-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(20,19,16,0.6);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: modalFadeIn 0.2s ease;
+  }
+  @keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .ideal-modal {
+    background: var(--bg-elevated);
+    border-radius: 20px;
+    padding: 28px 24px 20px;
+    width: 320px;
+    max-width: 90vw;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.3);
+    animation: modalSlideUp 0.25s ease;
+  }
+  @keyframes modalSlideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  .ideal-modal-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .ideal-modal-sub {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    margin-bottom: 16px;
+  }
+  .ideal-modal-cats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .modal-cat-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 10px 6px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    background: var(--bg-deep);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .modal-cat-option span:first-child {
+    font-size: 18px;
+  }
+  .modal-cat-option.selected {
+    border-color: var(--cat-color);
+    background: color-mix(in srgb, var(--cat-color) 10%, var(--bg-deep));
+  }
+  .modal-cat-option:hover {
+    transform: scale(1.05);
+  }
+  .ideal-modal-dur-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .ideal-modal-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+  .ideal-modal-dur-btns {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .ideal-dur-btn {
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1.5px solid var(--line);
+    background: transparent;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .ideal-dur-btn.active {
+    border-color: var(--accent);
+    background: var(--accent-pale);
+    color: var(--accent-deep);
+  }
+  .ideal-modal-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .ideal-modal-cancel,
+  .ideal-modal-confirm {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .ideal-modal-cancel {
+    background: var(--bg-deep);
+    color: var(--text-secondary);
+  }
+  .ideal-modal-cancel:hover {
+    background: var(--line);
+  }
+  .ideal-modal-confirm {
+    background: var(--accent);
+    color: white;
+  }
+  .ideal-modal-confirm:hover {
+    background: var(--accent-deep);
   }
 
   /* Demo phone adaptation */
@@ -6581,7 +6855,7 @@
     <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Tap<em>Time</em></div>
     <ul class="nav-links">
       <li><a href="#manifesto">理念</a></li>
-      <li><a href="#demo">演示</a></li>
+      <li><a href="#demo">产品故事</a></li>
       <li><a href="#features">功能</a></li>
       <li><a href="#philosophy">哲学</a></li>
     </ul>
@@ -6613,8 +6887,8 @@
       </div>
       <div class="hero-sub-row">
         <p class="hero-sub">
-          你不需要更自律。你需要的是一个能把方法融入日常的系统。
-          当习惯真正绑定在真实的时间块里，它就不需要靠意志力了。
+          意志力迟早会耗尽，但时间不会。
+          当习惯被锚定在真实的时间块里，它就变成了自然发生的事——不需要坚持，不需要强迫。
         </p>
         <div class="hero-meta">
           <div class="hero-meta-item">
@@ -6642,31 +6916,111 @@
   </div>
 </section>
 
-<!-- Manifesto / Pain Points -->
-<section class="manifesto" id="manifesto">
+<!-- Pain Points -->
+<section class="pain" id="pain">
   <div class="container">
-    <div class="manifesto-inner">
-      <div class="manifesto-left reveal">
-        <div class="section-eyebrow">问题所在</div>
-        <h2 class="section-title">不是你不够自律，<br>是<em>工具本身就设计错了</em>。</h2>
+    <div class="reveal">
+      <div class="section-eyebrow">问题所在</div>
+      <h2 class="section-title">不是你不够自律，<br>是<em>工具本身就设计错了</em>。</h2>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-item" data-reveal>
+        <div class="pain-num">— 01</div>
+        <h3>时间记录太繁琐</h3>
+        <p>想记录时间，但打开 App 要选类别、写备注、设开始结束时间……一套流程 20 秒，还打断了正在做的事。记了 3 天，放弃了。</p>
       </div>
-      <div class="manifesto-list">
-        <div class="manifesto-item" data-reveal>
-          <div class="manifesto-num">— 01</div>
-          <h3>记录太复杂，放弃太快</h3>
-          <p>大多数时间管理App需要你打开、选分类、输时长、点保存——三步之内，大多数人已经不想用了。</p>
+      <div class="pain-item" data-reveal>
+        <div class="pain-num">— 02</div>
+        <h3>打卡永远会断</h3>
+        <p>下载了习惯打卡 App，坚持 3 天，第 4 天忘了，然后就再也没打开过。不是懒，是那个"连续天数"数字带来的压力太大——断了就感觉前功尽弃。</p>
+      </div>
+      <div class="pain-item" data-reveal>
+        <div class="pain-num">— 03</div>
+        <h3>计划从一开始就不可行</h3>
+        <p>你定了"每天健身 30 分钟"的目标，但周二聚会、周三加班、周五打球、周末有安排——你根本没有那么多时间，只是不愿意承认。</p>
+      </div>
+      <div class="pain-item" data-reveal>
+        <div class="pain-num">— 04</div>
+        <h3>几年下来，原地踏步</h3>
+        <p>学了很多知识，懂了很多道理，想做很多事情。但都在不知不觉中放弃了。生活并没有实打实的变化。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="features-header reveal">
+      <div class="section-eyebrow">使用流程</div>
+      <h2 class="section-title">三步，<br>建立你的<em>人生系统</em>。</h2>
+      <p class="section-desc">
+        不是靠意志力。是靠系统。
+      </p>
+    </div>
+
+    <div class="features-list">
+      <div class="feature" data-reveal>
+        <div>
+          <div class="feature-num">第一步</div>
+          <h3>记录时间，<br><em>建立时间账本</em></h3>
         </div>
-        <div class="manifesto-item" data-reveal>
-          <div class="manifesto-num">— 02</div>
-          <h3>用内疚驱动行为</h3>
-          <p>连续打卡、完美主义、漏一天就归零。工具在用你的内疚让你回来，而不是用正向反馈让你留下。</p>
-        </div>
-        <div class="manifesto-item" data-reveal>
-          <div class="manifesto-num">— 03</div>
-          <h3>几年下来，原地踏步</h3>
-          <p>学了很多方法论，懂了很多道理，想做很多事情。但都在不知不觉中放弃了，生活并没有实打实的变化。不是你不够好，是你缺一个把方法变成日常的系统。</p>
+        <div>
+          <p class="feature-detail">
+            点一下 = 15 分钟，不用保存。白天做完一件事顺手点一下。一周后，你的时间账本就建好了。
+          </p>
+          <span class="feature-system-note">→ <em>地基</em></span>
         </div>
       </div>
+
+      <div class="feature" data-reveal>
+        <div>
+          <div class="feature-num">第二步</div>
+          <h3>嵌入习惯，<br><em>确保时间可行</em></h3>
+        </div>
+        <div>
+          <p class="feature-detail">
+            习惯靠可行性，不靠意志力。周末花5分钟，把想做的事嵌进真实空闲。时间不够就取舍。
+          </p>
+          <span class="feature-system-note">→ <em>骨架</em></span>
+        </div>
+      </div>
+
+      <div class="feature" data-reveal>
+        <div>
+          <div class="feature-num">第三步</div>
+          <h3>系统运转，<br><em>好事情自动发生</em></h3>
+        </div>
+        <div>
+          <p class="feature-detail">
+            习惯稳定后，记录变成燃料。早上花30秒看一眼，关掉。系统在后台转，你只管往前走。
+          </p>
+          <span class="feature-system-note">→ <em>自动运转</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="features-footer reveal">
+      <div class="features-progress">
+        <div class="progress-step">
+          <span class="progress-dot"></span>
+          <span class="progress-label">时间账本</span>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step">
+          <span class="progress-dot"></span>
+          <span class="progress-label">习惯嵌入</span>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step">
+          <span class="progress-dot"></span>
+          <span class="progress-label">人生系统</span>
+        </div>
+      </div>
+      <p class="features-footer-text">
+        从轻点记录开始，到人生系统自然运行。<br>
+        <strong>TapTime 不是终点，是你构建理想生活的起点。</strong>
+      </p>
     </div>
   </div>
 </section>
@@ -6819,155 +7173,48 @@
       </div>
     </div>
   </div>
-</section>
 
-<!-- Features -->
-<section class="features" id="features">
-  <div class="container">
-    <div class="features-header reveal">
-      <div class="section-eyebrow">核心功能</div>
-      <h2 class="section-title">为真实的人设计，<br>不是为<em>完美的用户</em>。</h2>
-      <p class="section-desc">
-        每一个功能都经过反复打磨，确保它服务于你的生活，而不是反过来。
-      </p>
-    </div>
-
-    <div class="feature-row" data-reveal>
-      <div>
-        <div class="feature-num">功能 01</div>
-        <h3>轻点记录，<br><em>零摩擦</em>。</h3>
-      </div>
-      <div class="feature-body">
-        <p class="feature-desc">
-          打开App就是记录页面。每点击一次卡片，增加15分钟。
-          不需要选开始时间，不需要填标签，不需要点保存。
-          结束时轻轻一点，时间自动回溯记录。
-        </p>
-        <div class="feature-detail">
-          <strong>设计原则：</strong>一次点击 = 15分钟。基于微习惯理论，降低启动门槛，让记录行为像呼吸一样自然。忘记记录也没关系，随时补记，没有惩罚。
-        </div>
-      </div>
-    </div>
-
-    <div class="feature-row" data-reveal>
-      <div>
-        <div class="feature-num">功能 02</div>
-        <h3>理想周对比，<br><em>看清差距</em>。</h3>
-      </div>
-      <div class="feature-body">
-        <p class="feature-desc">
-          设定你理想中每周各活动想投入的时间，然后和真实记录对比。
-          差距不是失败，是你调整生活的指南针。
-        </p>
-        <div class="feature-detail">
-          <strong>设计原则：</strong>没有"达标率"，没有"分数"。只有两条并列的进度条——一条是你，一条是你想成为的你。温柔地看见差异，改变自然发生。
-        </div>
-      </div>
-    </div>
-
-    <div class="feature-row" data-reveal>
-      <div>
-        <div class="feature-num">功能 03</div>
-        <h3>无压力设计，<br><em>没有惩罚</em>。</h3>
-      </div>
-      <div class="feature-body">
-        <p class="feature-desc">
-          没有连续打卡，没有完美天数，没有归零机制。
-          忘记一天？那就是一天而已。明天继续，你的努力不会被清零。
-        </p>
-        <div class="feature-detail">
-          <strong>设计原则：</strong>用正向反馈驱动，而不是用内疚。工具应该支持你，而不是审判你。每一条记录都是你认真生活的证据，不管多寡。
-        </div>
-      </div>
-    </div>
-
-    <div class="feature-row" data-reveal>
-      <div>
-        <div class="feature-num">功能 04</div>
-        <h3>习惯稳定后，<br><em>反向打卡</em>。</h3>
-      </div>
-      <div class="feature-body">
-        <p class="feature-desc">
-          建立期：每天点一下，帮你度过习惯最脆弱的阶段。
-          稳定期：系统默认你今天做了，只有没做才需要点一下。
-          打卡不是目的，习惯才是。
-        </p>
-        <div class="feature-detail">
-          <strong>设计原则：</strong>工具应该随着你的成长而退后。当你不再需要它时，它就成功了——这是大多数习惯App做不到的事，它们希望你永远依赖。
-        </div>
-      </div>
+  <div class="scene scene-cta-entry scene-dark" data-scene>
+    <div class="scene-center">
+      <h2 class="scene-headline">故事看完了，<br>亲自试试看？</h2>
+      <p class="scene-subline">打开一个真实可用的 Demo，记录你的时间，看看一周后能发现什么。</p>
+      <a href="javascript:void(0)" class="btn btn-primary btn-large" onclick="enterAppMode()">
+        立即体验 Demo
+        <span class="btn-arrow">→</span>
+      </a>
+      <p class="scene-note">无需注册，无需登录，数据仅保存在本地</p>
     </div>
   </div>
 </section>
 
-<!-- How It Works -->
-<section class="how">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-eyebrow">使用方法</div>
-      <h2 class="section-title">三步，<br>开始你的<em>时间系统</em>。</h2>
-    </div>
-
-    <div class="how-grid">
-      <div class="how-item" data-reveal>
-        <div class="how-number">01</div>
-        <h4>先记录，不急着改变</h4>
-        <p>第一周，只是记录。不设目标，不做计划。先看看时间真实地花在了哪里——就像记账，先搞清楚支出。</p>
-      </div>
-      <div class="how-item" data-reveal>
-        <div class="how-number">02</div>
-        <h4>看见空白，嵌入习惯</h4>
-        <p>第二周开始，你会发现真实的空闲时间。把想做的事放进去——不是塞进忙碌的日程，而是嵌入你真正拥有的时间里。</p>
-      </div>
-      <div class="how-item" data-reveal>
-        <div class="how-number">03</div>
-        <h4>稳定后，放下工具</h4>
-        <p>当习惯自然运行，TapTime 会从"每天打卡"变成"默认你做了"。工具随你成长而退后，这才是系统该有的样子。</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- Philosophy -->
 <section class="philosophy" id="philosophy">
   <div class="container">
     <div class="reveal">
       <div class="section-eyebrow">产品哲学</div>
-      <h2 class="section-title">时间不是用来<br><em>被管理的</em>。</h2>
+      <h2 class="section-title">轻点记录，<br>为什么就能<em>建立人生系统</em>？</h2>
     </div>
 
     <div class="philosophy-inner">
       <div class="philosophy-quote reveal">
-        "时间是<em>生活的容器</em>。<br>
-        我们记录时间，<br>
-        不是为了更高效，<br>
-        而是为了<em>更真实地活着</em>。"
+        "人生是一场用时间<br>
+        购买生活的交易。<br>
+        你做的事、你成为的人，<br>
+        都是你用时间买来的。"
       </div>
       <div class="philosophy-text reveal">
         <p>
-          大多数时间管理工具隐含着一个假设：你应该最大化每一分钟的产出。
-          我们不这么想。
+          <strong>为什么先记录再安排？</strong><br>
+          你想做的事都要用时间买。不记账不知道钱去哪了，不记录不知道时间去哪了。轻点记录，建立时间账本。看见空闲，才知道能往哪投。
         </p>
         <p>
-          <strong>不要设定目标，建立系统。</strong>
-          目标是"每天运动30分钟"，系统是"在周三晚上8点那段空白时间里，做一个你已经能做的事"。
-          目标让你焦虑，系统让你安心。目标指向终点，系统本身就是路径。
+          <strong>为什么习惯必须嵌进时间块？</strong><br>
+          习惯靠时间可行性，不靠意志力。24小时就那么多。时间上不可行，事就做不成——不是你不行，是时间不够。要么优化，要么取舍。TapTime帮你看见，然后选。
         </p>
         <p>
-          <strong>人不可能一次性做好所有事。</strong>
-          想健身、做vlog、学编程、打网球——先看看真实的时间还剩多少。
-          放得进去的，认真做；放不进去的，勇敢放下。
-          断舍离不是失败，是对自己诚实。与其每件事都半途而废，不如先做好三件。
-        </p>
-        <p>
-          <strong>TapTime 相信，好的时间记录是一面镜子，而不是一把鞭子。</strong>
-          它帮你看见你的时间实际流向了哪里，让你有机会调整航向。
-          但调整的节奏和方向，永远由你自己决定。
-        </p>
-        <p>
-          你不会因为某一天刷了三小时短视频而失败，
-          也不会因为连续记录了30天就成功。
-          生活不是考试，时间不是分数。
+          <strong>为什么最终是系统，不是工具？</strong><br>
+          App不是让你依赖它，是帮你建立自己的系统。习惯稳定后，记录变成燃料，不是负担。看一眼就知道今天干什么。好事情自动发生——不是意志力变强了，是系统在帮你转。
         </p>
         <div class="philosophy-signature">
           — 我们只是想做一个<br>
@@ -8281,7 +8528,7 @@
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
 
-    document.querySelectorAll('[data-reveal], .reveal, .manifesto-item, .feature-row, .how-item').forEach(el => {
+    document.querySelectorAll('[data-reveal], .reveal, .pain-item, .feature, .how-item').forEach(el => {
       observer.observe(el);
     });
   }
@@ -8643,7 +8890,7 @@
     `;
 
     // Scene 1: 今日 active
-    const phone1 = document.querySelector('#phone-1 .demo-phone-screen');
+    const phone1 = document.querySelector('#phone-today .demo-phone-screen');
     if (phone1) phone1.insertAdjacentHTML('beforeend', tabsHTML('today'));
 
     // Scene 2: 本周 active
@@ -8892,6 +9139,7 @@
   let appIdealDay = 2;
   let appWeekViewMode = 'week';
   let appIdealSubTab = 'plan';
+  let appCheckinMode = 'normal'; // 'normal' or 'reverse'
   let appScrollY = null;
   const appPendingTaps = {};
   const APP_TAP_MERGE = 1000;
@@ -9071,12 +9319,18 @@
             <div class="app-stat-label">记录条数</div>
           </div>
         </div>
+        <div class="app-checkin-mode-toggle">
+          <span class="checkin-mode-label">模式</span>
+          <button class="checkin-mode-btn ${appCheckinMode==='normal'?'active':''}" data-mode="normal"> 正向</button>
+          <button class="checkin-mode-btn ${appCheckinMode==='reverse'?'active':''}" data-mode="reverse">✅ 反向</button>
+          <button class="checkin-mode-btn clear-btn" id="clear-data-btn" title="清空数据">🗑</button>
+        </div>
       </div>
       <div class="app-cat-grid" id="${catGridId}"></div>
       <div class="app-records-section">
         <div class="app-records-header">
           <span class="app-records-title">今日记录</span>
-          <span class="app-records-hint">点击卡片开始记录</span>
+          <span class="app-records-hint">${appCheckinMode==='reverse'?'点击未完成的活动':'点击卡片开始记录'}</span>
         </div>
         <div id="${recListId}"></div>
       </div>
@@ -9085,10 +9339,17 @@
     const grid = document.getElementById(catGridId);
     grid.innerHTML = CATEGORIES.map(cat => {
       const mins = getCatMinutes(cat.id, todayKey);
-      const timeStr = mins > 0 ? formatDuration(mins) : '+15m';
       const hasRec = mins > 0;
+      let timeStr, cardClass;
+      if (appCheckinMode === 'reverse') {
+        timeStr = hasRec ? '✓ 已完成' : '+15m';
+        cardClass = hasRec ? 'has-record checked' : '';
+      } else {
+        timeStr = mins > 0 ? formatDuration(mins) : '+15m';
+        cardClass = hasRec ? 'has-record' : '';
+      }
       return `
-        <div class="app-cat-card ${hasRec?'has-record':''}" data-cat="${cat.id}" style="--cat-color:${cat.color}">
+        <div class="app-cat-card ${cardClass}" data-cat="${cat.id}" style="--cat-color:${cat.color}">
           <span class="app-cat-icon">${cat.icon}</span>
           <span class="app-cat-name">${cat.name}</span>
           <span class="app-cat-time">${timeStr}</span>
@@ -9098,6 +9359,20 @@
 
     grid.querySelectorAll('.app-cat-card').forEach(card => {
       card.addEventListener('click', () => handleAppTap(card.dataset.cat, card, containerId));
+    });
+
+    container.querySelectorAll('.checkin-mode-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.id === 'clear-data-btn') {
+          if (confirm('确定要清空所有数据吗？')) {
+            appData.records = {};
+            renderAppToday(containerId);
+          }
+          return;
+        }
+        appCheckinMode = btn.dataset.mode;
+        renderAppToday(containerId);
+      });
     });
 
     renderAppRecords(containerId);
@@ -9152,10 +9427,24 @@
   }
 
   function handleAppTap(catId, cardEl, containerId) {
-    const now = Date.now();
     const tk = getTodayKey();
     if (!appData.records[tk]) appData.records[tk] = [];
 
+    // Reverse mode: clicking a "completed" card removes it (mark as not done)
+    if (appCheckinMode === 'reverse') {
+      const existingRecords = appData.records[tk].filter(r => r.category === catId);
+      if (existingRecords.length > 0) {
+        appData.records[tk] = appData.records[tk].filter(r => r.category !== catId);
+        cardEl.classList.remove('has-record', 'checked');
+        const timeEl = cardEl.querySelector('.app-cat-time');
+        if (timeEl) timeEl.textContent = '+15m';
+        renderAppToday(containerId);
+        return;
+      }
+    }
+
+    // Normal mode: standard tap handling
+    const now = Date.now();
     if (appPendingTaps[catId] && (now - appPendingTaps[catId].firstTap) < APP_TAP_MERGE) {
       appPendingTaps[catId].count++;
       clearTimeout(appPendingTaps[catId].timer);
@@ -9555,8 +9844,9 @@
       const color = cat ? cat.color : '#9A9488';
       const icon = cat ? cat.icon : '📌';
       const name = cat ? cat.name : b.category;
-      blocksHTML += `<div class="app-plan-block activity" style="top:${top}px;height:${height}px;${posStyle}z-index:2;--cat-color:${color};">
+      blocksHTML += `<div class="app-plan-block activity app-plan-block-editable" style="top:${top}px;height:${height}px;${posStyle}z-index:2;--cat-color:${color};" data-btype="ideal" data-cat="${b.category}" data-start="${b.startHour}:${String(b.startMin).padStart(2,'0')}" data-dur="${b.duration}">
         <span>${icon}</span><span>${name}</span>
+        <button class="app-plan-block-del" data-del-cat="${b.category}" data-del-start="${b.startHour}:${String(b.startMin).padStart(2,'0')}">×</button>
       </div>`;
     });
 
@@ -9570,8 +9860,8 @@
       if (r.start > gapStart + 30) {
         const gapTop = ((gapStart - WIN_START) / TOTAL_MIN) * ROW_HEIGHT;
         const gapHeight = Math.max(20, ((r.start - gapStart) / TOTAL_MIN) * ROW_HEIGHT);
-        if (gapHeight > 24) {
-          emptyHTML += `<div class="app-plan-empty" style="top:${gapTop}px;height:${gapHeight - 4}px">可安排</div>`;
+        if (gapHeight > 32) {
+          emptyHTML += `<div class="app-plan-empty app-plan-empty-addable" data-start-min="${gapStart}" data-gap-height="${gapHeight}" style="top:${gapTop}px;height:${gapHeight - 4}px">可安排 <span class="empty-add-btn">+</span></div>`;
         }
       }
       gapStart = Math.max(gapStart, r.end);
@@ -9579,8 +9869,8 @@
     if (gapStart < WIN_END - 30) {
       const gapTop = ((gapStart - WIN_START) / TOTAL_MIN) * ROW_HEIGHT;
       const gapHeight = Math.max(20, ((WIN_END - gapStart) / TOTAL_MIN) * ROW_HEIGHT);
-      if (gapHeight > 24) {
-        emptyHTML += `<div class="app-plan-empty" style="top:${gapTop}px;height:${gapHeight - 4}px">可安排</div>`;
+      if (gapHeight > 32) {
+        emptyHTML += `<div class="app-plan-empty app-plan-empty-addable" data-start-min="${gapStart}" data-gap-height="${gapHeight}" style="top:${gapTop}px;height:${gapHeight - 4}px">可安排 <span class="empty-add-btn">+</span></div>`;
       }
     }
 
@@ -9594,8 +9884,33 @@
           </div>
         </div>
       </div>
+      <div class="app-ideal-edit-hint">点击 + 添加理想活动，点击块上的 × 删除</div>
       <div class="app-plan-note">灰色是固定的，空白是你的</div>
     `;
+
+    // Event handlers for adding blocks
+    container.querySelectorAll('.app-plan-empty-addable').forEach(el => {
+      el.addEventListener('click', () => {
+        const startMin = parseInt(el.dataset.startMin);
+        const gapHeight = parseInt(el.dataset.gapHeight);
+        const startH = Math.floor(startMin / 60);
+        const startM = startMin % 60;
+        const maxDurMin = Math.min(gapHeight / ROW_HEIGHT * TOTAL_MIN, 240);
+        const maxDurH = Math.floor(maxDurMin / 60);
+        const maxDurM = Math.round(maxDurMin % 60);
+        showIdealAddModal(appIdealDay, startH, startM, maxDurH, maxDurM);
+      });
+    });
+
+    // Event handlers for deleting blocks
+    container.querySelectorAll('.app-plan-block-del').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const cat = btn.dataset.delCat;
+        const start = btn.dataset.delStart;
+        deleteIdealBlock(appIdealDay, cat, start);
+      });
+    });
   }
 
   function renderAppIdeal(containerId, forceSubTab) {
@@ -9817,6 +10132,105 @@
         <span class="app-priority-badge ${it.keep?'keep':'drop'}">${it.keep?'保留':'暂时放下'}</span>
       </div>
     `).join('');
+  }
+
+  function showIdealAddModal(dayIdx, startH, startM, maxDurH, maxDurM) {
+    // Remove existing modal if any
+    const existing = document.getElementById('ideal-add-modal');
+    if (existing) existing.remove();
+
+    const nonFixedCats = CATEGORIES.filter(c => !['work','commute','cook','rest'].includes(c.id));
+
+    const catOptions = nonFixedCats.map(cat =>
+      `<div class="modal-cat-option" data-cat="${cat.id}" style="--cat-color:${cat.color}">
+        <span>${cat.icon}</span>
+        <span>${cat.name}</span>
+      </div>`
+    ).join('');
+
+    const modal = document.createElement('div');
+    modal.id = 'ideal-add-modal';
+    modal.className = 'ideal-modal-overlay';
+    modal.innerHTML = `
+      <div class="ideal-modal">
+        <div class="ideal-modal-title">添加理想活动</div>
+        <div class="ideal-modal-sub">周${['一','二','三','四','五','六','日'][dayIdx]} ${String(startH).padStart(2,'0')}:${String(startM).padStart(2,'0')} 开始</div>
+        <div class="ideal-modal-cats">${catOptions}</div>
+        <div class="ideal-modal-dur-row">
+          <span class="ideal-modal-label">时长</span>
+          <div class="ideal-modal-dur-btns" id="ideal-dur-btns">
+            <button class="ideal-dur-btn active" data-dur="30">30m</button>
+            <button class="ideal-dur-btn" data-dur="60">1h</button>
+            <button class="ideal-dur-btn" data-dur="90">1h30m</button>
+            <button class="ideal-dur-btn" data-dur="120">2h</button>
+          </div>
+        </div>
+        <div class="ideal-modal-actions">
+          <button class="ideal-modal-cancel">取消</button>
+          <button class="ideal-modal-confirm" id="ideal-confirm-btn">确认添加</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    let selectedCat = nonFixedCats[0].id;
+    let selectedDur = 30;
+
+    modal.querySelectorAll('.modal-cat-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        modal.querySelectorAll('.modal-cat-option').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        selectedCat = opt.dataset.cat;
+      });
+    });
+    // Auto-select first
+    const firstOpt = modal.querySelector('.modal-cat-option');
+    if (firstOpt) firstOpt.classList.add('selected');
+
+    modal.querySelectorAll('.ideal-dur-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        modal.querySelectorAll('.ideal-dur-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedDur = parseInt(btn.dataset.dur);
+      });
+    });
+
+    modal.querySelector('.ideal-modal-cancel').addEventListener('click', () => modal.remove());
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
+
+    document.getElementById('ideal-confirm-btn').addEventListener('click', () => {
+      addIdealBlock(dayIdx, selectedCat, startH, startM, selectedDur);
+      modal.remove();
+      // Re-render the plan timeline
+      const planContainer = document.getElementById('app-ideal-content-plan');
+      if (planContainer) renderAppPlanTimeline(planContainer, appIdealDay);
+      // Also re-render compare view if visible
+      if (appIdealSubTab !== 'plan') {
+        renderAppIdeal();
+      }
+    });
+  }
+
+  function addIdealBlock(dayIdx, catId, startH, startM, duration) {
+    if (!appData.idealWeek[dayIdx]) appData.idealWeek[dayIdx] = [];
+    appData.idealWeek[dayIdx].push({
+      category: catId,
+      startHour: startH,
+      startMin: startM,
+      duration: duration
+    });
+  }
+
+  function deleteIdealBlock(dayIdx, catId, startTime) {
+    if (!appData.idealWeek[dayIdx]) return;
+    const [sh, sm] = startTime.split(':').map(Number);
+    appData.idealWeek[dayIdx] = appData.idealWeek[dayIdx].filter(b =>
+      !(b.category === catId && b.startHour === sh && b.startMin === sm && !b.fixed)
+    );
+    // Re-render
+    const planContainer = document.getElementById('app-ideal-content-plan');
+    if (planContainer) renderAppPlanTimeline(planContainer, appIdealDay);
+    if (appIdealSubTab !== 'plan') renderAppIdeal();
   }
 
   function renderAppPageInto(containerId, page, weekMode, idealSubTab) {
